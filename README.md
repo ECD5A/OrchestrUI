@@ -84,12 +84,14 @@ The MCP server does not execute install commands or write project files. Orchest
 
 If OrchestrUI is useful to your work, you can support the project here:
 
-**TON:** `pointoncurve.ton`
 
+- TON: `pointoncurve.ton`
 - Bitcoin (BTC): `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN`
 - USDT (TRC20): `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75`
 
 ## Contact
+
+For commercial integration, support, collaboration, and partnership inquiries:
 
 <p>
   <a href="mailto:stelmak159@gmail.com" aria-label="Email"><img alt="Email" height="24" src="https://cdn.simpleicons.org/gmail/EA4335"></a>
