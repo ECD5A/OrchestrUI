@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#08111f">
-    <meta name="description" content="OrchestrUI routes seven UI ecosystems through three agent skills and six read-only MCP tools into one coherent frontend plan.">
+    <meta name="theme-color" content="#07101d">
+    <meta name="description" content="A compact interactive demonstration of the OrchestrUI inspection, routing, harmonization, and audit pipeline.">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta property="og:title" content="OrchestrUI — agent-native UI orchestration">
-    <meta property="og:description" content="Choose the smallest coherent frontend stack. Route roles, harmonize tokens, and audit before shipping.">
+    <meta property="og:title" content="OrchestrUI — workflow demo">
+    <meta property="og:description" content="Inspect the host, route UI roles, harmonize the result, and audit before shipping.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ecd5a.github.io/OrchestrUI/">
     <meta property="og:image" content="https://ecd5a.github.io/OrchestrUI/assets/social-preview.png">
@@ -15,193 +15,93 @@
     <link rel="canonical" href="https://ecd5a.github.io/OrchestrUI/">
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
-    <title>OrchestrUI — interactive project overview</title>
+    <title>OrchestrUI — workflow demo</title>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">Skip to demo</a>
 
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="OrchestrUI home">
-        <svg viewBox="0 0 36 36" aria-hidden="true">
-          <circle cx="16" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="3"/>
-          <path d="M3 7l7 7M3 18h3M3 29l7-7M26 18h7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="m12 18 3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>OrchestrUI</span>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="#flow">How it works</a>
-        <a href="#system">System</a>
-        <a class="nav-cta" href="https://github.com/ECD5A/OrchestrUI">GitHub</a>
-      </nav>
-    </header>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="https://github.com/ECD5A/OrchestrUI" aria-label="OrchestrUI repository">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <circle cx="16" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M3 7l7 7M3 18h3M3 29l7-7M26 18h7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="m12 18 3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>OrchestrUI</span>
+        </a>
+        <span class="topbar-label">workflow demo</span>
+        <a class="source-link" href="https://github.com/ECD5A/OrchestrUI">source <span aria-hidden="true">↗</span></a>
+      </header>
 
-    <main id="main">
-      <section class="hero section" id="top" aria-labelledby="hero-title">
-        <div class="hero-glow" aria-hidden="true"></div>
-        <div class="eyebrow reveal">Open source · v0.1.0 · MIT</div>
-        <h1 class="reveal" id="hero-title">Seven UI ecosystems.<br><span>One coherent interface.</span></h1>
-        <p class="hero-copy reveal">
-          OrchestrUI gives coding agents a disciplined way to inspect an existing frontend,
-          assign one owner to each UI role, and reject redundant libraries before implementation.
-        </p>
-        <div class="hero-actions reveal">
-          <a class="button button-primary" href="#flow">Explore the flow <span aria-hidden="true">↓</span></a>
-          <a class="button button-secondary" href="https://github.com/ECD5A/OrchestrUI#quick-start">Quick start</a>
-        </div>
-        <dl class="metrics reveal" aria-label="Project facts">
-          <div><dt>Agent skills</dt><dd>3</dd></div>
-          <div><dt>Read-only MCP tools</dt><dd>6</dd></div>
-          <div><dt>UI ecosystems</dt><dd>7</dd></div>
-          <div><dt>Runtime writes</dt><dd>0</dd></div>
-        </dl>
-      </section>
-
-      <section class="flow-section section" id="flow" aria-labelledby="flow-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow">The orchestration loop</p>
-          <h2 id="flow-title">A decision system, not a component dump.</h2>
-          <p>Use the controls to move through the workflow. Every phase narrows the solution instead of adding another dependency.</p>
-        </div>
-
-        <div class="flow-shell reveal" data-phase="inspect">
-          <div class="flow-controls" role="group" aria-label="Presentation phase">
-            <button type="button" data-phase-button="inspect" aria-pressed="true"><span>01</span> Inspect</button>
-            <button type="button" data-phase-button="route" aria-pressed="false"><span>02</span> Route</button>
-            <button type="button" data-phase-button="harmonize" aria-pressed="false"><span>03</span> Harmonize</button>
-            <button type="button" data-phase-button="audit" aria-pressed="false"><span>04</span> Audit</button>
-            <button class="play-control" type="button" data-play-control aria-label="Pause automatic presentation" aria-pressed="false">
-              <span data-play-icon aria-hidden="true">Ⅱ</span>
-              <span data-play-label>Pause</span>
-            </button>
+      <main id="main">
+        <section class="demo" aria-labelledby="demo-title">
+          <div class="demo-heading">
+            <div>
+              <p class="overline">AUTOMATED UI ROUTING</p>
+              <h1 id="demo-title">Orchestration pipeline</h1>
+            </div>
+            <p>Inspect host → route roles → harmonize tokens → audit output</p>
           </div>
 
-          <div class="flow-grid">
-            <div class="flow-visual" aria-hidden="true">
-              <svg viewBox="0 0 760 500" role="presentation">
-                <defs>
-                  <linearGradient id="route-gradient" x1="90" y1="250" x2="690" y2="250" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#22d3ee"/><stop offset="0.52" stop-color="#2dd4bf"/><stop offset="1" stop-color="#8b7cff"/>
-                  </linearGradient>
-                  <filter id="soft-glow" x="-80%" y="-80%" width="260%" height="260%">
-                    <feGaussianBlur stdDeviation="7" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                  </filter>
-                </defs>
-
-                <g class="ecosystem-cluster">
-                  <path class="route-line line-one" d="M92 75C196 75 214 208 316 238"/>
-                  <path class="route-line line-two" d="M92 132C194 132 224 216 316 241"/>
-                  <path class="route-line line-three" d="M92 189C198 189 240 226 316 244"/>
-                  <path class="route-line line-four" d="M92 250H316"/>
-                  <path class="route-line line-five" d="M92 311C198 311 240 274 316 256"/>
-                  <path class="route-line line-six" d="M92 368C194 368 224 284 316 259"/>
-                  <path class="route-line line-seven" d="M92 425C196 425 214 292 316 262"/>
-
-                  <g class="ecosystem-node" transform="translate(72 75)"><circle r="17"/><text x="-34" y="5">Kokonut</text></g>
-                  <g class="ecosystem-node" transform="translate(72 132)"><circle r="17"/><text x="-29" y="5">Bits</text></g>
-                  <g class="ecosystem-node" transform="translate(72 189)"><circle r="17"/><text x="-35" y="5">daisyUI</text></g>
-                  <g class="ecosystem-node" transform="translate(72 250)"><circle r="17"/><text x="-29" y="5">Bklit</text></g>
-                  <g class="ecosystem-node" transform="translate(72 311)"><circle r="17"/><text x="-33" y="5">Anime</text></g>
-                  <g class="ecosystem-node" transform="translate(72 368)"><circle r="17"/><text x="-26" y="5">Rive</text></g>
-                  <g class="ecosystem-node" transform="translate(72 425)"><circle r="17"/><text x="-31" y="5">Magic</text></g>
-                </g>
-
-                <g class="router-hub" transform="translate(352 250)">
-                  <circle class="hub-orbit" r="48"/>
-                  <circle class="hub-core" r="35"/>
-                  <path d="m-13 0 10 10 20-25"/>
-                  <text y="77">ROLE ROUTER</text>
-                </g>
-
-                <path class="output-line" d="M401 250H480"/>
-                <circle class="signal signal-one" cx="436" cy="250" r="7"/>
-
-                <g class="ui-output" transform="translate(480 126)">
-                  <rect class="window" width="230" height="248" rx="24"/>
-                  <circle cx="25" cy="25" r="5"/><circle cx="42" cy="25" r="5"/><circle cx="59" cy="25" r="5"/>
-                  <rect class="output-hero" x="22" y="52" width="186" height="59" rx="12"/>
-                  <rect class="output-card" x="22" y="128" width="87" height="79" rx="12"/>
-                  <rect class="output-card" x="121" y="128" width="87" height="79" rx="12"/>
-                  <path class="audit-check" d="m84 229 13 13 28-34"/>
-                  <text x="115" y="276">COHERENT UI</text>
-                </g>
-              </svg>
+          <div class="console" data-phase="inspect" data-phase-index="0">
+            <div class="console-bar">
+              <span class="run-state"><i aria-hidden="true"></i><span data-run-state>running</span></span>
+              <span class="run-id">RUN / HOST-PROJECT</span>
+              <button class="pause-control" type="button" data-play-control aria-label="Pause automatic run" aria-pressed="false">
+                <span data-play-icon aria-hidden="true">Ⅱ</span>
+                <span data-play-label>pause</span>
+              </button>
             </div>
 
-            <div class="phase-panel" aria-live="polite" aria-atomic="true">
-              <p class="phase-kicker" data-phase-kicker>01 · Inspect the host</p>
-              <h3 data-phase-title>Start with what already works.</h3>
-              <p data-phase-copy>Read the framework, design system, tokens, motion, accessibility constraints, and asset rights before selecting anything new.</p>
-              <ul data-phase-list>
-                <li>Existing system stays the base owner</li>
-                <li>Capability gaps become explicit</li>
-                <li>Unknown rights block risky assets</li>
-              </ul>
-              <div class="phase-rule"><span>Current rule</span><strong data-phase-rule>Inspect before selection.</strong></div>
+            <ol class="steps" aria-label="Orchestration phases">
+              <li><button type="button" data-phase-button="inspect" aria-pressed="true"><span>01</span>Inspect</button></li>
+              <li><button type="button" data-phase-button="route" aria-pressed="false"><span>02</span>Route</button></li>
+              <li><button type="button" data-phase-button="harmonize" aria-pressed="false"><span>03</span>Harmonize</button></li>
+              <li><button type="button" data-phase-button="audit" aria-pressed="false"><span>04</span>Audit</button></li>
+            </ol>
+
+            <div class="progress-track" aria-hidden="true"><span data-progress></span></div>
+
+            <div class="stage-grid">
+              <article class="data-card input-card">
+                <p class="card-label">HOST INPUT</p>
+                <dl>
+                  <div><dt>framework</dt><dd>React</dd></div>
+                  <div><dt>base</dt><dd>shadcn/ui</dd></div>
+                  <div><dt>tokens</dt><dd>detected</dd></div>
+                  <div><dt>capability gap</dt><dd>charts</dd></div>
+                </dl>
+              </article>
+
+              <div class="processor" aria-live="polite" aria-atomic="true">
+                <p class="phase-code" data-phase-code>01 / INSPECT</p>
+                <h2 data-phase-title>Read the host project.</h2>
+                <p data-phase-copy>Detect the existing base, tokens, dependencies, accessibility constraints, and real capability gaps.</p>
+                <ul data-phase-list>
+                  <li>existing system remains authoritative</li>
+                  <li>charts are the only confirmed gap</li>
+                </ul>
+              </div>
+
+              <article class="data-card output-card">
+                <p class="card-label">PLAN OUTPUT</p>
+                <dl>
+                  <div><dt>base owner</dt><dd data-output-base>pending</dd></div>
+                  <div><dt>selected</dt><dd data-output-selected>pending</dd></div>
+                  <div><dt>rejected</dt><dd data-output-rejected>pending</dd></div>
+                  <div><dt>status</dt><dd class="status-value" data-output-status>scanning</dd></div>
+                </dl>
+              </article>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section class="system-section section" id="system" aria-labelledby="system-title">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Small by design</p>
-          <h2 id="system-title">Three skills. Six bounded tools. One shared policy.</h2>
-          <p>The skills guide judgment and implementation. The MCP server exposes verified metadata without writing files or running install commands.</p>
-        </div>
-
-        <div class="system-cards">
-          <article class="system-card reveal">
-            <span class="card-index">01</span>
-            <h3>Route</h3>
-            <p>Assign one owner to each role and reject overlapping base systems, effects, and motion engines.</p>
-            <a href="https://github.com/ECD5A/OrchestrUI/tree/main/skills/ui-library-router">Router skill <span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="system-card reveal">
-            <span class="card-index">02</span>
-            <h3>Harmonize</h3>
-            <p>Map selected pieces to the host typography, color, spacing, radius, surfaces, and motion contract.</p>
-            <a href="https://github.com/ECD5A/OrchestrUI/tree/main/skills/ui-orchestrator">Orchestrator skill <span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="system-card reveal">
-            <span class="card-index">03</span>
-            <h3>Audit</h3>
-            <p>Score the rendered result for coherence, accessibility, responsiveness, motion, performance, and licensing.</p>
-            <a href="https://github.com/ECD5A/OrchestrUI/tree/main/skills/ui-quality-audit">Quality skill <span aria-hidden="true">↗</span></a>
-          </article>
-        </div>
-      </section>
-
-      <section class="rule-section section reveal" aria-labelledby="rule-title">
-        <p class="eyebrow">The governing rule</p>
-        <h2 id="rule-title">Do not use all seven.</h2>
-        <p>Use only the owners the target project actually needs.</p>
-        <div class="ecosystem-list" aria-label="Supported ecosystems">
-          <span>Kokonut UI</span><span>React Bits</span><span>daisyUI</span><span>Bklit UI</span><span>Anime.js</span><span>Rive</span><span>Magic UI</span>
-        </div>
-      </section>
-
-      <section class="cta-section section reveal" aria-labelledby="cta-title">
-        <div>
-          <p class="eyebrow">Ready to route?</p>
-          <h2 id="cta-title">Build with more options.<br>Ship with fewer conflicts.</h2>
-        </div>
-        <div class="cta-actions">
-          <a class="button button-primary" href="https://github.com/ECD5A/OrchestrUI#quick-start">Start with OrchestrUI <span aria-hidden="true">↗</span></a>
-          <a class="button button-secondary" href="https://github.com/ECD5A/OrchestrUI/releases/tag/v0.1.0">View v0.1.0</a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p><strong>OrchestrUI</strong><br><span>Independent open-source project by ECD5A.</span></p>
-      <div class="footer-links">
-        <a href="mailto:stelmak159@gmail.com">Email</a>
-        <a href="https://t.me/ECDS4">Telegram</a>
-        <a href="https://github.com/ECD5A/OrchestrUI">GitHub</a>
-      </div>
-    </footer>
+          <footer class="demo-footer">
+            <span>one owner per role</span><span>read-only MCP</span><span>public upstream only</span>
+          </footer>
+        </section>
+      </main>
+    </div>
 
     <script src="app.js" defer></script>
   </body>

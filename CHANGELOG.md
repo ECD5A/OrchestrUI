@@ -3,12 +3,12 @@
 ## [Unreleased]
 
 ### Added
-- Interactive GitHub Pages project presentation with a keyboard-accessible, reduced-motion orchestration walkthrough.
+- Compact GitHub Pages engineering demo with a keyboard-accessible, reduced-motion orchestration loop.
 - macOS and Windows platform-smoke jobs alongside the existing Linux/Node.js matrix.
 
 ### Changed
 - Unified the README hero and GitHub social preview into one reproducible artwork.
-- Simplified README structure, redesigned direct-support details without tables, and added maintainer contact links.
+- Reduced both READMEs to compact project showcases, removed the duplicate workflow diagram, condensed direct support to one line, and added maintainer contact links.
 
 ## [0.1.0] - 2026-08-20
 
