@@ -132,6 +132,50 @@ h1 {
   text-align: right;
 }
 
+.scenario-picker {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 0 10px auto;
+  padding: 4px;
+  align-items: center;
+  gap: 3px;
+  overflow-x: auto;
+  border: 1px solid var(--line-soft);
+  border-radius: 9px;
+  background: rgba(7, 16, 29, 0.72);
+}
+
+.scenario-picker > span {
+  padding: 0 9px;
+  color: #586a81;
+  font-family: var(--mono);
+  font-size: 0.61rem;
+  letter-spacing: 0.09em;
+}
+
+.scenario-picker button {
+  min-height: 30px;
+  padding: 0 10px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 6px;
+  color: #7f8fa5;
+  background: transparent;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.scenario-picker button:hover { color: var(--text); }
+
+.scenario-picker button[aria-pressed="true"] {
+  color: #dffcff;
+  background: rgba(39, 213, 232, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(39, 213, 232, 0.18);
+}
+
 .console {
   overflow: hidden;
   border: 1px solid var(--line);
@@ -261,7 +305,7 @@ h1 {
 
 .data-card { padding: 18px; }
 
-.data-card dl { margin: 21px 0 0; }
+.data-card dl { margin: 16px 0 0; }
 
 .data-card dl div {
   display: flex;
@@ -294,6 +338,55 @@ h1 {
     radial-gradient(circle at 50% 0%, rgba(39, 213, 232, 0.08), transparent 65%),
     var(--panel-2);
 }
+
+.engine {
+  position: relative;
+  display: grid;
+  width: 92px;
+  height: 92px;
+  margin: 0 0 24px;
+  place-items: center;
+  color: var(--cyan);
+}
+
+.engine svg { width: 42px; filter: drop-shadow(0 0 10px rgba(39, 213, 232, 0.24)); }
+
+.engine strong {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  padding: 2px 5px;
+  color: #baf8ff;
+  background: var(--panel-2);
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.08em;
+  transform: translateX(-50%);
+}
+
+.engine-orbit {
+  position: absolute;
+  border: 1px solid rgba(39, 213, 232, 0.25);
+  border-radius: 50%;
+}
+
+.orbit-one { inset: 9px; border-right-color: var(--mint); animation: engine-spin 4s linear infinite; }
+.orbit-two { inset: 0; border-top-color: var(--violet); border-bottom-color: transparent; animation: engine-spin 7s linear infinite reverse; }
+
+.engine-pulse {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 12px currentColor;
+}
+
+.pulse-one { top: 7px; left: 25px; animation: node-pulse 1.4s ease-in-out infinite; }
+.pulse-two { right: 2px; bottom: 31px; color: var(--violet); background: currentColor; animation: node-pulse 1.4s 700ms ease-in-out infinite; }
+
+@keyframes engine-spin { to { transform: rotate(360deg); } }
+@keyframes node-pulse { 50% { opacity: 0.35; transform: scale(0.7); } }
 
 .processor::before, .processor::after {
   position: absolute;
@@ -340,6 +433,94 @@ h1 {
 
 .processor li::before { position: absolute; left: 0; color: var(--mint); content: "✓"; }
 
+.result-preview {
+  overflow: hidden;
+  margin-top: 15px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: #081420;
+}
+
+.preview-toolbar {
+  display: flex;
+  height: 24px;
+  padding: 0 8px;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.preview-toolbar i { width: 4px; height: 4px; border-radius: 50%; background: #41526a; }
+
+.preview-toolbar span {
+  margin-left: auto;
+  color: #667991;
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  text-transform: uppercase;
+}
+
+.preview-canvas {
+  display: grid;
+  height: 74px;
+  padding: 10px;
+  align-items: end;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.preview-canvas span {
+  height: 26%;
+  border: 1px solid rgba(39, 213, 232, 0.2);
+  border-radius: 3px 3px 1px 1px;
+  background: linear-gradient(180deg, rgba(39, 213, 232, 0.55), rgba(49, 214, 173, 0.1));
+  transform-origin: bottom;
+  animation: chart-build 2.6s ease-in-out infinite;
+}
+
+.preview-canvas span:nth-child(2) { height: 48%; animation-delay: 80ms; }
+.preview-canvas span:nth-child(3) { height: 76%; animation-delay: 160ms; }
+.preview-canvas span:nth-child(4) { height: 58%; animation-delay: 240ms; }
+.preview-canvas span:nth-child(5) { height: 92%; animation-delay: 320ms; }
+
+@keyframes chart-build { 0%, 12% { transform: scaleY(0.18); opacity: 0.35; } 40%, 100% { transform: scaleY(1); opacity: 1; } }
+
+.console[data-scenario="landing"] .preview-canvas {
+  align-items: stretch;
+  grid-template: 12px 14px 1fr / 1fr 0.7fr;
+}
+
+.console[data-scenario="landing"] .preview-canvas span {
+  width: auto;
+  height: auto;
+  border-radius: 3px;
+  animation: surface-in 2.6s ease-in-out infinite;
+}
+
+.console[data-scenario="landing"] .preview-canvas span:first-child { grid-column: 1 / -1; }
+.console[data-scenario="landing"] .preview-canvas span:nth-child(2) { grid-column: 1; }
+.console[data-scenario="landing"] .preview-canvas span:nth-child(3) { grid-column: 1; }
+.console[data-scenario="landing"] .preview-canvas span:nth-child(4) { grid-column: 2; grid-row: 2 / 4; }
+.console[data-scenario="landing"] .preview-canvas span:nth-child(5) { display: none; }
+
+.console[data-scenario="existing"] .preview-canvas {
+  align-items: stretch;
+  grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+}
+
+.console[data-scenario="existing"] .preview-canvas span {
+  width: auto;
+  height: auto;
+  border-color: rgba(139, 124, 255, 0.22);
+  border-radius: 4px;
+  background: rgba(139, 124, 255, 0.12);
+  animation: surface-in 2.6s ease-in-out infinite;
+}
+
+.console[data-scenario="existing"] .preview-canvas span:first-child { grid-column: 1 / -1; }
+
+@keyframes surface-in { 0%, 12% { opacity: 0.25; transform: translateY(3px); } 40%, 100% { opacity: 1; transform: translateY(0); } }
+
 .demo-footer {
   display: flex;
   padding: 14px 4px 0;
@@ -370,6 +551,8 @@ h1 {
   .demo { padding-top: 24px; }
   .demo-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
   .demo-heading > p { text-align: left; }
+  .scenario-picker { width: 100%; margin-left: 0; }
+  .scenario-picker > span { display: none; }
   .console-bar { grid-template-columns: 1fr auto; }
   .run-id { display: none; }
   .steps { grid-template-columns: repeat(2, 1fr); }

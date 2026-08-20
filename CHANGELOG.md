@@ -8,7 +8,9 @@
 
 ### Changed
 - Unified the README hero and GitHub social preview into one reproducible artwork.
-- Reduced both READMEs to compact project showcases, removed the duplicate workflow diagram, condensed direct support to one line, and added maintainer contact links.
+- Reduced both READMEs to compact project showcases, removed the duplicate workflow diagram, and added maintainer contact links.
+- Refined the workflow demo with three interactive routing scenarios, an animated processing state, and scenario-specific result previews.
+- Replaced the README footer with the standard OrchestrUI Donate and Contact blocks.
 
 ## [0.1.0] - 2026-08-20
 
