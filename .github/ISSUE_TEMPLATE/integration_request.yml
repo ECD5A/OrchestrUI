@@ -1,0 +1,30 @@
+name: Integration request
+description: Propose a new upstream ecosystem or adapter
+title: "[Integration]: "
+labels: ["integration"]
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Upstream project
+    validations:
+      required: true
+  - type: input
+    id: official
+    attributes:
+      label: Official repository/docs
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: Unique value
+      description: What role does this add beyond the current seven?
+    validations:
+      required: true
+  - type: textarea
+    id: license
+    attributes:
+      label: License / redistribution notes
+    validations:
+      required: true

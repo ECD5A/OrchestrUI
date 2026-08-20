@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ECD5A/OrchestrUI/catalog/libraries.schema.json",
+  "title": "OrchestrUI library catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "project", "verified_at", "policy", "libraries"],
+  "properties": {
+    "schema_version": { "const": 2 },
+    "project": { "const": "OrchestrUI" },
+    "verified_at": { "type": "string", "format": "date" },
+    "policy": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    },
+    "libraries": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": { "$ref": "#/$defs/library" }
+    }
+  },
+  "$defs": {
+    "httpsUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "nonEmptyStrings": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "library": {
+      "type": "object",
+      "required": [
+        "id", "name", "roles", "homepage", "docs", "repository",
+        "license_note", "redistribution", "integration", "compatibility",
+        "source_provenance", "use_when", "avoid_when"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "roles": { "$ref": "#/$defs/nonEmptyStrings" },
+        "homepage": { "$ref": "#/$defs/httpsUrl" },
+        "docs": { "$ref": "#/$defs/httpsUrl" },
+        "repository": { "$ref": "#/$defs/httpsUrl" },
+        "mcp_docs": { "$ref": "#/$defs/httpsUrl" },
+        "mcp_repository": { "$ref": "#/$defs/httpsUrl" },
+        "skills_docs": { "$ref": "#/$defs/httpsUrl" },
+        "license_note": { "type": "string", "minLength": 1 },
+        "redistribution": { "type": "string", "minLength": 1 },
+        "integration": {
+          "type": "object",
+          "required": ["type", "example"],
+          "properties": {
+            "type": { "enum": ["shadcn-registry", "tailwind-plugin", "npm-package", "runtime-package"] },
+            "example": { "type": "string", "minLength": 1 },
+            "namespace": { "type": "string", "pattern": "^@[A-Za-z0-9][A-Za-z0-9-]{0,62}$" },
+            "registry_pattern": { "$ref": "#/$defs/httpsUrl" },
+            "agent_skill": { "type": "string" },
+            "note": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "compatibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["frameworks", "styling", "base_role", "conflicts"],
+          "properties": {
+            "frameworks": { "$ref": "#/$defs/nonEmptyStrings" },
+            "styling": { "$ref": "#/$defs/nonEmptyStrings" },
+            "base_role": { "type": "string", "minLength": 1 },
+            "conflicts": { "$ref": "#/$defs/nonEmptyStrings" }
+          }
+        },
+        "source_provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["verified_at", "docs", "license"],
+          "properties": {
+            "verified_at": { "type": "string", "format": "date" },
+            "docs": { "$ref": "#/$defs/httpsUrl" },
+            "license": { "$ref": "#/$defs/httpsUrl" },
+            "registry_index": { "$ref": "#/$defs/httpsUrl" }
+          }
+        },
+        "use_when": { "$ref": "#/$defs/nonEmptyStrings" },
+        "avoid_when": { "$ref": "#/$defs/nonEmptyStrings" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

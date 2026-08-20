@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.tmp/
+.idea/
+.vscode/
+.codex/
+.claude/
+test-results/
+.env
+.env.*
+!.env.example
+*.log
+*.tgz

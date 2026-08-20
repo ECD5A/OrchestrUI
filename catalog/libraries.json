@@ -1,0 +1,287 @@
+{
+  "schema_version": 2,
+  "project": "OrchestrUI",
+  "verified_at": "2026-08-20",
+  "policy": {
+    "upstream_is_source_of_truth": true,
+    "vendor_upstream_collections": false,
+    "paid_content_allowed_by_default": false,
+    "read_only_mcp_first": true,
+    "minimum_library_set": true
+  },
+  "libraries": [
+    {
+      "id": "kokonut-ui",
+      "name": "Kokonut UI",
+      "roles": [
+        "polished-components",
+        "marketing-ui",
+        "app-ui",
+        "micro-interactions"
+      ],
+      "homepage": "https://kokonutui.com/",
+      "docs": "https://kokonutui.com/docs",
+      "repository": "https://github.com/kokonut-labs/kokonutui",
+      "license_note": "Open-source repository is MIT; paid/Pro content is separate.",
+      "redistribution": "Prefer official public registry installation. Never mirror paid/Pro content.",
+      "integration": {
+        "type": "shadcn-registry",
+        "namespace": "@kokonutui",
+        "registry_pattern": "https://kokonutui.com/r/{name}.json",
+        "example": "npx shadcn@latest add @kokonutui/particle-button"
+      },
+      "compatibility": {
+        "frameworks": ["React", "Next.js"],
+        "styling": ["Tailwind CSS v4", "shadcn/ui registry"],
+        "base_role": "selective shadcn-compatible component layer",
+        "conflicts": ["Unplanned daisyUI base alongside a shadcn-derived host"]
+      },
+      "source_provenance": {
+        "verified_at": "2026-08-20",
+        "docs": "https://kokonutui.com/docs",
+        "license": "https://github.com/kokonut-labs/kokonutui/blob/main/LICENSE",
+        "registry_index": "https://kokonutui.com/r/registry.json"
+      },
+      "use_when": [
+        "Polished React/Next.js components or micro-interactions materially improve a product surface."
+      ],
+      "avoid_when": [
+        "The existing design system already solves the need or a second visual language would reduce consistency."
+      ]
+    },
+    {
+      "id": "react-bits",
+      "name": "React Bits",
+      "roles": [
+        "creative-animation",
+        "text-effects",
+        "backgrounds",
+        "webgl-canvas",
+        "interactive-ui"
+      ],
+      "homepage": "https://reactbits.dev/",
+      "docs": "https://reactbits.dev/get-started/introduction",
+      "mcp_docs": "https://reactbits.dev/get-started/mcp",
+      "repository": "https://github.com/DavidHDev/react-bits",
+      "license_note": "Current free repository uses MIT + Commons Clause.",
+      "redistribution": "Never mirror, bundle, sell, sublicense, or redistribute the React Bits component collection from OrchestrUI. Store metadata/instructions and fetch/install from official upstream.",
+      "integration": {
+        "type": "shadcn-registry",
+        "namespace": "@react-bits",
+        "example": "npx shadcn@latest add @react-bits/BlurText-TS-TW"
+      },
+      "compatibility": {
+        "frameworks": ["React"],
+        "styling": ["CSS variants", "Tailwind variants", "shadcn/ui registry"],
+        "base_role": "creative enhancement only",
+        "conflicts": ["Broad use in core product flows", "Redistribution of the component collection"]
+      },
+      "source_provenance": {
+        "verified_at": "2026-08-20",
+        "docs": "https://reactbits.dev/get-started/introduction",
+        "license": "https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md",
+        "registry_index": "https://reactbits.dev/r/registry.json"
+      },
+      "use_when": [
+        "A landing page, hero or portfolio benefits from one or two distinctive animated effects."
+      ],
+      "avoid_when": [
+        "Core product flows, constrained devices, or any plan to redistribute the component library itself."
+      ]
+    },
+    {
+      "id": "daisyui",
+      "name": "daisyUI",
+      "roles": [
+        "base-ui",
+        "semantic-css-components",
+        "themes",
+        "forms",
+        "rapid-product-ui"
+      ],
+      "homepage": "https://daisyui.com/",
+      "docs": "https://daisyui.com/docs/",
+      "mcp_docs": "https://daisyui.com/docs/mcp/",
+      "repository": "https://github.com/saadeghi/daisyui",
+      "license_note": "MIT.",
+      "redistribution": "Respect upstream MIT terms; prefer package installation.",
+      "integration": {
+        "type": "tailwind-plugin",
+        "example": "npm i -D daisyui@latest"
+      },
+      "compatibility": {
+        "frameworks": ["framework-agnostic HTML", "React", "Vue", "Svelte and other Tailwind hosts"],
+        "styling": ["Tailwind CSS v4 plugin"],
+        "base_role": "semantic component base and theme system",
+        "conflicts": ["Unplanned second base beside shadcn/Radix or another component system"]
+      },
+      "source_provenance": {
+        "verified_at": "2026-08-20",
+        "docs": "https://daisyui.com/docs/install/",
+        "license": "https://github.com/saadeghi/daisyui/blob/master/LICENSE"
+      },
+      "use_when": [
+        "The project needs a semantic Tailwind base, themes and forms, or already uses daisyUI."
+      ],
+      "avoid_when": [
+        "An established shadcn-derived base already exists and another base system would conflict."
+      ]
+    },
+    {
+      "id": "bklit-ui",
+      "name": "Bklit UI",
+      "roles": [
+        "charts",
+        "data-visualization",
+        "dashboards",
+        "analytics"
+      ],
+      "homepage": "https://bklit.com/",
+      "docs": "https://bklit.com/docs",
+      "skills_docs": "https://bklit.com/docs/skills",
+      "repository": "https://github.com/bklit/bklit-ui",
+      "license_note": "Open-source Bklit UI components are MIT; hosted/premium offerings may have separate terms.",
+      "redistribution": "Use official OSS registry; do not copy protected hosted/premium material.",
+      "integration": {
+        "type": "shadcn-registry",
+        "namespace": "@bklit",
+        "registry_pattern": "https://ui.bklit.com/r/{name}.json",
+        "example": "npx shadcn@latest add @bklit/line-chart",
+        "agent_skill": "npx skills add bklit/bklit-ui"
+      },
+      "compatibility": {
+        "frameworks": ["React", "Next.js"],
+        "styling": ["Tailwind CSS", "shadcn/ui registry"],
+        "base_role": "data-visualization specialist",
+        "conflicts": ["A second chart system without explicit ownership"]
+      },
+      "source_provenance": {
+        "verified_at": "2026-08-20",
+        "docs": "https://bklit.com/docs/installation",
+        "license": "https://github.com/bklit/bklit-ui/blob/main/LICENSE",
+        "registry_index": "https://bklit.com/r/registry.json"
+      },
+      "use_when": [
+        "Charts, dashboards, analytics, gauges or heatmaps are required."
+      ],
+      "avoid_when": [
+        "The requirement is unrelated to data visualization."
+      ]
+    },
+    {
+      "id": "animejs",
+      "name": "Anime.js",
+      "roles": [
+        "animation-engine",
+        "timeline",
+        "svg-animation",
+        "scroll-animation",
+        "custom-motion"
+      ],
+      "homepage": "https://animejs.com/",
+      "docs": "https://animejs.com/documentation/",
+      "repository": "https://github.com/juliangarnier/anime",
+      "license_note": "MIT.",
+      "redistribution": "Use the package under its MIT terms; avoid unnecessary dependency use.",
+      "integration": {
+        "type": "npm-package",
+        "example": "npm i animejs"
+      },
+      "compatibility": {
+        "frameworks": ["framework-agnostic JavaScript"],
+        "styling": ["DOM", "CSS", "SVG"],
+        "base_role": "bespoke animation engine",
+        "conflicts": ["Existing motion engine or CSS already covers the effect"]
+      },
+      "source_provenance": {
+        "verified_at": "2026-08-20",
+        "docs": "https://animejs.com/documentation/getting-started/installation/",
+        "license": "https://github.com/juliangarnier/anime/blob/master/LICENSE.md"
+      },
+      "use_when": [
+        "A bespoke timeline, stagger, SVG or scroll choreography cannot be expressed cleanly by existing motion tools."
+      ],
+      "avoid_when": [
+        "A simple hover, fade or component-native animation is sufficient."
+      ]
+    },
+    {
+      "id": "rive",
+      "name": "Rive",
+      "roles": [
+        "interactive-graphics",
+        "state-machines",
+        "vector-animation",
+        "product-illustration"
+      ],
+      "homepage": "https://rive.app/",
+      "docs": "https://rive.app/docs/runtimes/react/react",
+      "repository": "https://github.com/rive-app/rive-react",
+      "license_note": "Official runtimes are open source; individual .riv assets can have separate ownership and usage rights.",
+      "redistribution": "Track .riv asset rights separately. Never assume artwork is redistributable.",
+      "integration": {
+        "type": "runtime-package",
+        "example": "npm i --save @rive-app/react-webgl2",
+        "note": "Verify current recommended renderer/runtime before implementation."
+      },
+      "compatibility": {
+        "frameworks": ["React"],
+        "styling": ["WebGL2 runtime", "Canvas/Web runtime"],
+        "base_role": "interactive vector state machine",
+        "conflicts": ["Unknown .riv asset rights", "DOM/SVG is simpler", "Unsupported renderer features"]
+      },
+      "source_provenance": {
+        "verified_at": "2026-08-20",
+        "docs": "https://rive.app/docs/runtimes/react/react",
+        "license": "https://github.com/rive-app/rive-react/blob/main/LICENSE"
+      },
+      "use_when": [
+        "Interactive vector graphics, mascots or state-machine-driven illustrations materially improve the product."
+      ],
+      "avoid_when": [
+        "No appropriately licensed .riv asset exists or ordinary DOM/SVG motion is simpler."
+      ]
+    },
+    {
+      "id": "magic-ui",
+      "name": "Magic UI",
+      "roles": [
+        "marketing-ui",
+        "animated-components",
+        "backgrounds",
+        "text-effects",
+        "device-mocks"
+      ],
+      "homepage": "https://magicui.design/",
+      "docs": "https://magicui.design/docs",
+      "mcp_docs": "https://magicui.design/docs/mcp",
+      "repository": "https://github.com/magicuidesign/magicui",
+      "mcp_repository": "https://github.com/magicuidesign/mcp",
+      "license_note": "Open-source repository and official MCP repository are MIT; Pro content is separate.",
+      "redistribution": "Use public OSS paths. Never copy Pro content without applicable rights.",
+      "integration": {
+        "type": "shadcn-registry",
+        "namespace": "@magicui",
+        "example": "npx shadcn@latest add @magicui/globe"
+      },
+      "compatibility": {
+        "frameworks": ["React", "Next.js"],
+        "styling": ["Tailwind CSS", "shadcn/ui registry"],
+        "base_role": "marketing enhancement",
+        "conflicts": ["Overlapping ownership with broad React Bits use", "Pro templates without applicable rights"]
+      },
+      "source_provenance": {
+        "verified_at": "2026-08-20",
+        "docs": "https://magicui.design/docs/components",
+        "license": "https://github.com/magicuidesign/magicui/blob/main/LICENSE.md",
+        "registry_index": "https://magicui.design/r/registry.json"
+      },
+      "use_when": [
+        "Animated marketing sections, backgrounds, text effects or visual accents are needed."
+      ],
+      "avoid_when": [
+        "Plain product controls are sufficient or the requested item is Pro-only without confirmed rights."
+      ]
+    }
+  ]
+}

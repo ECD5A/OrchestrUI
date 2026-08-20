@@ -1,0 +1,27 @@
+name: Feature request
+description: Propose a focused improvement
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user/agent problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope checks
+      options:
+        - label: This does not require copying paid/Pro content.
+          required: true
+        - label: This does not require redistributing the React Bits component collection.
+          required: true

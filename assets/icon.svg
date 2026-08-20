@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">OrchestrUI icon</title>
+  <desc id="desc">Seven routes converge into one orchestration node and one output.</desc>
+  <defs>
+    <linearGradient id="icon-bg" x1="8" y1="8" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111C31"/>
+      <stop offset="1" stop-color="#08111F"/>
+    </linearGradient>
+    <linearGradient id="icon-route" x1="22" y1="64" x2="108" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.55" stop-color="#2DD4BF"/>
+      <stop offset="1" stop-color="#7667F4"/>
+    </linearGradient>
+    <filter id="icon-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#icon-bg)" stroke="#22304A" stroke-width="2"/>
+  <g fill="none" stroke="#3B4A66" stroke-width="2.5" stroke-linecap="round">
+    <path d="M25 28C45 28 47 58 65 62"/>
+    <path d="M25 40C44 40 48 59 65 63"/>
+    <path d="M25 52C44 52 49 61 65 63.5"/>
+    <path d="M25 64H65"/>
+    <path d="M25 76C44 76 49 67 65 64.5"/>
+    <path d="M25 88C44 88 48 69 65 65"/>
+    <path d="M25 100C45 100 47 70 65 66"/>
+  </g>
+  <g fill="#22D3EE">
+    <circle cx="23" cy="28" r="3"/><circle cx="23" cy="40" r="3"/>
+    <circle cx="23" cy="52" r="3"/><circle cx="23" cy="64" r="3"/>
+    <circle cx="23" cy="76" r="3"/><circle cx="23" cy="88" r="3"/>
+    <circle cx="23" cy="100" r="3"/>
+  </g>
+  <path d="M78 64H105" stroke="url(#icon-route)" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="70" cy="64" r="11" fill="#0D1728" stroke="url(#icon-route)" stroke-width="4" filter="url(#icon-glow)"/>
+  <path d="M66 64L69 67L75 60" fill="none" stroke="#F8FAFC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="107" cy="64" r="5" fill="#7667F4"/>
+</svg>

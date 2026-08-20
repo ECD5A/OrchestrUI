@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "id": "existing-stack-first",
+      "priority": 1,
+      "text": "Respect the host project existing design system before adding a new one."
+    },
+    {
+      "id": "minimum-set",
+      "priority": 2,
+      "text": "Use the minimum number of libraries needed."
+    },
+    {
+      "id": "role-ownership",
+      "priority": 3,
+      "text": "Give each selected library one clear ownership role."
+    },
+    {
+      "id": "bklit-data",
+      "priority": 4,
+      "text": "Prefer Bklit UI for charts and data visualization."
+    },
+    {
+      "id": "native-motion-first",
+      "priority": 5,
+      "text": "Prefer existing CSS/component-native motion before Anime.js for trivial effects."
+    },
+    {
+      "id": "rive-purpose",
+      "priority": 6,
+      "text": "Use Rive only for meaningful interactive vector/state-machine graphics with known asset rights."
+    },
+    {
+      "id": "base-system-conflict",
+      "priority": 7,
+      "text": "Do not combine daisyUI with another base system without an explicit strategy."
+    },
+    {
+      "id": "react-bits-no-vendor",
+      "priority": 8,
+      "text": "Never vendor or redistribute React Bits component source from OrchestrUI."
+    },
+    {
+      "id": "no-pro-by-default",
+      "priority": 9,
+      "text": "Never silently use paid/Pro material or credentials."
+    },
+    {
+      "id": "quality-over-effects",
+      "priority": 10,
+      "text": "Accessibility, responsiveness, performance and coherence outrank novelty."
+    }
+  ],
+  "task_map": {
+    "ai-saas-dashboard": [
+      "bklit-ui",
+      "kokonut-ui"
+    ],
+    "analytics-dashboard": [
+      "bklit-ui"
+    ],
+    "product-landing-page": [
+      "magic-ui",
+      "kokonut-ui",
+      "react-bits"
+    ],
+    "creative-portfolio": [
+      "react-bits",
+      "magic-ui"
+    ],
+    "admin-settings": [
+      "daisyui",
+      "kokonut-ui"
+    ],
+    "custom-animation": [
+      "animejs"
+    ],
+    "interactive-mascot": [
+      "rive"
+    ],
+    "data-storytelling": [
+      "bklit-ui",
+      "animejs",
+      "rive"
+    ]
+  }
+}

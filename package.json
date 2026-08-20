@@ -1,0 +1,77 @@
+{
+  "name": "orchestrui",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Agent-native UI orchestration for modern frontend stacks",
+  "type": "module",
+  "license": "MIT",
+  "author": "ECD5A",
+  "homepage": "https://github.com/ECD5A/OrchestrUI#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ECD5A/OrchestrUI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ECD5A/OrchestrUI/issues"
+  },
+  "keywords": [
+    "mcp",
+    "agent-skills",
+    "ui",
+    "ux",
+    "frontend",
+    "design-system"
+  ],
+  "mcpName": "io.github.ecd5a/orchestrui",
+  "main": "./dist/mcp/src/server.js",
+  "types": "./dist/mcp/src/server.d.ts",
+  "bin": {
+    "orchestrui-mcp": "./dist/mcp/src/server.js"
+  },
+  "files": [
+    "dist/",
+    "assets/",
+    "catalog/",
+    "docs/",
+    "examples/",
+    ".agents/skills/",
+    "skills/",
+    ".codex-plugin/plugin.json",
+    ".mcp.json",
+    "server.json",
+    "README.md",
+    "README.ru.md",
+    "LICENSE",
+    "PRIVACY.md",
+    "TERMS.md",
+    "THIRD_PARTY.md",
+    "SECURITY.md",
+    "SUPPORT.md",
+    "TRADEMARKS.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build --silent && node --test test/*.test.mjs",
+    "check": "npm run validate && npm run typecheck && npm test",
+    "check:links": "node scripts/check-external-links.mjs",
+    "render:brand": "node scripts/render-brand-assets.mjs",
+    "start:mcp": "node dist/mcp/src/server.js",
+    "pack:check": "npm pack --dry-run",
+    "prepack": "npm run check"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@modelcontextprotocol/client": "^2.0.0",
+    "@types/node": "^22.20.1",
+    "typescript": "^7.0.2"
+  }
+}

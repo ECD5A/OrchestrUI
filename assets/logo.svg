@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 200" role="img" aria-labelledby="title desc">
+  <title id="title">OrchestrUI</title>
+  <desc id="desc">OrchestrUI logo showing seven routes becoming one coherent interface.</desc>
+  <defs>
+    <linearGradient id="logo-bg" x1="20" y1="20" x2="740" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111C31"/>
+      <stop offset="1" stop-color="#08111F"/>
+    </linearGradient>
+    <linearGradient id="logo-route" x1="55" y1="100" x2="152" y2="100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/><stop offset="0.55" stop-color="#2DD4BF"/><stop offset="1" stop-color="#7667F4"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="752" height="192" rx="32" fill="url(#logo-bg)" stroke="#22304A" stroke-width="2"/>
+  <g transform="translate(20 20)">
+    <rect width="160" height="160" rx="28" fill="#0A1424" stroke="#22304A"/>
+    <g fill="none" stroke="#3B4A66" stroke-width="3" stroke-linecap="round">
+      <path d="M35 38C63 38 65 75 91 79"/><path d="M35 52C62 52 67 76 91 79"/>
+      <path d="M35 66C62 66 69 78 91 79.5"/><path d="M35 80H91"/>
+      <path d="M35 94C62 94 69 82 91 80.5"/><path d="M35 108C62 108 67 84 91 81"/>
+      <path d="M35 122C63 122 65 85 91 81"/>
+    </g>
+    <g fill="#22D3EE">
+      <circle cx="32" cy="38" r="4"/><circle cx="32" cy="52" r="4"/><circle cx="32" cy="66" r="4"/>
+      <circle cx="32" cy="80" r="4"/><circle cx="32" cy="94" r="4"/><circle cx="32" cy="108" r="4"/><circle cx="32" cy="122" r="4"/>
+    </g>
+    <path d="M108 80H137" stroke="url(#logo-route)" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="99" cy="80" r="14" fill="#0D1728" stroke="url(#logo-route)" stroke-width="5"/>
+    <path d="M94 80L98 84L106 74" fill="none" stroke="#F8FAFC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="140" cy="80" r="6" fill="#7667F4"/>
+  </g>
+  <text x="214" y="93" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="58" font-weight="720" letter-spacing="-2">OrchestrUI</text>
+  <text x="218" y="130" fill="#A8B3C7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="500" letter-spacing="0.4">ROUTE · HARMONIZE · AUDIT</text>
+</svg>
