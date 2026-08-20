@@ -80,23 +80,25 @@ MCP configuration is in [`.mcp.json`](.mcp.json). Setup, architecture, security,
 
 The MCP server does not execute install commands or write project files. OrchestrUI never mirrors the React Bits collection, paid/Pro content, authenticated material, credentials, license keys, or third-party `.riv` artwork.
 
-## Donate
+## Support OrchestrUI
 
-If OrchestrUI is useful to your work, you can support the project here:
+If OrchestrUI is useful to your work, you can support its continued development and maintenance:
 
+* TON: `pointoncurve.ton`
+* Bitcoin (BTC): `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN`
+* USDT (TRC20): `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75`
 
-- TON: `pointoncurve.ton`
-- Bitcoin (BTC): `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN`
-- USDT (TRC20): `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75`
+Support is entirely optional and does not change the rights granted under the MIT License.
 
 ## Contact
 
-For commercial integration, support, collaboration, and partnership inquiries:
+For commercial integration, consulting, collaboration, and partnership inquiries:
 
 <p>
   <a href="mailto:stelmak159@gmail.com" aria-label="Email"><img alt="Email" height="24" src="https://cdn.simpleicons.org/gmail/EA4335"></a>
   &nbsp;
   <a href="https://t.me/ECDS4" aria-label="Telegram"><img alt="Telegram" height="24" src="https://cdn.simpleicons.org/telegram/26A5E4"></a>
   &nbsp;
-  <a href="https://github.com/ECD5A/Memory-Genome-Engine" aria-label="GitHub repository"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/FFFFFF"><img alt="GitHub repository" height="24" src="https://cdn.simpleicons.org/github/181717"></picture></a>
+  <a href="https://github.com/ECD5A/OrchestrUI" aria-label="GitHub repository"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/FFFFFF"><img alt="GitHub repository" height="24" src="https://cdn.simpleicons.org/github/181717"></picture></a>
 </p>
+
