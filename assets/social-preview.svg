@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
-  <title id="title">OrchestrUI social preview</title>
-  <desc id="desc">Agent-native UI orchestration for modern frontend stacks.</desc>
+  <title id="title">OrchestrUI — agent-native UI orchestration</title>
+  <desc id="desc">Seven UI ecosystems routed through three agent skills and six read-only MCP tools into one coherent interface.</desc>
   <defs>
     <linearGradient id="preview-bg" x1="70" y1="40" x2="1210" y2="600" gradientUnits="userSpaceOnUse">
       <stop stop-color="#122039"/><stop offset="0.52" stop-color="#0B1729"/><stop offset="1" stop-color="#07101D"/>
@@ -37,10 +37,10 @@
   </g>
   <g transform="translate(520 145)">
     <text x="0" y="118" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="102" font-weight="720" letter-spacing="-4">OrchestrUI</text>
-    <text x="4" y="177" fill="#C9D2E1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="31" font-weight="500">Agent-native UI orchestration</text>
-    <text x="4" y="220" fill="#A8B3C7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24">Choose less. Integrate cleanly. Ship coherently.</text>
+    <text x="4" y="177" fill="#C9D2E1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="500">Agent-native UI orchestration</text>
+    <text x="4" y="220" fill="#A8B3C7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="23">Inspect · route · harmonize · audit · ship coherently.</text>
     <g transform="translate(4 274)" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="650" letter-spacing="1.4">
-      <rect x="0" y="0" width="182" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="24" y="27" fill="#67E8F9">READ-ONLY MCP</text>
+      <rect x="0" y="0" width="182" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="30" y="27" fill="#67E8F9">6 MCP TOOLS</text>
       <rect x="196" y="0" width="182" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="226" y="27" fill="#5EEAD4">3 AGENT SKILLS</text>
       <rect x="392" y="0" width="188" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="420" y="27" fill="#A99EFF">7 ECOSYSTEMS</text>
     </g>

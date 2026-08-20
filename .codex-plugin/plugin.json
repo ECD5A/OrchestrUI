@@ -6,7 +6,7 @@
     "name": "ECD5A",
     "url": "https://github.com/ECD5A"
   },
-  "homepage": "https://github.com/ECD5A/OrchestrUI",
+  "homepage": "https://ecd5a.github.io/OrchestrUI/",
   "repository": "https://github.com/ECD5A/OrchestrUI",
   "license": "MIT",
   "keywords": ["ui", "ux", "frontend", "mcp", "agent-skills", "design-system"],
@@ -19,7 +19,7 @@
     "developerName": "ECD5A",
     "category": "Developer Tools",
     "capabilities": ["Read-only", "UI planning", "Public metadata discovery"],
-    "websiteURL": "https://github.com/ECD5A/OrchestrUI",
+    "websiteURL": "https://ecd5a.github.io/OrchestrUI/",
     "privacyPolicyURL": "https://github.com/ECD5A/OrchestrUI/blob/main/PRIVACY.md",
     "termsOfServiceURL": "https://github.com/ECD5A/OrchestrUI/blob/main/TERMS.md",
     "defaultPrompt": [

@@ -3,7 +3,7 @@
 Use this checklist immediately before making `ECD5A/OrchestrUI` public. Repository settings remain maintainer-controlled external changes.
 
 - [ ] Description: `Agent-native UI orchestration that routes seven frontend ecosystems into one coherent interface.`
-- [ ] Homepage: `https://github.com/ECD5A/OrchestrUI#readme`
+- [ ] Homepage: `https://ecd5a.github.io/OrchestrUI/`
 - [ ] Public repository with `main` as the default branch
 - [ ] Issues and Discussions enabled
 - [ ] Ruleset/branch protection enabled; require the CI workflow when practical and disable force-pushes/deletion
