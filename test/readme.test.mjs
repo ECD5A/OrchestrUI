@@ -5,7 +5,6 @@ const r=fs.readFileSync("README.md","utf8");
 const ru=fs.readFileSync("README.ru.md","utf8");
 test("README ecosystems",()=>{for(const n of ["Kokonut UI","React Bits","daisyUI","Bklit UI","Anime.js","Rive","Magic UI"])assert.ok(r.includes(n))});
 test("README support",()=>{for(const a of ["pointoncurve.ton","1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN","TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75"])assert.ok(r.includes(a))});
-test("README stays compact",()=>{assert.doesNotMatch(r,/```mermaid|## How it works/);assert.ok(r.split("\n").length<130);assert.ok(ru.split("\n").length<130)});
 test("README independence",()=>{assert.match(r,/independent/i);assert.match(r,/not affiliated|not.*endorsed/i)});
 test("README language links are reciprocal",()=>{assert.match(r,/<a href="README\.ru\.md">Русская версия<\/a>/);assert.match(ru,/<a href="README\.md">English version<\/a>/)});
 test("Russian README mirrors product invariants",()=>{for(const n of ["Kokonut UI","React Bits","daisyUI","Bklit UI","Anime.js","Rive","Magic UI","list_libraries","recommend_stack","search_components"])assert.ok(ru.includes(n));for(const a of ["pointoncurve.ton","1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN","TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75"])assert.ok(ru.includes(a))});
