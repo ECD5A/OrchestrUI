@@ -44,10 +44,17 @@
             <p>Inspect host → route roles → harmonize tokens → audit output</p>
           </div>
 
-          <div class="console" data-phase="inspect" data-phase-index="0">
+          <div class="scenario-picker" role="group" aria-label="Demo scenario">
+            <span>SCENARIO</span>
+            <button type="button" data-scenario-button="dashboard" aria-pressed="true">Analytics dashboard</button>
+            <button type="button" data-scenario-button="landing" aria-pressed="false">Product landing</button>
+            <button type="button" data-scenario-button="existing" aria-pressed="false">Mature design system</button>
+          </div>
+
+          <div class="console" data-phase="inspect" data-phase-index="0" data-scenario="dashboard">
             <div class="console-bar">
               <span class="run-state"><i aria-hidden="true"></i><span data-run-state>running</span></span>
-              <span class="run-id">RUN / HOST-PROJECT</span>
+              <span class="run-id">RUN / <span data-run-id>ANALYTICS-DASHBOARD</span></span>
               <button class="pause-control" type="button" data-play-control aria-label="Pause automatic run" aria-pressed="false">
                 <span data-play-icon aria-hidden="true">Ⅱ</span>
                 <span data-play-label>pause</span>
@@ -67,14 +74,26 @@
               <article class="data-card input-card">
                 <p class="card-label">HOST INPUT</p>
                 <dl>
-                  <div><dt>framework</dt><dd>React</dd></div>
-                  <div><dt>base</dt><dd>shadcn/ui</dd></div>
-                  <div><dt>tokens</dt><dd>detected</dd></div>
-                  <div><dt>capability gap</dt><dd>charts</dd></div>
+                  <div><dt>framework</dt><dd data-input-framework>React</dd></div>
+                  <div><dt>base</dt><dd data-input-base>shadcn/ui</dd></div>
+                  <div><dt>tokens</dt><dd data-input-tokens>detected</dd></div>
+                  <div><dt>capability gap</dt><dd data-input-gap>charts</dd></div>
                 </dl>
               </article>
 
               <div class="processor" aria-live="polite" aria-atomic="true">
+                <div class="engine" aria-hidden="true">
+                  <span class="engine-orbit orbit-one"></span>
+                  <span class="engine-orbit orbit-two"></span>
+                  <span class="engine-pulse pulse-one"></span>
+                  <span class="engine-pulse pulse-two"></span>
+                  <svg viewBox="0 0 36 36">
+                    <circle cx="16" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="3"/>
+                    <path d="M3 7l7 7M3 18h3M3 29l7-7M26 18h7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="m12 18 3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <strong data-engine-label>INSPECT</strong>
+                </div>
                 <p class="phase-code" data-phase-code>01 / INSPECT</p>
                 <h2 data-phase-title>Read the host project.</h2>
                 <p data-phase-copy>Detect the existing base, tokens, dependencies, accessibility constraints, and real capability gaps.</p>
@@ -92,6 +111,12 @@
                   <div><dt>rejected</dt><dd data-output-rejected>pending</dd></div>
                   <div><dt>status</dt><dd class="status-value" data-output-status>scanning</dd></div>
                 </dl>
+                <div class="result-preview" aria-hidden="true">
+                  <div class="preview-toolbar"><i></i><i></i><i></i><span data-preview-label>dashboard</span></div>
+                  <div class="preview-canvas">
+                    <span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
               </article>
             </div>
           </div>

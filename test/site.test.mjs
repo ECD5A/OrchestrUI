@@ -16,6 +16,7 @@ test("workflow demo has a semantic, self-contained document shell", () => {
   assert.doesNotMatch(html, /<script[^>]+src="https?:/i);
   assert.doesNotMatch(html, /<link[^>]+rel="stylesheet"[^>]+href="https?:/i);
   assert.equal((html.match(/data-phase-button=/g) ?? []).length, 4);
+  assert.equal((html.match(/data-scenario-button=/g) ?? []).length, 3);
   assert.match(html, /aria-live="polite"/);
   assert.doesNotMatch(html, /id="system"|v0\.1\.0|open source|ready to route|view v0/i);
 });
@@ -26,6 +27,9 @@ test("workflow demo provides responsive and reduced-motion behavior", () => {
   assert.match(script, /prefers-reduced-motion: reduce/);
   for (const phase of ["inspect", "route", "harmonize", "audit"]) {
     assert.match(script, new RegExp(`${phase}: \\{`));
+  }
+  for (const scenario of ["dashboard", "landing", "existing"]) {
+    assert.match(script, new RegExp(`${scenario}: \\{`));
   }
 });
 

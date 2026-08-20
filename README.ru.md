@@ -7,7 +7,7 @@
     <img src="assets/social-preview.svg" alt="OrchestrUI — семь UI-экосистем сходятся в один цельный интерфейс" width="100%">
   </a>
 
-  <p><strong>Agent-native оркестрация UI для современных frontend-стеков.</strong><br><a href="https://ecd5a.github.io/OrchestrUI/">Запустить демонстрацию процесса →</a></p>
+  <p><strong>Agent-native оркестрация UI для современных frontend-стеков.</strong></p>
 
   [![CI](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml/badge.svg)](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml)
   [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
@@ -80,13 +80,14 @@ MCP-конфигурация находится в [`.mcp.json`](.mcp.json). Set
 
 MCP server не запускает install commands и не записывает файлы проекта. OrchestrUI не копирует коллекцию React Bits, paid/Pro content, authenticated material, credentials, license keys или сторонние `.riv` assets.
 
-## Поддержать
+## Donate
 
-| TON | BTC | USDT (TRC20) |
-|:---:|:---:|:---:|
-| `pointoncurve.ton` | `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN` | `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75` |
+Если OrchestrUI полезен в вашей работе, вы можете поддержать проект:
 
-<sub>Добровольно. Без дополнительных лицензионных прав, приоритета или обязательств по поддержке.</sub>
+**TON:** `pointoncurve.ton`
+
+- Bitcoin (BTC): `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN`
+- USDT (TRC20): `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75`
 
 ## Контакты
 
@@ -97,5 +98,3 @@ MCP server не запускает install commands и не записывает
   &nbsp;
   <a href="https://github.com/ECD5A/Memory-Genome-Engine" aria-label="GitHub repository"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/FFFFFF"><img alt="GitHub repository" height="24" src="https://cdn.simpleicons.org/github/181717"></picture></a>
 </p>
-
-MIT © [ECD5A](https://github.com/ECD5A)
