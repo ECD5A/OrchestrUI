@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ecd5a/orchestrui",
+  "title": "OrchestrUI",
+  "description": "Read-only UI routing, public component discovery and plan audits for seven frontend ecosystems.",
+  "repository": {
+    "url": "https://github.com/ECD5A/OrchestrUI",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "orchestrui",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

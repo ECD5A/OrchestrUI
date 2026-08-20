@@ -1,0 +1,32 @@
+{
+  "name": "orchestrui",
+  "version": "0.1.0",
+  "description": "Route frontend work across seven UI ecosystems and query verified read-only guidance.",
+  "author": {
+    "name": "ECD5A",
+    "url": "https://github.com/ECD5A"
+  },
+  "homepage": "https://github.com/ECD5A/OrchestrUI",
+  "repository": "https://github.com/ECD5A/OrchestrUI",
+  "license": "MIT",
+  "keywords": ["ui", "ux", "frontend", "mcp", "agent-skills", "design-system"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "OrchestrUI",
+    "shortDescription": "Route UI work without stacking redundant libraries.",
+    "longDescription": "Three agent skills and a read-only MCP server for selecting, retrieving and auditing a minimal coherent UI stack.",
+    "developerName": "ECD5A",
+    "category": "Developer Tools",
+    "capabilities": ["Read-only", "UI planning", "Public metadata discovery"],
+    "websiteURL": "https://github.com/ECD5A/OrchestrUI",
+    "privacyPolicyURL": "https://github.com/ECD5A/OrchestrUI/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/ECD5A/OrchestrUI/blob/main/TERMS.md",
+    "defaultPrompt": [
+      "Plan the smallest coherent UI stack for this project.",
+      "Find a public component that fits this interface.",
+      "Audit this UI plan for conflicts and licensing risks."
+    ],
+    "brandColor": "#4F46E5"
+  }
+}

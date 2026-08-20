@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-20",
+  "policy": {
+    "metadata_only": true,
+    "public_sources_only": true,
+    "max_live_response_bytes": 524288,
+    "live_timeout_ms": 4000
+  },
+  "libraries": {
+    "kokonut-ui": {
+      "source": "https://kokonutui.com/docs",
+      "registry_index": "https://kokonutui.com/r/registry.json",
+      "items": [
+        { "name": "particle-button", "title": "Particle Button", "description": "Polished animated action button." },
+        { "name": "ai-prompt", "title": "AI Input Selector", "description": "Animated AI chat input with model selection and attachments." },
+        { "name": "smooth-drawer", "title": "Smooth Drawer", "description": "Animated drawer surface for product interfaces." },
+        { "name": "file-upload", "title": "File Upload", "description": "File upload interaction for application forms." },
+        { "name": "bento-grid", "title": "Bento Grid", "description": "Responsive grid for product and marketing content." }
+      ]
+    },
+    "react-bits": {
+      "source": "https://reactbits.dev/get-started/introduction",
+      "registry_index": "https://reactbits.dev/r/registry.json",
+      "items": [
+        { "name": "BlurText-TS-TW", "title": "BlurText", "description": "Animated text reveal for a signature headline." },
+        { "name": "AnimatedContent-TS-TW", "title": "AnimatedContent", "description": "Scroll or mount animation wrapper." },
+        { "name": "ClickSpark-TS-TW", "title": "ClickSpark", "description": "Pointer click accent for selective creative use." },
+        { "name": "ElectricBorder-TS-TW", "title": "ElectricBorder", "description": "Decorative animated border effect." },
+        { "name": "FadeContent-TS-TW", "title": "FadeContent", "description": "Content fade entrance effect." }
+      ]
+    },
+    "daisyui": {
+      "source": "https://daisyui.com/components/",
+      "items": [
+        { "name": "button", "title": "Button", "description": "Semantic button component with theme variants." },
+        { "name": "card", "title": "Card", "description": "Semantic content surface." },
+        { "name": "modal", "title": "Modal", "description": "Dialog and modal patterns." },
+        { "name": "input", "title": "Input", "description": "Theme-aware form input." },
+        { "name": "table", "title": "Table", "description": "Responsive semantic data table." }
+      ]
+    },
+    "bklit-ui": {
+      "source": "https://bklit.com/docs/components",
+      "registry_index": "https://bklit.com/r/registry.json",
+      "items": [
+        { "name": "line-chart", "title": "Line Chart", "description": "Composable line chart with tooltips and hover interactions." },
+        { "name": "bar-chart", "title": "Bar Chart", "description": "Composable bar chart for categorical comparisons." },
+        { "name": "heatmap-chart", "title": "Heatmap Chart", "description": "Contribution-style heatmap with interactive legend." },
+        { "name": "gauge-chart", "title": "Gauge", "description": "Radial or linear KPI gauge." },
+        { "name": "candlestick-chart", "title": "Candlestick Chart", "description": "Financial candlestick visualization." }
+      ]
+    },
+    "animejs": {
+      "source": "https://animejs.com/documentation/",
+      "items": [
+        { "name": "animate", "title": "animate()", "description": "Core Anime.js animation function." },
+        { "name": "createTimeline", "title": "Timeline", "description": "Coordinate multiple animation steps." },
+        { "name": "stagger", "title": "Stagger", "description": "Distribute values or delays across targets." },
+        { "name": "svg", "title": "SVG animation", "description": "Animate SVG attributes, paths and morphing." },
+        { "name": "scroll", "title": "Scroll observer", "description": "Drive bespoke animation from scroll state." }
+      ]
+    },
+    "rive": {
+      "source": "https://rive.app/docs/runtimes/react/react",
+      "items": [
+        { "name": "react-webgl2", "title": "React WebGL2 runtime", "description": "Recommended React renderer in the current quick start." },
+        { "name": "useRive", "title": "useRive hook", "description": "Render and control a Rive instance from React." },
+        { "name": "state-machines", "title": "State machine playback", "description": "Drive meaningful interactive vector states." },
+        { "name": "data-binding", "title": "Data binding", "description": "Bind application data to a Rive view model." },
+        { "name": "semantics", "title": "Semantics", "description": "Accessibility semantics for Rive content." }
+      ]
+    },
+    "magic-ui": {
+      "source": "https://magicui.design/docs/components",
+      "registry_index": "https://magicui.design/r/registry.json",
+      "items": [
+        { "name": "magic-card", "title": "Magic Card", "description": "Spotlight card effect for selective marketing polish." },
+        { "name": "marquee", "title": "Marquee", "description": "Infinite scrolling content row." },
+        { "name": "globe", "title": "Globe", "description": "Interactive WebGL globe." },
+        { "name": "hero-video-dialog", "title": "Hero Video Dialog", "description": "Marketing video dialog for hero sections." },
+        { "name": "flickering-grid", "title": "Flickering Grid", "description": "Animated background grid." }
+      ]
+    }
+  }
+}

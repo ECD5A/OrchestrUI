@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">OrchestrUI social preview</title>
+  <desc id="desc">Agent-native UI orchestration for modern frontend stacks.</desc>
+  <defs>
+    <linearGradient id="preview-bg" x1="70" y1="40" x2="1210" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#122039"/><stop offset="0.52" stop-color="#0B1729"/><stop offset="1" stop-color="#07101D"/>
+    </linearGradient>
+    <linearGradient id="preview-route" x1="82" y1="320" x2="1180" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/><stop offset="0.52" stop-color="#2DD4BF"/><stop offset="1" stop-color="#7667F4"/>
+    </linearGradient>
+    <radialGradient id="preview-glow" cx="0" cy="0" r="1" gradientTransform="translate(1050 270) rotate(180) scale(430 360)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7667F4" stop-opacity="0.22"/><stop offset="1" stop-color="#7667F4" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="preview-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#94A3B8" stroke-opacity="0.055"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="640" fill="url(#preview-bg)"/>
+  <rect width="1280" height="640" fill="url(#preview-grid)"/>
+  <rect width="1280" height="640" fill="url(#preview-glow)"/>
+  <rect x="40" y="40" width="1200" height="560" rx="36" fill="none" stroke="#263650" stroke-width="2"/>
+  <g transform="translate(90 153)">
+    <g fill="none" stroke="#41516C" stroke-width="4" stroke-linecap="round">
+      <path d="M14 22C92 22 101 147 198 157"/><path d="M14 67C91 67 106 149 198 158"/>
+      <path d="M14 112C94 112 118 153 198 159"/><path d="M14 165H198"/>
+      <path d="M14 218C94 218 118 177 198 171"/><path d="M14 263C91 263 106 181 198 172"/>
+      <path d="M14 308C92 308 101 183 198 173"/>
+    </g>
+    <g fill="#22D3EE">
+      <circle cx="9" cy="22" r="7"/><circle cx="9" cy="67" r="7"/><circle cx="9" cy="112" r="7"/>
+      <circle cx="9" cy="165" r="7"/><circle cx="9" cy="218" r="7"/><circle cx="9" cy="263" r="7"/><circle cx="9" cy="308" r="7"/>
+    </g>
+    <circle cx="220" cy="165" r="30" fill="#0D1728" stroke="url(#preview-route)" stroke-width="8"/>
+    <path d="M209 165L217 173L233 151" fill="none" stroke="#F8FAFC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M254 165H322" stroke="url(#preview-route)" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="330" cy="165" r="11" fill="#7667F4"/>
+  </g>
+  <g transform="translate(520 145)">
+    <text x="0" y="118" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="102" font-weight="720" letter-spacing="-4">OrchestrUI</text>
+    <text x="4" y="177" fill="#C9D2E1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="31" font-weight="500">Agent-native UI orchestration</text>
+    <text x="4" y="220" fill="#A8B3C7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24">Choose less. Integrate cleanly. Ship coherently.</text>
+    <g transform="translate(4 274)" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="650" letter-spacing="1.4">
+      <rect x="0" y="0" width="182" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="24" y="27" fill="#67E8F9">READ-ONLY MCP</text>
+      <rect x="196" y="0" width="182" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="226" y="27" fill="#5EEAD4">3 AGENT SKILLS</text>
+      <rect x="392" y="0" width="188" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="420" y="27" fill="#A99EFF">7 ECOSYSTEMS</text>
+    </g>
+  </g>
+</svg>
