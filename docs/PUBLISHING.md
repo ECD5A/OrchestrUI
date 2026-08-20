@@ -8,7 +8,7 @@ GitHub is canonical. Local source, npm, the MCP Registry and the OpenAI plugin d
 2. Set one exact semantic version in `package.json`, `.codex-plugin/plugin.json`, `server.json` and MCP server metadata.
 3. Regenerate brand PNGs with `npm run render:brand` and confirm the working tree contains only expected changes.
 4. Run `npm ci`, `npm run check`, `npm run check:links`, `ORCHESTRUI_LIVE_TESTS=1 npm test`, `npm audit`, `npm audit --omit=dev` and `npm run pack:check`.
-5. Inspect `assets/readme-hero.png` and `assets/social-preview.png` at their native dimensions.
+5. Inspect the shared `assets/social-preview.png` README/social artwork at its native dimensions.
 6. Inspect the tarball file list for secrets, Pro content, vendored collections and missing legal files.
 7. Confirm all relative Markdown links, exact support addresses and the absence of `.github/FUNDING.yml`; `npm run validate` enforces these repository gates.
 8. Tag only the exact tested commit.
@@ -33,15 +33,18 @@ Submission, branding, privacy/terms URLs, screenshots and MCP tool annotations m
 
 The following commands are intentionally documented, not automated. Run them only after reviewing the final diff and explicitly authorizing each external publication surface.
 
-The current local branch contains one pre-publication baseline commit. Amend that local-only commit so the first pushed history contains one clean public release commit rather than exposing construction history.
+The immutable `v0.1.0` tag is already public. Never move or overwrite an existing release tag. Prepare every later release on a branch, merge it through the protected `main` workflow, and tag the exact tested merge commit.
 
 ```bash
+git switch -c release/v0.1.1
+npm version 0.1.1 --no-git-tag-version
 git add --all
-git commit --amend -m "feat: initial OrchestrUI public release"
-git tag -a v0.1.0 -m "OrchestrUI v0.1.0"
-git push origin main
-git push origin v0.1.0
-gh release create v0.1.0 --title "OrchestrUI v0.1.0" --notes-file docs/RELEASE_NOTES_0.1.0.md
+git commit -m "chore: prepare OrchestrUI v0.1.1"
+git push -u origin release/v0.1.1
+# Merge the reviewed pull request and return to the tested main branch.
+git tag -a v0.1.1 -m "OrchestrUI v0.1.1"
+git push origin v0.1.1
+gh release create v0.1.1 --title "OrchestrUI v0.1.1" --generate-notes
 npm publish --access public
 mcp-publisher validate
 mcp-publisher login github

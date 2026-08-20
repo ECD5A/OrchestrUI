@@ -2,6 +2,8 @@
 
 OrchestrUI is an agent-facing UI orchestration layer that helps coding agents choose and integrate the smallest coherent set of tools across seven frontend ecosystems.
 
+[Open the interactive project presentation →](https://ecd5a.github.io/OrchestrUI/)
+
 ## Highlights
 
 - Three reusable Agent Skills for routing, implementation and rendered-UI quality review.
@@ -27,3 +29,27 @@ OrchestrUI is an agent-facing UI orchestration layer that helps coding agents ch
 - Network access only when live public registry lookup is explicitly requested.
 
 See the [README](../README.md), [setup guide](SETUP.md), [security model](SECURITY_MODEL.md) and [publishing guide](PUBLISHING.md) for details.
+
+## Support OrchestrUI
+
+OrchestrUI remains free and open source. Optional direct support helps maintain integrations, MCP compatibility, agent skills and documentation.
+
+<div align="center">
+  <p><strong>TON</strong><br><code>pointoncurve.ton</code></p>
+  <p><strong>Bitcoin · BTC</strong><br><code>1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN</code></p>
+  <p><strong>USDT · TRC20</strong><br><code>TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75</code></p>
+</div>
+
+Donations are optional and do not grant additional licensing rights, purchase priority, or create a support obligation.
+
+## Contact
+
+For commercial integration, support, collaboration, and partnership inquiries:
+
+<p>
+  <a href="mailto:stelmak159@gmail.com" aria-label="Email"><img alt="Email" height="24" src="https://cdn.simpleicons.org/gmail/EA4335"></a>
+  &nbsp;
+  <a href="https://t.me/ECDS4" aria-label="Telegram"><img alt="Telegram" height="24" src="https://cdn.simpleicons.org/telegram/26A5E4"></a>
+  &nbsp;
+  <a href="https://github.com/ECD5A/Memory-Genome-Engine" aria-label="GitHub repository"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/FFFFFF"><img alt="GitHub repository" height="24" src="https://cdn.simpleicons.org/github/181717"></picture></a>
+</p>

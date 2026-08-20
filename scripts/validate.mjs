@@ -122,7 +122,7 @@ for (const id of ["minimum-set", "base-system-conflict", "react-bits-no-vendor",
 
 function validateSkill(root, skill) {
   const file = path.join(root, skill, "SKILL.md");
-  const text = fs.readFileSync(file, "utf8");
+  const text = fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n");
   if (!text.startsWith("---\n")) fail(`${file} missing frontmatter`);
   const end = text.indexOf("\n---\n", 4);
   if (end < 0) fail(`${file} invalid frontmatter fence`);
@@ -165,6 +165,12 @@ if (configuredServer?.command !== "node" || JSON.stringify(configuredServer.args
 if (serverManifest.name !== packageManifest.mcpName || serverManifest.version !== packageManifest.version) {
   fail("MCP Registry metadata must match package metadata");
 }
+const projectWebsite = "https://ecd5a.github.io/OrchestrUI/";
+if (packageManifest.homepage !== projectWebsite
+  || pluginManifest.homepage !== projectWebsite
+  || pluginManifest.interface?.websiteURL !== projectWebsite) {
+  fail("Package and plugin website metadata must point to the interactive project presentation");
+}
 if (serverManifest.description.length > 100) fail("MCP Registry description must be at most 100 characters");
 if (serverManifest.packages?.[0]?.identifier !== packageManifest.name) fail("MCP Registry package identifier mismatch");
 if (!/^\^?2\./.test(packageManifest.dependencies?.["@modelcontextprotocol/server"] ?? "")) {
@@ -176,8 +182,9 @@ for (const file of [
   "CODE_OF_CONDUCT.md", "SUPPORT.md", "GOVERNANCE.md", "ROADMAP.md", "CHANGELOG.md",
   "THIRD_PARTY.md", "TRADEMARKS.md", ".github/CODEOWNERS", "package-lock.json", "server.json",
   "docs/CLAUDE_CODE.md", "docs/GITHUB_SETUP_CHECKLIST.md", "docs/RELEASE_NOTES_0.1.0.md",
-  "assets/icon.svg", "assets/logo.svg", "assets/readme-hero.svg", "assets/readme-hero.png",
-  "assets/social-preview.svg", "assets/social-preview.png", "scripts/render-brand-assets.mjs",
+  "assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg", "assets/social-preview.png",
+  "site/index.html", "site/styles.css", "site/app.js", "site/robots.txt", "site/sitemap.xml",
+  ".github/workflows/pages.yml", "scripts/render-brand-assets.mjs",
   "scripts/check-external-links.mjs",
   "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts",
 ]) {
@@ -199,18 +206,23 @@ function validatePng(file, width, height) {
     fail(`${file} must be ${width}x${height}`);
   }
 }
-validatePng("assets/readme-hero.png", 1200, 360);
 validatePng("assets/social-preview.png", 1280, 640);
 
-for (const file of ["assets/icon.svg", "assets/logo.svg", "assets/readme-hero.svg", "assets/social-preview.svg"]) {
+for (const file of ["assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg"]) {
   const svg = fs.readFileSync(file, "utf8");
   if (!/<svg\b/i.test(svg) || /<image\b/i.test(svg) || /(?:href|src)=["']https?:/i.test(svg)) {
     fail(`${file} must remain a self-contained SVG`);
   }
 }
 
-const readme = fs.readFileSync("README.md", "utf8");
-const readmeRu = fs.readFileSync("README.ru.md", "utf8");
+const readme = fs.readFileSync("README.md", "utf8").replaceAll("\r\n", "\n");
+const readmeRu = fs.readFileSync("README.ru.md", "utf8").replaceAll("\r\n", "\n");
+const hasProjectWebsiteLink = (markdown) => [...markdown.matchAll(/href="([^"]+)"/g)]
+  .some(([, href]) => href === projectWebsite);
+if (!hasProjectWebsiteLink(readme) || !hasProjectWebsiteLink(readmeRu)
+  || readme.includes("readme-hero") || readmeRu.includes("readme-hero")) {
+  fail("Both READMEs must use the shared artwork and link to the interactive presentation");
+}
 for (const address of [
   "pointoncurve.ton",
   "1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN",

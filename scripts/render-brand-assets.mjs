@@ -14,7 +14,6 @@ import { Resvg } from "@resvg/resvg-js";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const renders = [
-  { source: "assets/readme-hero.svg", destination: "assets/readme-hero.png", width: 1200 },
   { source: "assets/social-preview.svg", destination: "assets/social-preview.png", width: 1280 },
 ];
 

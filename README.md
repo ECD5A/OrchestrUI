@@ -3,9 +3,11 @@
 </p>
 
 <div align="center">
-  <img src="assets/readme-hero.svg" alt="OrchestrUI — one agent, seven UI ecosystems, one coherent interface" width="100%">
+  <a href="https://ecd5a.github.io/OrchestrUI/" title="Open the interactive OrchestrUI presentation">
+    <img src="assets/social-preview.svg" alt="OrchestrUI — seven UI ecosystems routed into one coherent interface" width="100%">
+  </a>
 
-  <p><strong>Agent-native UI orchestration for modern frontend stacks.</strong></p>
+  <p><strong>Agent-native UI orchestration for modern frontend stacks.</strong><br><a href="https://ecd5a.github.io/OrchestrUI/">Open the interactive project presentation →</a></p>
 
   [![CI](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml/badge.svg)](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml)
   [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
@@ -37,13 +39,13 @@ flowchart LR
     Q --> O[One coherent interface]
 ```
 
-| Layer | What it provides |
-|---|---|
-| **Router skill** | stack inspection, role ownership, compatibility and rejection decisions |
-| **Orchestrator skill** | selective retrieval, token harmonization and implementation gates |
-| **Quality skill** | rendered UI audit across coherence, accessibility, responsiveness, motion and licensing |
-| **Read-only MCP** | six bounded tools for catalog lookup, recommendations, discovery and plan auditing |
-| **Catalog + adapters** | exactly seven ecosystems, verified provenance and graceful live-registry fallback |
+The system stays deliberately small:
+
+- **Router skill** inspects the stack, assigns role ownership and records rejection decisions.
+- **Orchestrator skill** retrieves only approved public pieces, harmonizes tokens and applies implementation gates.
+- **Quality skill** audits the rendered UI for coherence, accessibility, responsiveness, motion and licensing.
+- **Read-only MCP** exposes six bounded tools for catalog lookup, recommendations, discovery and plan auditing.
+- **Catalog + adapters** keep exactly seven ecosystems, verified provenance and graceful live-registry fallback.
 
 The governing rule is simple:
 
@@ -123,14 +125,12 @@ The skills inspect the target project before selecting libraries. A valid answer
 
 The stdio MCP server uses the stable Model Context Protocol TypeScript SDK v2. It exposes exactly six tools:
 
-| Tool | Result |
-|---|---|
-| `list_libraries` | list/filter the seven ecosystems |
-| `recommend_stack` | recommend the smallest compatible ownership plan |
-| `get_library_guidance` | return roles, integration, compatibility and legal guidance |
-| `search_components` | search normalized public registry metadata with verified fallback |
-| `get_install_instructions` | return official install commands as inert text |
-| `audit_plan` | flag base conflicts, rights issues and unresolved manual checks |
+- `list_libraries` — list or filter the seven ecosystems.
+- `recommend_stack` — recommend the smallest compatible ownership plan.
+- `get_library_guidance` — return roles, integration, compatibility and legal guidance.
+- `search_components` — search normalized public registry metadata with a verified fallback.
+- `get_install_instructions` — return official install commands as inert text.
+- `audit_plan` — flag base conflicts, rights issues and unresolved manual checks.
 
 ```bash
 npm run build
@@ -185,11 +185,11 @@ Version `0.1.0` includes the catalog, three skills, live metadata adapters, six-
 
 OrchestrUI remains free and open source. Optional direct support helps maintain integrations, MCP compatibility, agent skills and documentation.
 
-| Network | Address |
-|---|---|
-| **TON** | `pointoncurve.ton` |
-| **Bitcoin (BTC)** | `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN` |
-| **USDT (TRC20)** | `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75` |
+<div align="center">
+  <p><strong>TON</strong><br><code>pointoncurve.ton</code></p>
+  <p><strong>Bitcoin · BTC</strong><br><code>1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN</code></p>
+  <p><strong>USDT · TRC20</strong><br><code>TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75</code></p>
+</div>
 
 Donations do not grant additional licensing rights, purchase priority, or create a support obligation.
 
@@ -198,6 +198,18 @@ Donations do not grant additional licensing rights, purchase priority, or create
 OrchestrUI's original code, documentation and brand artwork are released under the [MIT License](LICENSE). Third-party projects and assets remain subject to their own licenses and terms. See [`TRADEMARKS.md`](TRADEMARKS.md) for project-identity guidance.
 
 Made and maintained by [ECD5A](https://github.com/ECD5A).
+
+## Contact
+
+For commercial integration, support, collaboration, and partnership inquiries:
+
+<p>
+  <a href="mailto:stelmak159@gmail.com" aria-label="Email"><img alt="Email" height="24" src="https://cdn.simpleicons.org/gmail/EA4335"></a>
+  &nbsp;
+  <a href="https://t.me/ECDS4" aria-label="Telegram"><img alt="Telegram" height="24" src="https://cdn.simpleicons.org/telegram/26A5E4"></a>
+  &nbsp;
+  <a href="https://github.com/ECD5A/Memory-Genome-Engine" aria-label="GitHub repository"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/FFFFFF"><img alt="GitHub repository" height="24" src="https://cdn.simpleicons.org/github/181717"></picture></a>
+</p>
 
 <div align="center">
   <strong>Build with more options. Ship with fewer conflicts.</strong>
