@@ -2,8 +2,6 @@
 
 OrchestrUI is an agent-facing UI orchestration layer that helps coding agents choose and integrate the smallest coherent set of tools across seven frontend ecosystems.
 
-[Open the interactive project presentation →](https://ecd5a.github.io/OrchestrUI/)
-
 ## Highlights
 
 - Three reusable Agent Skills for routing, implementation and rendered-UI quality review.
@@ -30,17 +28,13 @@ OrchestrUI is an agent-facing UI orchestration layer that helps coding agents ch
 
 See the [README](../README.md), [setup guide](SETUP.md), [security model](SECURITY_MODEL.md) and [publishing guide](PUBLISHING.md) for details.
 
-## Support OrchestrUI
+## Support
 
-OrchestrUI remains free and open source. Optional direct support helps maintain integrations, MCP compatibility, agent skills and documentation.
+| TON | BTC | USDT (TRC20) |
+|:---:|:---:|:---:|
+| `pointoncurve.ton` | `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN` | `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75` |
 
-<div align="center">
-  <p><strong>TON</strong><br><code>pointoncurve.ton</code></p>
-  <p><strong>Bitcoin · BTC</strong><br><code>1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN</code></p>
-  <p><strong>USDT · TRC20</strong><br><code>TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75</code></p>
-</div>
-
-Donations are optional and do not grant additional licensing rights, purchase priority, or create a support obligation.
+<sub>Optional. No additional licensing rights, priority, or support obligation.</sub>
 
 ## Contact
 
