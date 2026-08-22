@@ -16,7 +16,7 @@ Use this checklist immediately before making `ECD5A/OrchestrUI` public. Reposito
 - [ ] Confirm README/LICENSE/CONTRIBUTING/CODE_OF_CONDUCT/SECURITY detection
 - [x] Community and release labels created
 - [x] First release published from `v0.1.0`
-- [ ] Publish `v0.2.0` from the final tested public commit using `docs/RELEASE_NOTES_0.2.0.md`
+- [ ] Publish `v0.2.0` from the final tested public commit using `docs/RELEASE_NOTES_0.2.0.md` (release candidate prepared)
 
 ## Public launch order
 

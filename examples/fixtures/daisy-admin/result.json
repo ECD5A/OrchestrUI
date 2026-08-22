@@ -2,7 +2,7 @@
   "schema_version": 1,
   "fixture_id": "daisy-admin",
   "policy_schema_version": 2,
-  "package_version": "0.1.0",
+  "package_version": "0.2.0",
   "recommendation": {
     "input_mode": "structured-profiles",
     "summary": "Preserve the existing host system without adding an OrchestrUI ecosystem.",
