@@ -7,7 +7,7 @@
 - [x] OSS/community/security baseline
 - [x] validation, typecheck, MCP protocol tests and optional live smoke tests
 - [x] final brand assets/social preview
-- [ ] first tagged public release
+- [x] first tagged public release
 
 ## 0.2 — Live discovery
 - [x] official public registry adapters for structured upstreams

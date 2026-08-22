@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-22
+
 ### Added
 - Structured `HostProfile` and `TaskProfile` routing with evidence-bearing decisions.
 - Declarative capability, role-priority and conflict policy matrix.

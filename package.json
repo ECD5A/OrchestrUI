@@ -1,6 +1,6 @@
 {
   "name": "orchestrui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "description": "Deterministic UI policy, discovery and quality gates for coding agents",
   "type": "module",
