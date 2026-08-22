@@ -27,23 +27,3 @@ OrchestrUI is an agent-facing UI orchestration layer that helps coding agents ch
 - Network access only when live public registry lookup is explicitly requested.
 
 Documentation: [README](https://github.com/ECD5A/OrchestrUI/tree/v0.1.0#readme) · [Setup](https://github.com/ECD5A/OrchestrUI/blob/v0.1.0/docs/SETUP.md) · [Security model](https://github.com/ECD5A/OrchestrUI/blob/v0.1.0/docs/SECURITY_MODEL.md)
-
-## Support
-
-If OrchestrUI helps your work, you can support its ongoing maintenance:
-
-* TON: `pointoncurve.ton`
-* Bitcoin (BTC): `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN`
-* USDT (TRC20): `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75`
-
-## Contact
-
-For questions about OrchestrUI, integration, consulting, or collaboration:
-
-<p>
-  <a href="mailto:stelmak159@gmail.com" aria-label="Email"><img alt="Email" height="24" src="https://cdn.simpleicons.org/gmail/EA4335"></a>
-  &nbsp;
-  <a href="https://t.me/ECDS4" aria-label="Telegram"><img alt="Telegram" height="24" src="https://cdn.simpleicons.org/telegram/26A5E4"></a>
-  &nbsp;
-  <a href="https://github.com/ECD5A/OrchestrUI" aria-label="GitHub repository"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/FFFFFF"><img alt="GitHub repository" height="24" src="https://cdn.simpleicons.org/github/181717"></picture></a>
-</p>
