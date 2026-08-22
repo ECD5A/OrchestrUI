@@ -17,6 +17,7 @@ Current public-repository state for `ECD5A/OrchestrUI`. Unchecked items still re
 - [x] Community and release labels created
 - [x] First release published from `v0.1.0`
 - [x] Publish `v0.2.0` and the registry-alignment `v0.2.1` patch release from tested commits
+- [x] Publish `v0.3.0` from a tested commit across GitHub Releases, npm and the MCP Registry
 
 ## Completed public launch
 
@@ -28,6 +29,6 @@ Current public-repository state for `ECD5A/OrchestrUI`. Unchecked items still re
 
 ## Published coordinates
 
-The canonical repository is `ECD5A/OrchestrUI`, npm publishes `orchestrui`, and the official MCP Registry identity is `io.github.ECD5A/orchestrui`. Version `0.2.1` is active across all three release surfaces.
+The canonical repository is `ECD5A/OrchestrUI`, npm publishes `orchestrui`, and the official MCP Registry identity is `io.github.ECD5A/orchestrui`. Version `0.3.0` is active across all three release surfaces.
 
 No GitHub Sponsors or `.github/FUNDING.yml` configuration is required; the exact direct-support addresses and donation boundary are in the README.

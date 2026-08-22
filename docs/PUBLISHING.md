@@ -33,7 +33,7 @@ Submission, branding, privacy/terms URLs, screenshots and MCP tool annotations m
 
 The following commands are intentionally documented, not automated. Run them only after reviewing the final diff and explicitly authorizing each external publication surface.
 
-The immutable `v0.1.0` tag is already public. Never move or overwrite an existing release tag. Prepare every later release on a branch, merge it through the protected `main` workflow, and tag the exact tested merge commit.
+Published release tags are immutable: never move or overwrite one after an npm, MCP Registry or GitHub Release record exists. Prepare every release on a branch, merge it through the protected `main` workflow, and tag the exact tested merge commit.
 
 ```bash
 release_version=x.y.z
