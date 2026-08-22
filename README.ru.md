@@ -8,7 +8,7 @@
     <img src="assets/readme-demo.gif" alt="Анимированная демонстрация OrchestrUI: изучение React dashboard, выбор Bklit UI для графиков, согласование плана и проверка результата" width="100%">
   </picture>
 
-  <p><strong>Agent-native оркестрация UI для современных frontend-стеков.</strong></p>
+  <p><strong>Детерминированные UI-политики и quality gates для coding agents.</strong></p>
 
   [![CI](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml/badge.svg)](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml)
   [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
@@ -17,9 +17,27 @@
   [![MCP](https://img.shields.io/badge/MCP-read--only%20v2-7c3aed.svg)](docs/MCP_SPEC.md)
 </div>
 
-OrchestrUI помогает coding agents изучить существующий frontend, назначить одного владельца каждой UI-роли, получить только одобренные публичные компоненты, согласовать их с design system проекта и проверить готовый интерфейс.
+OrchestrUI принимает структурированные `HostProfile` и `TaskProfile`, сохраняет существующих владельцев design system, charts и motion и вычисляет минимальную допустимую UI-композицию с доказательством каждого выбора и отклонения.
 
-> **Изучить → Распределить роли → Согласовать → Проверить. Использовать только то, что действительно нужно проекту.**
+`HostProfile + TaskProfile → policy matrix → role ownership → conflicts → recommendation + evidence`
+
+```json
+{
+  "input_mode": "structured-profiles",
+  "selected": [{ "id": "bklit-ui", "role": "data-visualization" }],
+  "role_ownership": {
+    "base-system": "host:shadcn-ui",
+    "data-visualization": "bklit-ui"
+  },
+  "rejected": [{
+    "id": "daisyui",
+    "rule_id": "base-system-conflict",
+    "conflicting_owner": "host:shadcn-ui"
+  }]
+}
+```
+
+Routing benchmark в репозитории сейчас проходит **50/50** структурированных сценариев и три project fixtures в CI.
 
 ## Экосистемы
 
@@ -43,6 +61,7 @@ OrchestrUI — независимый проект, не аффилирован�
 git clone https://github.com/ECD5A/OrchestrUI.git
 cd OrchestrUI
 npm ci && npm run check
+npm run benchmark
 ```
 
 Установить skills:

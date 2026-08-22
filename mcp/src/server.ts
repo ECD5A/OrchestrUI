@@ -25,7 +25,6 @@ import {
 } from "./tools.js";
 import type { OrchestrUiData } from "./types.js";
 
-const VERSION = "0.1.0";
 const READ_ONLY_ANNOTATIONS = {
   readOnlyHint: true,
   destructiveHint: false,
@@ -68,7 +67,7 @@ async function guardedAsync<T extends object>(handler: () => Promise<T>) {
 
 export function createOrchestrUiServer(options: { data?: OrchestrUiData; fetchImpl?: FetchLike } = {}) {
   const data = options.data ?? loadOrchestrUiData();
-  const server = new McpServer({ name: "orchestrui", version: VERSION });
+  const server = new McpServer({ name: "orchestrui", version: data.version });
 
   server.registerTool(
     "list_libraries",
@@ -87,20 +86,52 @@ export function createOrchestrUiServer(options: { data?: OrchestrUiData; fetchIm
     "recommend_stack",
     {
       title: "Recommend a minimal UI stack",
-      description: "Apply OrchestrUI routing policy to a task without installing packages or modifying files.",
+      description: "Compute a minimal UI composition from structured host/task profiles, with task text supported as a legacy inference path.",
       inputSchema: z.object({
-        task: z.string().trim().min(1).max(500),
+        task: z.string().trim().max(500).default(""),
         existing_stack: z.array(z.string().trim().min(1).max(80)).max(20).default([]),
         constraints: z.array(z.string().trim().min(1).max(160)).max(20).default([]),
         rive_asset_rights: z.enum(["confirmed", "unconfirmed", "not-applicable"]).default("not-applicable"),
+        host_profile: z.object({
+          framework: z.string().trim().min(1).max(80),
+          framework_version: z.string().trim().min(1).max(40).optional(),
+          react_version: z.string().trim().min(1).max(40).optional(),
+          tailwind_version: z.string().trim().min(1).max(40).optional(),
+          package_manager: z.enum(["npm", "pnpm", "yarn", "bun", "other"]).optional(),
+          design_system: z.string().trim().min(1).max(100).optional(),
+          component_primitives: z.array(z.string().trim().min(1).max(80)).max(30).default([]),
+          motion_stack: z.array(z.string().trim().min(1).max(80)).max(20).default([]),
+          chart_stack: z.array(z.string().trim().min(1).max(80)).max(20).default([]),
+          tokens: z.array(z.string().trim().min(1).max(80)).max(30).default([]),
+          accessibility_constraints: z.array(z.string().trim().min(1).max(160)).max(20).default([]),
+        }).optional(),
+        task_profile: z.object({
+          surface: z.enum(["application", "marketing", "hybrid"]).default("application"),
+          required_capabilities: z.array(z.enum([
+            "forms-controls",
+            "product-polish",
+            "data-visualization",
+            "marketing-motion",
+            "signature-creative-effect",
+            "bespoke-motion",
+            "interactive-vector",
+          ])).max(7).default([]),
+          interaction_complexity: z.enum(["low", "medium", "high"]).default("medium"),
+          data_visualization: z.enum(["none", "basic", "advanced"]).default("none"),
+          motion_requirement: z.enum(["none", "native", "bespoke", "interactive-vector"]).default("native"),
+          rive_asset_rights: z.enum(["confirmed", "unconfirmed", "not-applicable"]).default("not-applicable"),
+          constraints: z.array(z.string().trim().min(1).max(160)).max(20).default([]),
+        }).optional(),
       }),
       annotations: READ_ONLY_ANNOTATIONS,
     },
-    ({ task, existing_stack, constraints, rive_asset_rights }) => guarded(() => recommendStack({
+    ({ task, existing_stack, constraints, rive_asset_rights, host_profile, task_profile }) => guarded(() => recommendStack({
       task,
       existingStack: existing_stack,
       constraints,
       riveAssetRights: rive_asset_rights,
+      ...(host_profile ? { hostProfile: host_profile } : {}),
+      ...(task_profile ? { taskProfile: task_profile } : {}),
     }, data)),
   );
 
@@ -162,15 +193,31 @@ export function createOrchestrUiServer(options: { data?: OrchestrUiData; fetchIm
         rive_asset_rights: z.enum(["confirmed", "unconfirmed", "not-applicable"]).default("not-applicable"),
         includes_paid_content: z.boolean().default(false),
         redistributes_react_bits: z.boolean().default(false),
+        verifications: z.array(z.object({
+          category: z.enum([
+            "visual coherence",
+            "library discipline",
+            "accessibility",
+            "responsiveness",
+            "motion/reduced-motion",
+            "data-viz readability",
+            "Rive lifecycle/asset rights",
+            "engineering checks/dependencies/secrets",
+            "licensing/Pro/React Bits",
+          ]),
+          status: z.enum(["pass", "fail"]),
+          evidence: z.string().trim().min(1).max(500),
+        })).max(9).default([]),
       }),
       annotations: READ_ONLY_ANNOTATIONS,
     },
-    ({ selected_libraries, existing_stack, rive_asset_rights, includes_paid_content, redistributes_react_bits }) => guarded(() => auditPlan({
+    ({ selected_libraries, existing_stack, rive_asset_rights, includes_paid_content, redistributes_react_bits, verifications }) => guarded(() => auditPlan({
       selectedLibraries: selected_libraries,
       existingStack: existing_stack,
       riveAssetRights: rive_asset_rights,
       includesPaidContent: includes_paid_content,
       redistributesReactBits: redistributes_react_bits,
+      verifications,
     }, data)),
   );
 

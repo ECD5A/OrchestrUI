@@ -1,40 +1,40 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "rules": [
     {
       "id": "existing-stack-first",
       "priority": 1,
-      "text": "Respect the host project existing design system before adding a new one."
+      "text": "Respect the host project's existing design, chart and motion owners before adding a new one."
     },
     {
       "id": "minimum-set",
       "priority": 2,
-      "text": "Use the minimum number of libraries needed."
+      "text": "Use the minimum number of libraries needed for explicit task capabilities."
     },
     {
       "id": "role-ownership",
       "priority": 3,
-      "text": "Give each selected library one clear ownership role."
+      "text": "Give each major UI role one explicit owner."
     },
     {
-      "id": "bklit-data",
+      "id": "structured-input-first",
       "priority": 4,
-      "text": "Prefer Bklit UI for charts and data visualization."
+      "text": "Prefer HostProfile and TaskProfile evidence; use task text only as a backward-compatible inference path."
+    },
+    {
+      "id": "framework-compatibility",
+      "priority": 5,
+      "text": "Reject candidates whose declared framework support excludes the host framework."
     },
     {
       "id": "native-motion-first",
-      "priority": 5,
-      "text": "Prefer existing CSS/component-native motion before Anime.js for trivial effects."
+      "priority": 6,
+      "text": "Prefer existing CSS or component-native motion before adding a timeline engine."
     },
     {
       "id": "rive-purpose",
-      "priority": 6,
-      "text": "Use Rive only for meaningful interactive vector/state-machine graphics with known asset rights."
-    },
-    {
-      "id": "base-system-conflict",
       "priority": 7,
-      "text": "Do not combine daisyUI with another base system without an explicit strategy."
+      "text": "Use Rive only for meaningful interactive vector graphics with confirmed asset rights."
     },
     {
       "id": "react-bits-no-vendor",
@@ -44,45 +44,117 @@
     {
       "id": "no-pro-by-default",
       "priority": 9,
-      "text": "Never silently use paid/Pro material or credentials."
+      "text": "Never silently use paid or authenticated material."
     },
     {
       "id": "quality-over-effects",
       "priority": 10,
       "text": "Accessibility, responsiveness, performance and coherence outrank novelty."
+    },
+    {
+      "id": "base-system-conflict",
+      "priority": 11,
+      "text": "An occupied exclusive role rejects a second owner unless an isolation strategy exists outside this recommendation."
     }
   ],
-  "task_map": {
-    "ai-saas-dashboard": [
-      "bklit-ui",
-      "kokonut-ui"
-    ],
-    "analytics-dashboard": [
-      "bklit-ui"
-    ],
-    "product-landing-page": [
-      "magic-ui",
-      "kokonut-ui",
-      "react-bits"
-    ],
-    "creative-portfolio": [
-      "react-bits",
-      "magic-ui"
-    ],
-    "admin-settings": [
-      "daisyui",
-      "kokonut-ui"
-    ],
-    "custom-animation": [
-      "animejs"
-    ],
-    "interactive-mascot": [
-      "rive"
-    ],
-    "data-storytelling": [
-      "bklit-ui",
-      "animejs",
-      "rive"
-    ]
-  }
+  "roles": {
+    "base-system": {
+      "description": "Semantic controls, themes and application primitives.",
+      "exclusive": true,
+      "host_profile_field": "design_system"
+    },
+    "product-polish": {
+      "description": "Selective product surfaces compatible with the host base.",
+      "exclusive": false
+    },
+    "data-visualization": {
+      "description": "Charts, gauges, heatmaps and analytical graphics.",
+      "exclusive": true,
+      "host_profile_field": "chart_stack"
+    },
+    "marketing-enhancement": {
+      "description": "Primary animated marketing layer.",
+      "exclusive": true
+    },
+    "signature-effect": {
+      "description": "One bounded creative effect.",
+      "exclusive": true
+    },
+    "timeline-motion": {
+      "description": "Bespoke timeline, SVG or scroll choreography.",
+      "exclusive": true,
+      "host_profile_field": "motion_stack"
+    },
+    "interactive-vector": {
+      "description": "State-machine-driven vector graphics.",
+      "exclusive": true
+    }
+  },
+  "capability_routes": {
+    "forms-controls": {
+      "priority": 10,
+      "role": "base-system",
+      "candidates": ["daisyui"]
+    },
+    "product-polish": {
+      "priority": 40,
+      "role": "product-polish",
+      "candidates": ["kokonut-ui"]
+    },
+    "data-visualization": {
+      "priority": 20,
+      "role": "data-visualization",
+      "candidates": ["bklit-ui"]
+    },
+    "marketing-motion": {
+      "priority": 30,
+      "role": "marketing-enhancement",
+      "candidates": ["magic-ui"]
+    },
+    "signature-creative-effect": {
+      "priority": 50,
+      "role": "signature-effect",
+      "candidates": ["react-bits"]
+    },
+    "bespoke-motion": {
+      "priority": 60,
+      "role": "timeline-motion",
+      "candidates": ["animejs"]
+    },
+    "interactive-vector": {
+      "priority": 70,
+      "role": "interactive-vector",
+      "candidates": ["rive"],
+      "requirements": [
+        {
+          "field": "rive_asset_rights",
+          "equals": "confirmed",
+          "reason": "Rive asset rights must be confirmed for the exact .riv asset."
+        }
+      ]
+    }
+  },
+  "host_conflicts": [
+    {
+      "rule_id": "base-system-conflict",
+      "candidate": "daisyui",
+      "field": "design_system",
+      "patterns": ["shadcn", "radix"],
+      "reason": "The host base system already owns semantic controls and themes."
+    },
+    {
+      "rule_id": "base-system-conflict",
+      "candidate": "kokonut-ui",
+      "field": "design_system",
+      "patterns": ["daisyui", "daisy ui"],
+      "reason": "Kokonut is a shadcn-compatible layer and is not added on top of a daisyUI base without an isolation plan."
+    }
+  ],
+  "selected_conflicts": [
+    {
+      "rule_id": "base-system-conflict",
+      "libraries": ["daisyui", "kokonut-ui"],
+      "reason": "daisyUI and Kokonut cannot both own component foundations in one unisolated plan."
+    }
+  ]
 }

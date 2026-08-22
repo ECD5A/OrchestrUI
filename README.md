@@ -8,7 +8,7 @@
     <img src="assets/readme-demo.gif" alt="Animated OrchestrUI routing demo: inspect a React dashboard, select Bklit UI for charts, harmonize the plan, and verify the result" width="100%">
   </picture>
 
-  <p><strong>Agent-native UI orchestration for modern frontend stacks.</strong></p>
+  <p><strong>Deterministic UI policy and quality gates for coding agents.</strong></p>
 
   [![CI](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml/badge.svg)](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml)
   [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
@@ -17,9 +17,27 @@
   [![MCP](https://img.shields.io/badge/MCP-read--only%20v2-7c3aed.svg)](docs/MCP_SPEC.md)
 </div>
 
-OrchestrUI helps coding agents inspect an existing frontend, assign one owner to each UI role, retrieve only approved public pieces, harmonize them with the host design system, and audit the rendered result.
+OrchestrUI accepts a structured `HostProfile` and `TaskProfile`, preserves existing design/chart/motion owners, and computes the smallest admissible UI composition with evidence for every selection and rejection.
 
-> **Inspect → Route → Harmonize → Audit. Use only what the target project needs.**
+`HostProfile + TaskProfile → policy matrix → role ownership → conflicts → recommendation + evidence`
+
+```json
+{
+  "input_mode": "structured-profiles",
+  "selected": [{ "id": "bklit-ui", "role": "data-visualization" }],
+  "role_ownership": {
+    "base-system": "host:shadcn-ui",
+    "data-visualization": "bklit-ui"
+  },
+  "rejected": [{
+    "id": "daisyui",
+    "rule_id": "base-system-conflict",
+    "conflicting_owner": "host:shadcn-ui"
+  }]
+}
+```
+
+The committed routing benchmark currently passes **50/50** structured scenarios and three project fixtures in CI.
 
 ## Ecosystems
 
@@ -43,6 +61,7 @@ Requires Git and Node.js 20+.
 git clone https://github.com/ECD5A/OrchestrUI.git
 cd OrchestrUI
 npm ci && npm run check
+npm run benchmark
 ```
 
 Install the skills:

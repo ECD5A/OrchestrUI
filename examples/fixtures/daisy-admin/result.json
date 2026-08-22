@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "fixture_id": "daisy-admin",
+  "policy_schema_version": 2,
+  "package_version": "0.1.0",
+  "recommendation": {
+    "input_mode": "structured-profiles",
+    "summary": "Preserve the existing host system without adding an OrchestrUI ecosystem.",
+    "profiles": {
+      "host": {
+        "framework": "React",
+        "react_version": "19",
+        "tailwind_version": "4",
+        "package_manager": "pnpm",
+        "design_system": "daisyUI",
+        "component_primitives": [
+          "daisyUI form controls",
+          "daisyUI modal"
+        ],
+        "motion_stack": [],
+        "chart_stack": [],
+        "tokens": [
+          "daisyUI themes"
+        ],
+        "accessibility_constraints": [
+          "keyboard navigation",
+          "visible focus"
+        ]
+      },
+      "task": {
+        "surface": "application",
+        "required_capabilities": [
+          "product-polish",
+          "forms-controls"
+        ],
+        "interaction_complexity": "medium",
+        "data_visualization": "none",
+        "motion_requirement": "none",
+        "rive_asset_rights": "not-applicable",
+        "constraints": [
+          "keep daisyUI as the only base owner"
+        ]
+      }
+    },
+    "selected": [
+      {
+        "id": "daisyui",
+        "role": "base-system",
+        "capability": "forms-controls",
+        "reason": "daisyUI already owns base-system; preserve it.",
+        "retrieval_method": "tailwind-plugin",
+        "already_present": true,
+        "evidence": [
+          "TaskProfile.required_capabilities includes forms-controls.",
+          "HostProfile.design_system declares daisyUI."
+        ]
+      }
+    ],
+    "rejected": [
+      {
+        "id": "kokonut-ui",
+        "reason": "Kokonut is a shadcn-compatible layer and is not added on top of a daisyUI base without an isolation plan.",
+        "rule_id": "base-system-conflict"
+      },
+      {
+        "id": "react-bits",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      },
+      {
+        "id": "bklit-ui",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      },
+      {
+        "id": "animejs",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      },
+      {
+        "id": "rive",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      },
+      {
+        "id": "magic-ui",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      }
+    ],
+    "role_ownership": [
+      {
+        "role": "base-system",
+        "owner": "daisyui",
+        "source": "host-profile",
+        "evidence": "HostProfile.design_system declares daisyUI."
+      }
+    ],
+    "decisions": [
+      {
+        "outcome": "preserved",
+        "subject": "daisyui",
+        "rule_id": "existing-stack-first",
+        "evidence": [
+          "base-system is already owned by daisyUI."
+        ]
+      },
+      {
+        "outcome": "preserved",
+        "subject": "daisyui",
+        "rule_id": "existing-stack-first",
+        "evidence": [
+          "TaskProfile.required_capabilities includes forms-controls.",
+          "HostProfile.design_system declares daisyUI."
+        ]
+      },
+      {
+        "outcome": "rejected",
+        "subject": "kokonut-ui",
+        "rule_id": "base-system-conflict",
+        "evidence": [
+          "Kokonut is a shadcn-compatible layer and is not added on top of a daisyUI base without an isolation plan."
+        ]
+      }
+    ],
+    "risks": [],
+    "validation_plan": [
+      "Verify selected component IDs and installation guidance against cited official sources.",
+      "Map typography, spacing, radius, colors, surfaces, shadows, icons and motion to host tokens.",
+      "Test keyboard/focus behavior, responsive layouts and prefers-reduced-motion behavior.",
+      "Run the host project's lint, typecheck, tests and production build.",
+      "Run ui-quality-audit and resolve every fail; pending checks do not raise the verified score."
+    ],
+    "provenance": [
+      {
+        "source": "catalog/libraries.json",
+        "verified_at": "2026-08-20",
+        "mode": "catalog"
+      },
+      {
+        "source": "catalog/routing-rules.json",
+        "verified_at": "2026-08-20",
+        "mode": "catalog"
+      }
+    ]
+  },
+  "audit": {
+    "score": 10,
+    "maximum_score": 18,
+    "verified_score": 10,
+    "verified_maximum": 10,
+    "pending_checks": [
+      "visual coherence",
+      "accessibility",
+      "responsiveness",
+      "engineering checks/dependencies/secrets"
+    ],
+    "provisional": true,
+    "blockers": [],
+    "checks": [
+      {
+        "category": "visual coherence",
+        "status": "pending",
+        "note": "Verify one token system for typography, spacing, radius, color, surfaces, shadows and icons."
+      },
+      {
+        "category": "library discipline",
+        "status": "pass",
+        "note": "The plan keeps role ownership bounded."
+      },
+      {
+        "category": "accessibility",
+        "status": "pending",
+        "note": "Test semantics, labels, keyboard interaction, visible focus and contrast in the host application."
+      },
+      {
+        "category": "responsiveness",
+        "status": "pending",
+        "note": "Test narrow, medium and wide layouts with real content lengths."
+      },
+      {
+        "category": "motion/reduced-motion",
+        "status": "pass",
+        "note": "No motion ecosystem is selected; no additional motion dependency requires verification."
+      },
+      {
+        "category": "data-viz readability",
+        "status": "pass",
+        "note": "No data visualization library is selected."
+      },
+      {
+        "category": "Rive lifecycle/asset rights",
+        "status": "pass",
+        "note": "No unresolved Rive asset-rights blocker is declared."
+      },
+      {
+        "category": "engineering checks/dependencies/secrets",
+        "status": "pending",
+        "note": "Run lint, typecheck, tests, build, dependency audit and secret scan in the host project."
+      },
+      {
+        "category": "licensing/Pro/React Bits",
+        "status": "pass",
+        "note": "No paid-content or React Bits redistribution violation is declared."
+      }
+    ],
+    "rule": "Pending checks never raise the verified score. Fix every fail and attach evidence for rendered-host checks before release.",
+    "provenance": [
+      {
+        "source": "catalog/routing-rules.json",
+        "verified_at": "2026-08-20",
+        "mode": "catalog"
+      }
+    ]
+  }
+}

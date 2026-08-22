@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "next-shadcn-dashboard",
+  "description": "An existing Next.js analytics application with shadcn/ui and no chart owner.",
+  "source_snapshot": {
+    "package_manager": "npm",
+    "dependencies": ["next", "react", "@radix-ui/react-dialog", "tailwindcss"],
+    "detected_files": ["components.json", "app/dashboard/page.tsx", "app/globals.css"],
+    "gap": "The dashboard needs accessible line, bar and heatmap visualizations."
+  },
+  "host_profile": {
+    "framework": "Next.js",
+    "framework_version": "15",
+    "react_version": "19",
+    "tailwind_version": "4",
+    "package_manager": "npm",
+    "design_system": "shadcn/ui",
+    "component_primitives": ["Radix UI"],
+    "motion_stack": [],
+    "chart_stack": [],
+    "tokens": ["CSS variables", "shadcn semantic colors"],
+    "accessibility_constraints": ["WCAG 2.2 AA", "keyboard navigation"]
+  },
+  "task_profile": {
+    "surface": "application",
+    "required_capabilities": ["data-visualization"],
+    "interaction_complexity": "high",
+    "data_visualization": "advanced",
+    "motion_requirement": "native",
+    "rive_asset_rights": "not-applicable",
+    "constraints": ["preserve shadcn/ui", "color-independent chart states"]
+  },
+  "expected": {
+    "selected": ["bklit-ui"],
+    "existing": [],
+    "rejected": ["daisyui", "react-bits", "magic-ui", "animejs", "rive"],
+    "owners": {
+      "base-system": "host:shadcn-ui",
+      "data-visualization": "bklit-ui"
+    }
+  }
+}

@@ -1,13 +1,9 @@
 # Router examples
 
-## AI SaaS analytics dashboard
-Next.js + Tailwind + shadcn: select Bklit for charts, existing shadcn for base controls, optional Kokonut for a few polished surfaces. Reject daisyUI as a competing base and broad decorative animation.
+Executable project snapshots live in [`fixtures/`](fixtures/):
 
-## Product landing page
-Select Magic UI OR Kokonut as primary enhancement; optionally React Bits for one signature effect. Anime.js only for bespoke choreography.
+- `next-shadcn-dashboard` preserves shadcn/ui as base owner and selects Bklit UI only for data visualization.
+- `daisy-admin` preserves the existing daisyUI base and rejects Kokonut as a conflicting foundation.
+- `marketing-landing` keeps the shadcn/ui base, assigns Magic UI to marketing enhancement and limits React Bits to one signature effect.
 
-## Admin/settings app
-If daisyUI already exists, keep it as the base and add nothing else without a concrete requirement.
-
-## Interactive onboarding mascot
-Rive for the licensed `.riv` state-machine illustration; host design system for surrounding buttons/forms/navigation.
+Each fixture contains source-state evidence, `HostProfile`, `TaskProfile`, expected selected/rejected libraries, expected role ownership and a reproducible `result.json`. CI executes the real router and then confirms that rendered audit categories remain pending until evidence exists.

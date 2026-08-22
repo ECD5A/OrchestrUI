@@ -14,6 +14,7 @@ const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
 const catalog = readJson("catalog/libraries.json");
 const components = readJson("catalog/components.json");
 const routing = readJson("catalog/routing-rules.json");
+const benchmark = readJson("benchmark/routing-benchmark.json");
 const packageManifest = readJson("package.json");
 const pluginManifest = readJson(".codex-plugin/plugin.json");
 const mcpConfig = readJson(".mcp.json");
@@ -116,8 +117,53 @@ if (components.policy.max_live_response_bytes > 524288 || components.policy.live
 }
 
 const ruleIds = new Set(routing.rules.map((rule) => rule.id));
-for (const id of ["minimum-set", "base-system-conflict", "react-bits-no-vendor", "no-pro-by-default"]) {
+if (routing.schema_version !== 2) fail("Unexpected routing policy schema version");
+for (const id of [
+  "minimum-set", "base-system-conflict", "framework-compatibility",
+  "structured-input-first", "react-bits-no-vendor", "no-pro-by-default",
+]) {
   if (!ruleIds.has(id)) fail(`Missing routing guard ${id}`);
+}
+const requiredCapabilities = [
+  "forms-controls", "product-polish", "data-visualization", "marketing-motion",
+  "signature-creative-effect", "bespoke-motion", "interactive-vector",
+];
+if (JSON.stringify(Object.keys(routing.capability_routes).sort()) !== JSON.stringify([...requiredCapabilities].sort())) {
+  fail("Routing policy must define exactly seven structured capabilities");
+}
+const routePriorities = new Set();
+for (const [capability, route] of Object.entries(routing.capability_routes)) {
+  if (!routing.roles[route.role]) fail(`${capability} references unknown role ${route.role}`);
+  if (!Number.isInteger(route.priority) || route.priority < 1 || routePriorities.has(route.priority)) {
+    fail(`${capability} has an invalid or duplicate priority`);
+  }
+  routePriorities.add(route.priority);
+  if (!Array.isArray(route.candidates) || !route.candidates.length) fail(`${capability} has no candidates`);
+  for (const candidate of route.candidates) if (!ids.has(candidate)) fail(`${capability} references unknown library ${candidate}`);
+}
+for (const conflict of routing.host_conflicts) {
+  if (!ruleIds.has(conflict.rule_id) || !ids.has(conflict.candidate) || !conflict.patterns?.length) {
+    fail(`Invalid host conflict policy for ${conflict.candidate}`);
+  }
+}
+for (const conflict of routing.selected_conflicts) {
+  if (!ruleIds.has(conflict.rule_id) || conflict.libraries.length !== 2
+      || conflict.libraries.some((id) => !ids.has(id))) {
+    fail(`Invalid selected-library conflict policy ${conflict.rule_id}`);
+  }
+}
+
+if (benchmark.schema_version !== 1 || benchmark.scenarios.length < 30 || benchmark.scenarios.length > 50) {
+  fail("Routing benchmark must contain 30 to 50 scenarios");
+}
+const benchmarkIds = new Set();
+for (const scenario of benchmark.scenarios) {
+  if (benchmarkIds.has(scenario.id)) fail(`Duplicate benchmark scenario ${scenario.id}`);
+  benchmarkIds.add(scenario.id);
+  if (!benchmark.hosts[scenario.host] || !benchmark.tasks[scenario.task]) fail(`${scenario.id} references an unknown profile`);
+  for (const id of [...scenario.expected_selected, ...(scenario.expected_existing ?? []), ...(scenario.expected_rejected ?? [])]) {
+    if (!ids.has(id)) fail(`${scenario.id} references unknown library ${id}`);
+  }
 }
 
 function validateSkill(root, skill) {
@@ -181,6 +227,8 @@ for (const file of [
   "README.md", "README.ru.md", "LICENSE", "PRIVACY.md", "TERMS.md", "SECURITY.md", "CONTRIBUTING.md",
   "CODE_OF_CONDUCT.md", "SUPPORT.md", "GOVERNANCE.md", "ROADMAP.md", "CHANGELOG.md",
   "THIRD_PARTY.md", "TRADEMARKS.md", ".github/CODEOWNERS", "package-lock.json", "server.json",
+  "benchmark/routing-benchmark.json", "benchmark/run.mjs", "catalog/routing-rules.schema.json",
+  "examples/fixtures/run.mjs",
   "docs/CLAUDE_CODE.md", "docs/GITHUB_SETUP_CHECKLIST.md", "docs/RELEASE_NOTES_0.1.0.md",
   "assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg", "assets/social-preview.png",
   "site/index.html", "site/styles.css", "site/app.js", "site/robots.txt", "site/sitemap.xml",
@@ -192,7 +240,7 @@ for (const file of [
 }
 
 const expectedPackageFiles = [
-  "assets/", "catalog/", "docs/", ".agents/skills/", "skills/", "README.ru.md", "TRADEMARKS.md",
+  "assets/", "benchmark/", "catalog/", "docs/", ".agents/skills/", "skills/", "README.ru.md", "TRADEMARKS.md",
 ];
 for (const entry of expectedPackageFiles) {
   if (!packageManifest.files?.includes(entry)) fail(`npm package files must include ${entry}`);
@@ -283,7 +331,8 @@ for (const repositoryFile of listRepositoryFiles().filter((file) => textExtensio
 }
 
 for (const sourceFile of [
-  "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts", "mcp/src/catalog.ts",
+  "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts", "mcp/src/catalog.ts", "mcp/src/routing.ts",
+  "benchmark/run.mjs", "examples/fixtures/run.mjs",
   "scripts/validate.mjs", "scripts/check-external-links.mjs", "scripts/render-brand-assets.mjs",
   "scripts/install-codex.sh", "scripts/install-codex.ps1",
 ]) {
@@ -291,6 +340,28 @@ for (const sourceFile of [
   if (!source.includes("Copyright (c) 2026 ECD5A") || !source.includes("SPDX-License-Identifier: MIT")) {
     fail(`${sourceFile} is missing the OrchestrUI source header`);
   }
+}
+
+const fixtureDirectories = fs.readdirSync("examples/fixtures", { withFileTypes: true })
+  .filter((entry) => entry.isDirectory());
+if (fixtureDirectories.length !== 3) fail("Exactly three end-to-end routing fixtures are required");
+for (const entry of fixtureDirectories) {
+  const fixture = readJson(path.join("examples/fixtures", entry.name, "fixture.json"));
+  if (fixture.id !== entry.name || fixture.schema_version !== 1) fail(`Invalid fixture ${entry.name}`);
+  if (!fs.existsSync(path.join("examples/fixtures", entry.name, "result.json"))) fail(`Missing fixture result ${entry.name}`);
+  for (const id of [...fixture.expected.selected, ...fixture.expected.existing, ...fixture.expected.rejected]) {
+    if (!ids.has(id)) fail(`${fixture.id} references unknown library ${id}`);
+  }
+}
+
+const serverSource = fs.readFileSync("mcp/src/server.ts", "utf8");
+const adapterSource = fs.readFileSync("mcp/src/adapters.ts", "utf8");
+const linkCheckSource = fs.readFileSync("scripts/check-external-links.mjs", "utf8");
+if (/const\s+VERSION\s*=/.test(serverSource) || /OrchestrUI\/0\.\d/.test(adapterSource)
+    || /OrchestrUI-release-check\/0\.\d/.test(linkCheckSource)
+    || !serverSource.includes("version: data.version") || !adapterSource.includes("getProjectVersion()")
+    || !linkCheckSource.includes("${packageVersion}")) {
+  fail("Runtime version must come from package.json through the catalog loader");
 }
 
 for (const markdownFile of listRepositoryFiles().filter((file) => file.toLowerCase().endsWith(".md"))) {

@@ -24,6 +24,15 @@
 - [x] `get_install_instructions`
 - [x] `audit_plan`
 
+## 0.5 — Structured policy proof
+- [x] structured HostProfile and TaskProfile routing
+- [x] declarative role ownership and conflict policy
+- [x] evidence-bearing selected and rejected decisions
+- [x] 50-scenario routing benchmark
+- [x] three executable routing fixtures
+- [x] pending audit checks excluded from verified scores
+- [ ] rendered end-to-end fixture implementations with captured evidence
+
 ## 0.4 — Distribution
 - [x] npm package metadata and dry-run packaging
 - [x] Codex/ChatGPT plugin manifest and bundled MCP configuration

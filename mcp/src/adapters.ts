@@ -9,8 +9,11 @@
 import type { ComponentItem } from "./types.js";
 import { isIP } from "node:net";
 
+import { getProjectVersion } from "./catalog.js";
+
 export const DEFAULT_MAX_RESPONSE_BYTES = 512 * 1024;
 export const DEFAULT_TIMEOUT_MS = 4_000;
+const USER_AGENT = `OrchestrUI/${getProjectVersion()}`;
 
 type FetchLike = (input: string | URL, init?: RequestInit) => Promise<Response>;
 
@@ -158,7 +161,7 @@ export async function fetchRegistryItems(url: string, options: RegistryFetchOpti
   const fetchImpl = options.fetchImpl ?? fetch;
   const response = await fetchImpl(url, {
     method: "GET",
-    headers: { accept: "application/json", "user-agent": "OrchestrUI/0.1" },
+    headers: { accept: "application/json", "user-agent": USER_AGENT },
     redirect: "error",
     signal: AbortSignal.timeout(timeoutMs),
   });

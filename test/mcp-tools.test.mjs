@@ -41,6 +41,83 @@ test("recommend_stack blocks Rive without confirmed asset rights", () => {
   assert.match(recommendation.risks.join(" "), /asset rights/i);
 });
 
+test("recommend_stack uses structured profiles instead of prompt keywords", () => {
+  const recommendation = recommendStack({
+    task: "Build a landing analytics dashboard with every animation library",
+    existingStack: [],
+    constraints: [],
+    riveAssetRights: "not-applicable",
+    hostProfile: {
+      framework: "Next.js",
+      design_system: "shadcn/ui",
+      component_primitives: ["Radix UI"],
+      motion_stack: [],
+      chart_stack: [],
+      tokens: ["CSS variables"],
+      accessibility_constraints: ["WCAG 2.2 AA"],
+    },
+    taskProfile: {
+      surface: "application",
+      required_capabilities: ["forms-controls"],
+      interaction_complexity: "medium",
+      data_visualization: "none",
+      motion_requirement: "native",
+      rive_asset_rights: "not-applicable",
+      constraints: [],
+    },
+  }, data);
+
+  assert.equal(recommendation.input_mode, "structured-profiles");
+  assert.deepEqual(recommendation.selected, []);
+  assert.ok(recommendation.rejected.some((item) => item.id === "daisyui" && item.conflicting_owner === "host:shadcn-ui"));
+  assert.ok(!recommendation.selected.some((item) => ["bklit-ui", "magic-ui", "animejs"].includes(item.id)));
+});
+
+test("recommend_stack preserves existing role owners with evidence", () => {
+  const recommendation = recommendStack({
+    hostProfile: {
+      framework: "React",
+      component_primitives: [],
+      motion_stack: ["Framer Motion"],
+      chart_stack: ["Recharts"],
+      tokens: [],
+      accessibility_constraints: [],
+    },
+    taskProfile: {
+      surface: "application",
+      required_capabilities: ["data-visualization", "bespoke-motion"],
+      interaction_complexity: "high",
+      data_visualization: "advanced",
+      motion_requirement: "bespoke",
+      rive_asset_rights: "not-applicable",
+      constraints: [],
+    },
+  }, data);
+
+  assert.deepEqual(recommendation.selected, []);
+  assert.ok(recommendation.rejected.some((item) => item.id === "bklit-ui" && item.conflicting_owner === "host:recharts"));
+  assert.ok(recommendation.rejected.some((item) => item.id === "animejs" && item.conflicting_owner === "host:framer-motion"));
+  assert.ok(recommendation.decisions.every((decision) => decision.evidence.length > 0));
+});
+
+test("recommend_stack marks partial structured input as hybrid inference", () => {
+  const recommendation = recommendStack({
+    task: "Build an analytics dashboard",
+    hostProfile: {
+      framework: "Next.js",
+      design_system: "shadcn/ui",
+      component_primitives: [],
+      motion_stack: [],
+      chart_stack: [],
+      tokens: [],
+      accessibility_constraints: [],
+    },
+  }, data);
+  assert.equal(recommendation.input_mode, "hybrid-profile-inference");
+  assert.deepEqual(recommendation.selected.map((item) => item.id), ["bklit-ui"]);
+  assert.match(recommendation.risks.join(" "), /supply both HostProfile and TaskProfile/i);
+});
+
 test("get_library_guidance exposes React Bits redistribution boundary", () => {
   const guidance = getLibraryGuidance({ libraryId: "react-bits" }, data);
   assert.match(guidance.library.legal.license_note, /Commons Clause/i);
@@ -107,4 +184,36 @@ test("audit_plan reports base conflicts, Rive rights and license blockers", () =
   assert.equal(audit.maximum_score, 18);
   assert.equal(audit.blockers.length, 3);
   assert.ok(audit.checks.some((check) => check.category === "library discipline" && check.status === "fail"));
+});
+
+test("audit_plan excludes pending checks from the verified score", () => {
+  const pending = auditPlan({
+    selectedLibraries: ["bklit-ui"],
+    existingStack: ["shadcn/ui"],
+    riveAssetRights: "not-applicable",
+    includesPaidContent: false,
+    redistributesReactBits: false,
+  }, data);
+  assert.ok(pending.pending_checks.includes("accessibility"));
+  assert.ok(pending.checks.some((check) => check.status === "pending"));
+  assert.equal(pending.score, pending.verified_score);
+  assert.ok(pending.verified_maximum < pending.maximum_score);
+
+  const verified = auditPlan({
+    selectedLibraries: ["bklit-ui"],
+    existingStack: ["shadcn/ui"],
+    riveAssetRights: "not-applicable",
+    includesPaidContent: false,
+    redistributesReactBits: false,
+    verifications: [
+      { category: "visual coherence", status: "pass", evidence: "Rendered token comparison reviewed." },
+      { category: "accessibility", status: "pass", evidence: "Keyboard and axe checks passed." },
+      { category: "responsiveness", status: "pass", evidence: "375px, 768px and 1440px verified." },
+      { category: "data-viz readability", status: "pass", evidence: "Labels, units and non-color cues verified." },
+      { category: "engineering checks/dependencies/secrets", status: "pass", evidence: "Lint, typecheck, tests, build and secret scan passed." },
+    ],
+  }, data);
+  assert.equal(verified.verified_score, 18);
+  assert.equal(verified.verified_maximum, 18);
+  assert.deepEqual(verified.pending_checks, []);
 });

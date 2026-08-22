@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "daisy-admin",
+  "description": "A React admin application where daisyUI already owns forms, controls and themes.",
+  "source_snapshot": {
+    "package_manager": "pnpm",
+    "dependencies": ["react", "daisyui", "tailwindcss"],
+    "detected_files": ["src/AdminSettings.tsx", "src/styles.css", "pnpm-lock.yaml"],
+    "gap": "Settings flows need refinement without introducing a second component foundation."
+  },
+  "host_profile": {
+    "framework": "React",
+    "react_version": "19",
+    "tailwind_version": "4",
+    "package_manager": "pnpm",
+    "design_system": "daisyUI",
+    "component_primitives": ["daisyUI form controls", "daisyUI modal"],
+    "motion_stack": [],
+    "chart_stack": [],
+    "tokens": ["daisyUI themes"],
+    "accessibility_constraints": ["keyboard navigation", "visible focus"]
+  },
+  "task_profile": {
+    "surface": "application",
+    "required_capabilities": ["product-polish", "forms-controls"],
+    "interaction_complexity": "medium",
+    "data_visualization": "none",
+    "motion_requirement": "none",
+    "rive_asset_rights": "not-applicable",
+    "constraints": ["keep daisyUI as the only base owner"]
+  },
+  "expected": {
+    "selected": ["daisyui"],
+    "existing": ["daisyui"],
+    "rejected": ["kokonut-ui", "react-bits", "magic-ui", "animejs", "rive", "bklit-ui"],
+    "owners": {
+      "base-system": "daisyui"
+    }
+  }
+}

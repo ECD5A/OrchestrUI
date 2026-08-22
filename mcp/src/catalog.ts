@@ -10,9 +10,9 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, join, parse } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { ComponentCatalog, LibraryCatalog, OrchestrUiData } from "./types.js";
+import type { ComponentCatalog, LibraryCatalog, OrchestrUiData, RoutingPolicyCatalog } from "./types.js";
 
-function findProjectRoot(start = dirname(fileURLToPath(import.meta.url))): string {
+export function findProjectRoot(start = dirname(fileURLToPath(import.meta.url))): string {
   let current = start;
   const root = parse(current).root;
 
@@ -33,9 +33,19 @@ function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf8")) as T;
 }
 
+export function getProjectVersion(projectRoot = findProjectRoot()): string {
+  const manifest = readJson<{ name?: string; version?: string }>(join(projectRoot, "package.json"));
+  if (manifest.name !== "orchestrui" || !manifest.version) {
+    throw new Error("Invalid OrchestrUI package metadata");
+  }
+  return manifest.version;
+}
+
 export function loadOrchestrUiData(projectRoot = findProjectRoot()): OrchestrUiData {
   const catalog = readJson<LibraryCatalog>(join(projectRoot, "catalog", "libraries.json"));
   const components = readJson<ComponentCatalog>(join(projectRoot, "catalog", "components.json"));
+  const routing = readJson<RoutingPolicyCatalog>(join(projectRoot, "catalog", "routing-rules.json"));
+  const version = getProjectVersion(projectRoot);
 
   if (catalog.project !== "OrchestrUI" || catalog.libraries.length !== 7) {
     throw new Error("Invalid OrchestrUI library catalog");
@@ -43,8 +53,10 @@ export function loadOrchestrUiData(projectRoot = findProjectRoot()): OrchestrUiD
   if (Object.keys(components.libraries).length !== 7) {
     throw new Error("Invalid OrchestrUI component catalog");
   }
-
-  return { catalog, components };
+  if (routing.schema_version !== 2 || !Object.keys(routing.capability_routes).length) {
+    throw new Error("Invalid OrchestrUI routing policy catalog");
+  }
+  return { catalog, components, routing, version };
 }
 
 export function getLibrary(data: OrchestrUiData, id: string) {
