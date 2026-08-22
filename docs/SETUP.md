@@ -1,5 +1,24 @@
 # Setup
 
+Node.js 20 or newer is required for the MCP server. Git is required only for installing the skills or developing from source.
+
+## Published MCP server
+
+Add OrchestrUI to an MCP-compatible host:
+
+```json
+{
+  "mcpServers": {
+    "orchestrui": {
+      "command": "npx",
+      "args": ["-y", "orchestrui@latest"]
+    }
+  }
+}
+```
+
+The same release is indexed as [`io.github.ECD5A/orchestrui`](https://registry.modelcontextprotocol.io/v0/servers/io.github.ECD5A%2Forchestrui/versions/latest) in the official MCP Registry.
+
 ## Codex global skills
 
 macOS/Linux:
@@ -19,8 +38,6 @@ powershell -ExecutionPolicy Bypass -File scripts\install-codex.ps1
 You may also copy/symlink selected skills into a target repo's `.agents/skills`.
 
 ## Source checkout and MCP
-
-Node.js 20 or newer is required.
 
 ```bash
 npm ci

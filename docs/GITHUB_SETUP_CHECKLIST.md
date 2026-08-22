@@ -1,34 +1,33 @@
 # GitHub setup checklist
 
-Use this checklist immediately before making `ECD5A/OrchestrUI` public. Repository settings remain maintainer-controlled external changes.
+Current public-repository state for `ECD5A/OrchestrUI`. Unchecked items still require a maintainer-controlled visual or product decision.
 
 - [x] Description: `Deterministic UI policy, discovery and quality gates for coding agents.`
 - [x] Homepage: `https://ecd5a.github.io/OrchestrUI/`
-- [ ] Public repository with `main` as the default branch
+- [x] Public repository with `main` as the default branch
 - [x] Issues and Discussions enabled
-- [ ] Ruleset/branch protection enabled; require the CI workflow when practical and disable force-pushes/deletion
-- [ ] Social preview uploaded from `assets/social-preview.png` (1280 × 640)
+- [x] Branch protection enabled with required CI, linear history, conversation resolution, and force-push/deletion protection
+- [ ] Social preview uploaded from `assets/social-preview.png` (1280 × 640); GitHub currently serves its generated default card
 - [x] Topics added for UI, frontend, coding agents, MCP, TypeScript, design systems and code quality
-- [ ] Private Vulnerability Reporting enabled
+- [x] Private Vulnerability Reporting enabled
 - [x] Dependabot alerts and automated security updates enabled
-- [ ] Secret scanning/push protection where available
-- [ ] CodeQL default setup enabled for JavaScript/TypeScript after the repository becomes public
-- [ ] Confirm README/LICENSE/CONTRIBUTING/CODE_OF_CONDUCT/SECURITY detection
+- [x] Secret scanning and push protection enabled
+- [x] CodeQL enabled for JavaScript/TypeScript
+- [x] Confirm README/LICENSE/CONTRIBUTING/CODE_OF_CONDUCT/SECURITY detection
 - [x] Community and release labels created
 - [x] First release published from `v0.1.0`
-- [ ] Publish `v0.2.0` from the final tested public commit using `docs/RELEASE_NOTES_0.2.0.md` (release candidate prepared)
+- [x] Publish `v0.2.0` and the registry-corrected `v0.2.1` patch release from tested commits
 
-## Public launch order
+## Completed public launch
 
-1. Merge the final release-preparation PR and confirm all CI jobs pass.
-2. Change repository visibility to public.
-3. Enable branch protection/rules, CodeQL default setup, Private Vulnerability Reporting and available secret-scanning protections.
-4. Trigger Pages and verify the canonical site.
-5. Run strict external-link checks without publication deferral.
-6. Tag the tested commit and publish `v0.2.0` with the committed release description.
+1. The repository is public and `main` is protected.
+2. CI, CodeQL, Dependabot, Private Vulnerability Reporting, secret scanning and push protection are enabled.
+3. GitHub Pages is deployed over HTTPS from the pinned workflow.
+4. npm and MCP Registry publication are verified independently from a clean install/readback.
+5. Tagged GitHub releases contain the exact npm archives.
 
-## Name-availability snapshot
+## Published coordinates
 
-On 2026-08-20, exact-name checks found no `OrchestrUI` repository in GitHub search, no npm package, no PyPI project, no crates.io crate and no exact NuGet package. This is a practical collision check, not a trademark clearance opinion. Re-check the name and package coordinates immediately before publication.
+The canonical repository is `ECD5A/OrchestrUI`, npm publishes `orchestrui`, and the official MCP Registry identity is `io.github.ECD5A/orchestrui`. Version `0.2.1` is active across all three release surfaces.
 
 No GitHub Sponsors or `.github/FUNDING.yml` configuration is required; the exact direct-support addresses and donation boundary are in the README.

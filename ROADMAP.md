@@ -24,6 +24,14 @@
 - [x] `get_install_instructions`
 - [x] `audit_plan`
 
+## 0.4 — Distribution
+- [x] npm package publication with verified install smoke test
+- [x] Codex/ChatGPT plugin manifest and bundled MCP configuration
+- [x] MCP Registry publication as `io.github.ECD5A/orchestrui`
+- [x] versioned GitHub releases with attached npm artifacts
+- [ ] hosted MCP registration and OpenAI plugin review if a universal listing is desired
+- [ ] additional agent-host guides based on real adoption
+
 ## 0.5 — Structured policy proof
 - [x] structured HostProfile and TaskProfile routing
 - [x] declarative role ownership and conflict policy
@@ -31,14 +39,12 @@
 - [x] 50-scenario routing benchmark
 - [x] three executable routing fixtures
 - [x] pending audit checks excluded from verified scores
-- [ ] rendered end-to-end fixture implementations with captured evidence
+- [x] formal separation between MCP evidence states and the rendered `0/1/2` audit rubric
 
-## 0.4 — Distribution
-- [x] npm package metadata and dry-run packaging
-- [x] Codex/ChatGPT plugin manifest and bundled MCP configuration
-- [ ] MCP Registry publication
-- [ ] npm publication by the maintainer
-- [ ] hosted MCP registration and OpenAI plugin review if a universal listing is desired
+## 0.6 — Adoption proof
+- [ ] one rendered end-to-end frontend case study with captured before/after evidence
+- [ ] multi-candidate ranking by compatibility, installed ownership, dependency cost, overlap and semver constraints
+- [ ] independently authored adversarial golden cases alongside the internal policy benchmark
 - [ ] additional agent-host guides based on real adoption
 
 ## 1.0

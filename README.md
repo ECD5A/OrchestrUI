@@ -8,10 +8,11 @@
   <p><strong>Deterministic UI policy and quality gates for coding agents.</strong></p>
 
   [![CI](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml/badge.svg)](https://github.com/ECD5A/OrchestrUI/actions/workflows/ci.yml)
+  [![npm](https://img.shields.io/npm/v/orchestrui?logo=npm&color=CB3837)](https://www.npmjs.com/package/orchestrui)
   [![License: MIT](https://img.shields.io/badge/license-MIT-111827.svg)](LICENSE)
   [![Agent Skills](https://img.shields.io/badge/agent%20skills-3-4f46e5.svg)](.agents/skills)
   [![UI ecosystems](https://img.shields.io/badge/UI%20ecosystems-7-0f766e.svg)](#ecosystems)
-  [![MCP](https://img.shields.io/badge/MCP-read--only%20v2-7c3aed.svg)](docs/MCP_SPEC.md)
+  [![MCP](https://img.shields.io/badge/MCP-Registry-7c3aed.svg)](https://registry.modelcontextprotocol.io/v0/servers/io.github.ECD5A%2Forchestrui/versions/latest)
 
   <p>
     <a href="#quick-start">Quick start</a>
@@ -31,19 +32,25 @@ OrchestrUI inspects a structured project profile, preserves compatible owners, a
 <a id="quick-start"></a>
 ## Quick start
 
-Requires Git and Node.js 20+.
+Requires Node.js 20+. Add the published read-only server to an MCP host:
 
-```bash
-git clone https://github.com/ECD5A/OrchestrUI.git
-cd OrchestrUI
-npm ci && npm run check
-npm run benchmark
+```json
+{
+  "mcpServers": {
+    "orchestrui": {
+      "command": "npx",
+      "args": ["-y", "orchestrui@latest"]
+    }
+  }
+}
 ```
 
 <details>
 <summary><strong>Install skills on macOS / Linux</strong></summary>
 
 ```bash
+git clone --depth 1 https://github.com/ECD5A/OrchestrUI.git
+cd OrchestrUI
 bash scripts/install-codex.sh
 ```
 
@@ -53,7 +60,21 @@ bash scripts/install-codex.sh
 <summary><strong>Install skills on Windows</strong></summary>
 
 ```powershell
+git clone --depth 1 https://github.com/ECD5A/OrchestrUI.git
+Set-Location OrchestrUI
 powershell -ExecutionPolicy Bypass -File scripts\install-codex.ps1
+```
+
+</details>
+
+<details>
+<summary><strong>Develop from source</strong></summary>
+
+```bash
+git clone https://github.com/ECD5A/OrchestrUI.git
+cd OrchestrUI
+npm ci && npm run check
+npm run benchmark
 ```
 
 </details>
@@ -91,12 +112,7 @@ The committed routing benchmark passes **50/50** structured scenarios and three 
 - `ui-quality-audit` — checks coherence, accessibility, responsiveness, motion, performance, and licensing.
 - Read-only MCP — `list_libraries`, `recommend_stack`, `get_library_guidance`, `search_components`, `get_install_instructions`, and `audit_plan`.
 
-```bash
-npm run build
-npm run start:mcp
-```
-
-MCP configuration is in [`.mcp.json`](.mcp.json). Setup, architecture, security, licensing, and contribution details live in [`docs/`](docs/), [`SECURITY.md`](SECURITY.md), [`THIRD_PARTY.md`](THIRD_PARTY.md), and [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Published through [npm](https://www.npmjs.com/package/orchestrui), the [official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers/io.github.ECD5A%2Forchestrui/versions/latest), and versioned [GitHub Releases](https://github.com/ECD5A/OrchestrUI/releases). Local plugin configuration is in [`.mcp.json`](.mcp.json); setup, architecture, security, licensing, and contribution details live in [`docs/`](docs/), [`SECURITY.md`](SECURITY.md), [`THIRD_PARTY.md`](THIRD_PARTY.md), and [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 The MCP surface is read-only and uses public upstream metadata; implementation code and third-party assets remain in the host project.
 

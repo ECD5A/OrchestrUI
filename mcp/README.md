@@ -1,6 +1,21 @@
 # OrchestrUI MCP
 
-The production source is in `src/` and uses the stable Model Context Protocol TypeScript SDK v2.
+The production source is in `src/` and uses the stable Model Context Protocol TypeScript SDK v2. The published server is available as [`orchestrui`](https://www.npmjs.com/package/orchestrui) and `io.github.ECD5A/orchestrui` in the [official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers/io.github.ECD5A%2Forchestrui/versions/latest).
+
+Use it from an MCP host with Node.js 20+:
+
+```json
+{
+  "mcpServers": {
+    "orchestrui": {
+      "command": "npx",
+      "args": ["-y", "orchestrui@latest"]
+    }
+  }
+}
+```
+
+For development from a source checkout:
 
 ```bash
 npm ci
