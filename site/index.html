@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#07101d">
-    <meta name="description" content="A compact interactive demonstration of the OrchestrUI inspection, routing, harmonization, and audit pipeline.">
+    <meta name="description" content="A compact interactive trace of real OrchestrUI routing fixtures, policy evidence, role ownership, and honest audit gates.">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta property="og:title" content="OrchestrUI — workflow demo">
-    <meta property="og:description" content="Inspect the host, route UI roles, harmonize the result, and audit before shipping.">
+    <meta property="og:title" content="OrchestrUI — policy trace">
+    <meta property="og:description" content="Run structured project fixtures through deterministic UI policy, ownership, conflict resolution, and audit gates.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ecd5a.github.io/OrchestrUI/">
     <meta property="og:image" content="https://ecd5a.github.io/OrchestrUI/assets/social-preview.png">
@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://ecd5a.github.io/OrchestrUI/">
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
-    <title>OrchestrUI — workflow demo</title>
+    <title>OrchestrUI — policy trace</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to demo</a>
@@ -30,7 +30,7 @@
           </svg>
           <span>OrchestrUI</span>
         </a>
-        <span class="topbar-label">workflow demo</span>
+        <span class="topbar-label">policy trace</span>
         <a class="source-link" href="https://github.com/ECD5A/OrchestrUI">source <span aria-hidden="true">↗</span></a>
       </header>
 
@@ -38,33 +38,33 @@
         <section class="demo" aria-labelledby="demo-title">
           <div class="demo-heading">
             <div>
-              <p class="overline">AUTOMATED UI ROUTING</p>
-              <h1 id="demo-title">Orchestration pipeline</h1>
+              <p class="overline">DETERMINISTIC UI POLICY</p>
+              <h1 id="demo-title">Structured routing trace</h1>
             </div>
-            <p>Inspect host → route roles → harmonize tokens → audit output</p>
+            <p>Real fixtures → policy rules → role ownership → honest audit</p>
           </div>
 
           <div class="scenario-picker" role="group" aria-label="Demo scenario">
             <span>SCENARIO</span>
-            <button type="button" data-scenario-button="dashboard" aria-pressed="true">Analytics dashboard</button>
-            <button type="button" data-scenario-button="landing" aria-pressed="false">Product landing</button>
-            <button type="button" data-scenario-button="existing" aria-pressed="false">Mature design system</button>
+            <button type="button" data-scenario-button="next-shadcn-dashboard" aria-pressed="true">Next.js dashboard</button>
+            <button type="button" data-scenario-button="daisy-admin" aria-pressed="false">daisyUI admin</button>
+            <button type="button" data-scenario-button="marketing-landing" aria-pressed="false">Marketing landing</button>
           </div>
 
-          <div class="console" data-phase="inspect" data-phase-index="0" data-scenario="dashboard">
+          <div class="console" data-phase="profile" data-phase-index="0" data-scenario="next-shadcn-dashboard">
             <div class="console-bar">
               <span class="run-state"><i aria-hidden="true"></i><span data-run-state>running</span></span>
-              <span class="run-id">RUN / <span data-run-id>ANALYTICS-DASHBOARD</span></span>
-              <button class="pause-control" type="button" data-play-control aria-label="Pause automatic run" aria-pressed="false">
+              <span class="run-id">FIXTURE / <span data-run-id>NEXT-SHADCN-DASHBOARD</span></span>
+              <button class="pause-control" type="button" data-play-control aria-label="Pause automatic policy trace" aria-pressed="false">
                 <span data-play-icon aria-hidden="true">Ⅱ</span>
                 <span data-play-label>pause</span>
               </button>
             </div>
 
             <ol class="steps" aria-label="Orchestration phases">
-              <li><button type="button" data-phase-button="inspect" aria-pressed="true"><span>01</span>Inspect</button></li>
+              <li><button type="button" data-phase-button="profile" aria-pressed="true"><span>01</span>Profile</button></li>
               <li><button type="button" data-phase-button="route" aria-pressed="false"><span>02</span>Route</button></li>
-              <li><button type="button" data-phase-button="harmonize" aria-pressed="false"><span>03</span>Harmonize</button></li>
+              <li><button type="button" data-phase-button="ownership" aria-pressed="false"><span>03</span>Evidence</button></li>
               <li><button type="button" data-phase-button="audit" aria-pressed="false"><span>04</span>Audit</button></li>
             </ol>
 
@@ -74,10 +74,10 @@
               <article class="data-card input-card">
                 <p class="card-label">HOST INPUT</p>
                 <dl>
-                  <div><dt>framework</dt><dd data-input-framework>React</dd></div>
+                  <div><dt>framework</dt><dd data-input-framework>Next.js 15</dd></div>
                   <div><dt>base</dt><dd data-input-base>shadcn/ui</dd></div>
-                  <div><dt>tokens</dt><dd data-input-tokens>detected</dd></div>
-                  <div><dt>capability gap</dt><dd data-input-gap>charts</dd></div>
+                  <div><dt>tokens</dt><dd data-input-tokens>CSS variables, shadcn semantic colors</dd></div>
+                  <div><dt>capability gap</dt><dd data-input-gap>data-visualization</dd></div>
                 </dl>
               </article>
 
@@ -92,14 +92,14 @@
                     <path d="M3 7l7 7M3 18h3M3 29l7-7M26 18h7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
                     <path d="m12 18 3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  <strong data-engine-label>INSPECT</strong>
+                  <strong data-engine-label>PROFILE</strong>
                 </div>
-                <p class="phase-code" data-phase-code>01 / INSPECT</p>
-                <h2 data-phase-title>Read the host project.</h2>
-                <p data-phase-copy>Detect the existing base, tokens, dependencies, accessibility constraints, and real capability gaps.</p>
+                <p class="phase-code" data-phase-code>01 / PROFILE</p>
+                <h2 data-phase-title>Normalize the inspected host.</h2>
+                <p data-phase-copy>Use explicit HostProfile and TaskProfile fields instead of guessing the stack from prompt keywords.</p>
                 <ul data-phase-list>
-                  <li>existing system remains authoritative</li>
-                  <li>charts are the only confirmed gap</li>
+                  <li>input mode: structured-profiles</li>
+                  <li>capability: data-visualization</li>
                 </ul>
               </div>
 
@@ -109,10 +109,10 @@
                   <div><dt>base owner</dt><dd data-output-base>pending</dd></div>
                   <div><dt>selected</dt><dd data-output-selected>pending</dd></div>
                   <div><dt>rejected</dt><dd data-output-rejected>pending</dd></div>
-                  <div><dt>status</dt><dd class="status-value" data-output-status>scanning</dd></div>
+                  <div><dt>status</dt><dd class="status-value" data-output-status>structured</dd></div>
                 </dl>
                 <div class="result-preview" aria-hidden="true">
-                  <div class="preview-toolbar"><i></i><i></i><i></i><span data-preview-label>dashboard</span></div>
+                  <div class="preview-toolbar"><i></i><i></i><i></i><span data-preview-label>next-shadcn-dashboard</span></div>
                   <div class="preview-canvas">
                     <span></span><span></span><span></span><span></span><span></span>
                   </div>
@@ -122,12 +122,13 @@
           </div>
 
           <footer class="demo-footer">
-            <span>one owner per role</span><span>read-only MCP</span><span>public upstream only</span>
+            <span>50 / 50 benchmark</span><span>generated from result.json</span><span>pending never scores</span>
           </footer>
         </section>
       </main>
     </div>
 
+    <script src="fixtures.js"></script>
     <script src="app.js" defer></script>
   </body>
 </html>

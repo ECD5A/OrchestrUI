@@ -6,14 +6,14 @@ GitHub is canonical. Local source, npm, the MCP Registry and the OpenAI plugin d
 
 1. Re-verify [`SOURCES.md`](SOURCES.md) and update both catalog verification dates.
 2. Set one exact semantic version in `package.json`, `.codex-plugin/plugin.json`, `server.json` and MCP server metadata.
-3. Regenerate brand PNGs with `npm run render:brand` and confirm the working tree contains only expected changes.
+3. Regenerate brand PNGs with `npm run render:brand`, the README animation with `npm run render:demo`, and fixture-backed Pages data with `npm run site:data:write`; confirm the working tree contains only expected changes.
 4. Run `npm ci`, `npm run check`, `npm run check:links`, `ORCHESTRUI_LIVE_TESTS=1 npm test`, `npm audit`, `npm audit --omit=dev` and `npm run pack:check`.
 5. Inspect the shared `assets/social-preview.png` README/social artwork at its native dimensions.
 6. Inspect the tarball file list for secrets, Pro content, vendored collections and missing legal files.
 7. Confirm all relative Markdown links, exact support addresses and the absence of `.github/FUNDING.yml`; `npm run validate` enforces these repository gates.
 8. Tag only the exact tested commit.
 
-Before the canonical repository is public, `npm run check:links` reports `github.com/ECD5A/OrchestrUI` URLs as publication-deferred rather than broken. Re-run it after publication; those URLs must then resolve.
+While the canonical repository is private, run `$env:ORCHESTRUI_PUBLICATION_DEFERRED=1; npm run check:links` in PowerShell or `ORCHESTRUI_PUBLICATION_DEFERRED=1 npm run check:links` in a POSIX shell. Only canonical OrchestrUI GitHub, raw-content, and Pages 404s are deferred. Re-run the strict command without this flag after publication; every canonical URL must then resolve.
 
 ## npm and MCP Registry
 

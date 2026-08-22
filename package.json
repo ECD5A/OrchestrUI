@@ -61,7 +61,9 @@
     "benchmark": "npm run build --silent && node benchmark/run.mjs",
     "fixtures": "npm run build --silent && node examples/fixtures/run.mjs",
     "fixtures:write": "npm run build --silent && node examples/fixtures/run.mjs --write",
-    "check": "npm run validate && npm run typecheck && npm test",
+    "site:data": "node scripts/build-site-data.mjs",
+    "site:data:write": "node scripts/build-site-data.mjs --write",
+    "check": "npm run validate && npm run site:data && npm run typecheck && npm test",
     "check:links": "node scripts/check-external-links.mjs",
     "render:brand": "node scripts/render-brand-assets.mjs",
     "render:demo": "node scripts/render-readme-demo.mjs",
@@ -74,9 +76,10 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@resvg/resvg-js": "^2.6.2",
     "@modelcontextprotocol/client": "^2.0.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^22.20.1",
+    "gifenc": "^1.0.3",
     "typescript": "^7.0.2"
   }
 }
