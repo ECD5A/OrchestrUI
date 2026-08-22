@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "marketing-landing",
+  "description": "A Next.js product landing page that needs one marketing layer and one bounded signature effect.",
+  "source_snapshot": {
+    "package_manager": "npm",
+    "dependencies": ["next", "react", "@radix-ui/react-slot", "tailwindcss"],
+    "detected_files": ["components.json", "app/page.tsx", "app/globals.css"],
+    "gap": "The static hero needs purposeful marketing motion without a general animation engine."
+  },
+  "host_profile": {
+    "framework": "Next.js",
+    "framework_version": "15",
+    "react_version": "19",
+    "tailwind_version": "4",
+    "package_manager": "npm",
+    "design_system": "shadcn/ui",
+    "component_primitives": ["Radix UI"],
+    "motion_stack": [],
+    "chart_stack": [],
+    "tokens": ["CSS variables", "brand motion durations"],
+    "accessibility_constraints": ["prefers-reduced-motion", "WCAG 2.2 AA"]
+  },
+  "task_profile": {
+    "surface": "marketing",
+    "required_capabilities": ["signature-creative-effect", "marketing-motion"],
+    "interaction_complexity": "high",
+    "data_visualization": "none",
+    "motion_requirement": "native",
+    "rive_asset_rights": "not-applicable",
+    "constraints": ["one signature effect", "no timeline dependency"]
+  },
+  "expected": {
+    "selected": ["magic-ui", "react-bits"],
+    "existing": [],
+    "rejected": ["animejs", "rive", "daisyui", "bklit-ui", "kokonut-ui"],
+    "owners": {
+      "base-system": "host:shadcn-ui",
+      "marketing-enhancement": "magic-ui",
+      "signature-effect": "react-bits"
+    }
+  }
+}

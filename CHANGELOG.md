@@ -3,10 +3,15 @@
 ## [Unreleased]
 
 ### Added
+- Structured `HostProfile` and `TaskProfile` routing with evidence-bearing decisions.
+- Declarative capability, role-priority and conflict policy matrix.
+- 50-scenario routing benchmark and three executable project fixtures.
 - Compact GitHub Pages engineering demo with a keyboard-accessible, reduced-motion orchestration loop.
 - macOS and Windows platform-smoke jobs alongside the existing Linux/Node.js matrix.
 
 ### Changed
+- Audit results now use `pass`, `fail` and `pending`; pending checks do not raise verified scores.
+- MCP runtime and registry User-Agent now read the package version from one source of truth.
 - Unified the README hero and GitHub social preview into one reproducible artwork.
 - Reduced both READMEs to compact project showcases, removed the duplicate workflow diagram, and added maintainer contact links.
 - Refined the workflow demo with three interactive routing scenarios, an animated processing state, and scenario-specific result previews.

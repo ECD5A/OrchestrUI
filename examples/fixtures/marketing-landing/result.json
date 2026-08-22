@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "fixture_id": "marketing-landing",
+  "policy_schema_version": 2,
+  "package_version": "0.1.0",
+  "recommendation": {
+    "input_mode": "structured-profiles",
+    "summary": "Add 2 ecosystems; preserve every compatible host owner.",
+    "profiles": {
+      "host": {
+        "framework": "Next.js",
+        "framework_version": "15",
+        "react_version": "19",
+        "tailwind_version": "4",
+        "package_manager": "npm",
+        "design_system": "shadcn/ui",
+        "component_primitives": [
+          "Radix UI"
+        ],
+        "motion_stack": [],
+        "chart_stack": [],
+        "tokens": [
+          "CSS variables",
+          "brand motion durations"
+        ],
+        "accessibility_constraints": [
+          "prefers-reduced-motion",
+          "WCAG 2.2 AA"
+        ]
+      },
+      "task": {
+        "surface": "marketing",
+        "required_capabilities": [
+          "signature-creative-effect",
+          "marketing-motion"
+        ],
+        "interaction_complexity": "high",
+        "data_visualization": "none",
+        "motion_requirement": "native",
+        "rive_asset_rights": "not-applicable",
+        "constraints": [
+          "one signature effect",
+          "no timeline dependency"
+        ]
+      }
+    },
+    "selected": [
+      {
+        "id": "magic-ui",
+        "role": "marketing-enhancement",
+        "capability": "marketing-motion",
+        "reason": "Magic UI is the policy owner for marketing-enhancement because the task explicitly requires marketing-motion.",
+        "retrieval_method": "shadcn-registry",
+        "already_present": false,
+        "evidence": [
+          "TaskProfile.required_capabilities includes marketing-motion.",
+          "Policy route marketing-motion -> marketing-enhancement -> magic-ui."
+        ]
+      },
+      {
+        "id": "react-bits",
+        "role": "signature-effect",
+        "capability": "signature-creative-effect",
+        "reason": "React Bits is the policy owner for signature-effect because the task explicitly requires signature-creative-effect.",
+        "retrieval_method": "shadcn-registry",
+        "already_present": false,
+        "evidence": [
+          "TaskProfile.required_capabilities includes signature-creative-effect.",
+          "Policy route signature-creative-effect -> signature-effect -> react-bits."
+        ]
+      }
+    ],
+    "rejected": [
+      {
+        "id": "kokonut-ui",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      },
+      {
+        "id": "daisyui",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      },
+      {
+        "id": "bklit-ui",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      },
+      {
+        "id": "animejs",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      },
+      {
+        "id": "rive",
+        "reason": "No explicit task capability routes to this library.",
+        "rule_id": "minimum-set"
+      }
+    ],
+    "role_ownership": [
+      {
+        "role": "base-system",
+        "owner": "host:shadcn-ui",
+        "source": "host-profile",
+        "evidence": "HostProfile.design_system declares shadcn/ui."
+      },
+      {
+        "role": "marketing-enhancement",
+        "owner": "magic-ui",
+        "source": "selected-library",
+        "evidence": "magic-ui selected for marketing-motion."
+      },
+      {
+        "role": "signature-effect",
+        "owner": "react-bits",
+        "source": "selected-library",
+        "evidence": "react-bits selected for signature-creative-effect."
+      }
+    ],
+    "decisions": [
+      {
+        "outcome": "preserved",
+        "subject": "host:shadcn-ui",
+        "rule_id": "existing-stack-first",
+        "evidence": [
+          "base-system is already owned by shadcn/ui."
+        ]
+      },
+      {
+        "outcome": "selected",
+        "subject": "magic-ui",
+        "rule_id": "role-ownership",
+        "evidence": [
+          "TaskProfile.required_capabilities includes marketing-motion.",
+          "Policy route marketing-motion -> marketing-enhancement -> magic-ui."
+        ]
+      },
+      {
+        "outcome": "selected",
+        "subject": "react-bits",
+        "rule_id": "role-ownership",
+        "evidence": [
+          "TaskProfile.required_capabilities includes signature-creative-effect.",
+          "Policy route signature-creative-effect -> signature-effect -> react-bits."
+        ]
+      }
+    ],
+    "risks": [
+      "React Bits source must be retrieved from official upstream and never redistributed by OrchestrUI."
+    ],
+    "validation_plan": [
+      "Verify selected component IDs and installation guidance against cited official sources.",
+      "Map typography, spacing, radius, colors, surfaces, shadows, icons and motion to host tokens.",
+      "Test keyboard/focus behavior, responsive layouts and prefers-reduced-motion behavior.",
+      "Run the host project's lint, typecheck, tests and production build.",
+      "Run ui-quality-audit and resolve every fail; pending checks do not raise the verified score."
+    ],
+    "provenance": [
+      {
+        "source": "catalog/libraries.json",
+        "verified_at": "2026-08-20",
+        "mode": "catalog"
+      },
+      {
+        "source": "catalog/routing-rules.json",
+        "verified_at": "2026-08-20",
+        "mode": "catalog"
+      }
+    ]
+  },
+  "audit": {
+    "score": 8,
+    "maximum_score": 18,
+    "verified_score": 8,
+    "verified_maximum": 8,
+    "pending_checks": [
+      "visual coherence",
+      "accessibility",
+      "responsiveness",
+      "motion/reduced-motion",
+      "engineering checks/dependencies/secrets"
+    ],
+    "provisional": true,
+    "blockers": [],
+    "checks": [
+      {
+        "category": "visual coherence",
+        "status": "pending",
+        "note": "Verify one token system for typography, spacing, radius, color, surfaces, shadows and icons."
+      },
+      {
+        "category": "library discipline",
+        "status": "pass",
+        "note": "The plan keeps role ownership bounded."
+      },
+      {
+        "category": "accessibility",
+        "status": "pending",
+        "note": "Test semantics, labels, keyboard interaction, visible focus and contrast in the host application."
+      },
+      {
+        "category": "responsiveness",
+        "status": "pending",
+        "note": "Test narrow, medium and wide layouts with real content lengths."
+      },
+      {
+        "category": "motion/reduced-motion",
+        "status": "pending",
+        "note": "Verify reduced-motion behavior for every non-essential effect."
+      },
+      {
+        "category": "data-viz readability",
+        "status": "pass",
+        "note": "No data visualization library is selected."
+      },
+      {
+        "category": "Rive lifecycle/asset rights",
+        "status": "pass",
+        "note": "No unresolved Rive asset-rights blocker is declared."
+      },
+      {
+        "category": "engineering checks/dependencies/secrets",
+        "status": "pending",
+        "note": "Run lint, typecheck, tests, build, dependency audit and secret scan in the host project."
+      },
+      {
+        "category": "licensing/Pro/React Bits",
+        "status": "pass",
+        "note": "No paid-content or React Bits redistribution violation is declared."
+      }
+    ],
+    "rule": "Pending checks never raise the verified score. Fix every fail and attach evidence for rendered-host checks before release.",
+    "provenance": [
+      {
+        "source": "catalog/routing-rules.json",
+        "verified_at": "2026-08-20",
+        "mode": "catalog"
+      }
+    ]
+  }
+}

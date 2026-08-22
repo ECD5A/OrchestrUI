@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "description": "Deterministic policy benchmark for structured OrchestrUI routing.",
+  "hosts": {
+    "next-shadcn": {
+      "framework": "Next.js",
+      "framework_version": "15",
+      "react_version": "19",
+      "tailwind_version": "4",
+      "package_manager": "npm",
+      "design_system": "shadcn/ui",
+      "component_primitives": ["Radix UI"],
+      "motion_stack": [],
+      "chart_stack": [],
+      "tokens": ["CSS variables"],
+      "accessibility_constraints": ["WCAG 2.2 AA"]
+    },
+    "react-empty": {
+      "framework": "React",
+      "package_manager": "pnpm",
+      "component_primitives": [],
+      "motion_stack": [],
+      "chart_stack": [],
+      "tokens": [],
+      "accessibility_constraints": []
+    },
+    "daisy-admin": {
+      "framework": "React",
+      "tailwind_version": "4",
+      "package_manager": "npm",
+      "design_system": "daisyUI",
+      "component_primitives": ["daisyUI forms"],
+      "motion_stack": [],
+      "chart_stack": [],
+      "tokens": ["daisyUI themes"],
+      "accessibility_constraints": ["keyboard navigation"]
+    },
+    "shadcn-recharts": {
+      "framework": "Next.js",
+      "design_system": "shadcn/ui",
+      "component_primitives": ["Radix UI"],
+      "motion_stack": [],
+      "chart_stack": ["Recharts"],
+      "tokens": ["CSS variables"],
+      "accessibility_constraints": []
+    },
+    "shadcn-framer": {
+      "framework": "Next.js",
+      "design_system": "shadcn/ui",
+      "component_primitives": ["Radix UI"],
+      "motion_stack": ["Framer Motion"],
+      "chart_stack": [],
+      "tokens": ["CSS variables"],
+      "accessibility_constraints": ["reduced motion"]
+    },
+    "shadcn-bklit": {
+      "framework": "Next.js",
+      "design_system": "shadcn/ui",
+      "component_primitives": ["Radix UI"],
+      "motion_stack": [],
+      "chart_stack": ["Bklit UI"],
+      "tokens": ["CSS variables"],
+      "accessibility_constraints": []
+    },
+    "daisy-framer": {
+      "framework": "React",
+      "design_system": "daisyUI",
+      "component_primitives": ["daisyUI forms"],
+      "motion_stack": ["Framer Motion"],
+      "chart_stack": [],
+      "tokens": ["daisyUI themes"],
+      "accessibility_constraints": ["reduced motion"]
+    },
+    "vue-tailwind": {
+      "framework": "Vue",
+      "tailwind_version": "4",
+      "package_manager": "pnpm",
+      "component_primitives": [],
+      "motion_stack": [],
+      "chart_stack": [],
+      "tokens": ["CSS variables"],
+      "accessibility_constraints": []
+    },
+    "shadcn-anime": {
+      "framework": "Next.js",
+      "design_system": "shadcn/ui",
+      "component_primitives": ["Radix UI"],
+      "motion_stack": ["Anime.js"],
+      "chart_stack": [],
+      "tokens": ["CSS variables"],
+      "accessibility_constraints": ["reduced motion"]
+    }
+  },
+  "tasks": {
+    "preserve": {
+      "surface": "application",
+      "required_capabilities": [],
+      "interaction_complexity": "low",
+      "data_visualization": "none",
+      "motion_requirement": "none",
+      "rive_asset_rights": "not-applicable",
+      "constraints": []
+    },
+    "charts": {
+      "surface": "application",
+      "required_capabilities": ["data-visualization"],
+      "interaction_complexity": "medium",
+      "data_visualization": "advanced",
+      "motion_requirement": "native",
+      "rive_asset_rights": "not-applicable",
+      "constraints": ["color-independent states"]
+    },
+    "forms": {
+      "surface": "application",
+      "required_capabilities": ["forms-controls"],
+      "interaction_complexity": "medium",
+      "data_visualization": "none",
+      "motion_requirement": "none",
+      "rive_asset_rights": "not-applicable",
+      "constraints": ["keyboard navigation"]
+    },
+    "polish": {
+      "surface": "application",
+      "required_capabilities": ["product-polish"],
+      "interaction_complexity": "medium",
+      "data_visualization": "none",
+      "motion_requirement": "native",
+      "rive_asset_rights": "not-applicable",
+      "constraints": []
+    },
+    "forms-polish": {
+      "surface": "application",
+      "required_capabilities": ["product-polish", "forms-controls"],
+      "interaction_complexity": "high",
+      "data_visualization": "none",
+      "motion_requirement": "native",
+      "rive_asset_rights": "not-applicable",
+      "constraints": []
+    },
+    "marketing": {
+      "surface": "marketing",
+      "required_capabilities": ["marketing-motion"],
+      "interaction_complexity": "medium",
+      "data_visualization": "none",
+      "motion_requirement": "native",
+      "rive_asset_rights": "not-applicable",
+      "constraints": ["low bundle impact"]
+    },
+    "signature": {
+      "surface": "marketing",
+      "required_capabilities": ["signature-creative-effect"],
+      "interaction_complexity": "medium",
+      "data_visualization": "none",
+      "motion_requirement": "native",
+      "rive_asset_rights": "not-applicable",
+      "constraints": ["one effect only"]
+    },
+    "marketing-signature": {
+      "surface": "marketing",
+      "required_capabilities": ["signature-creative-effect", "marketing-motion"],
+      "interaction_complexity": "high",
+      "data_visualization": "none",
+      "motion_requirement": "native",
+      "rive_asset_rights": "not-applicable",
+      "constraints": ["one signature effect"]
+    },
+    "bespoke": {
+      "surface": "hybrid",
+      "required_capabilities": ["bespoke-motion"],
+      "interaction_complexity": "high",
+      "data_visualization": "none",
+      "motion_requirement": "bespoke",
+      "rive_asset_rights": "not-applicable",
+      "constraints": ["SVG timeline"]
+    },
+    "rive-confirmed": {
+      "surface": "application",
+      "required_capabilities": ["interactive-vector"],
+      "interaction_complexity": "high",
+      "data_visualization": "none",
+      "motion_requirement": "interactive-vector",
+      "rive_asset_rights": "confirmed",
+      "constraints": ["record asset provenance"]
+    },
+    "rive-blocked": {
+      "surface": "application",
+      "required_capabilities": ["interactive-vector"],
+      "interaction_complexity": "high",
+      "data_visualization": "none",
+      "motion_requirement": "interactive-vector",
+      "rive_asset_rights": "unconfirmed",
+      "constraints": []
+    },
+    "charts-marketing": {
+      "surface": "hybrid",
+      "required_capabilities": ["marketing-motion", "data-visualization"],
+      "interaction_complexity": "high",
+      "data_visualization": "advanced",
+      "motion_requirement": "native",
+      "rive_asset_rights": "not-applicable",
+      "constraints": []
+    },
+    "full-product": {
+      "surface": "application",
+      "required_capabilities": ["product-polish", "data-visualization", "forms-controls"],
+      "interaction_complexity": "high",
+      "data_visualization": "advanced",
+      "motion_requirement": "native",
+      "rive_asset_rights": "not-applicable",
+      "constraints": []
+    },
+    "marketing-bespoke": {
+      "surface": "marketing",
+      "required_capabilities": ["bespoke-motion", "marketing-motion"],
+      "interaction_complexity": "high",
+      "data_visualization": "none",
+      "motion_requirement": "bespoke",
+      "rive_asset_rights": "not-applicable",
+      "constraints": []
+    },
+    "data-rive": {
+      "surface": "application",
+      "required_capabilities": ["interactive-vector", "data-visualization"],
+      "interaction_complexity": "high",
+      "data_visualization": "advanced",
+      "motion_requirement": "interactive-vector",
+      "rive_asset_rights": "confirmed",
+      "constraints": []
+    }
+  },
+  "scenarios": [
+    { "id": "S01", "host": "next-shadcn", "task": "preserve", "expected_selected": [] },
+    { "id": "S02", "host": "next-shadcn", "task": "charts", "expected_selected": ["bklit-ui"] },
+    { "id": "S03", "host": "next-shadcn", "task": "forms", "expected_selected": [], "expected_rejected": ["daisyui"] },
+    { "id": "S04", "host": "next-shadcn", "task": "polish", "expected_selected": ["kokonut-ui"] },
+    { "id": "S05", "host": "next-shadcn", "task": "forms-polish", "expected_selected": ["kokonut-ui"], "expected_rejected": ["daisyui"] },
+    { "id": "S06", "host": "next-shadcn", "task": "marketing", "expected_selected": ["magic-ui"] },
+    { "id": "S07", "host": "next-shadcn", "task": "signature", "expected_selected": ["react-bits"] },
+    { "id": "S08", "host": "next-shadcn", "task": "marketing-signature", "expected_selected": ["magic-ui", "react-bits"] },
+    { "id": "S09", "host": "next-shadcn", "task": "bespoke", "expected_selected": ["animejs"] },
+    { "id": "S10", "host": "next-shadcn", "task": "rive-confirmed", "expected_selected": ["rive"] },
+    { "id": "S11", "host": "next-shadcn", "task": "rive-blocked", "expected_selected": [], "expected_rejected": ["rive"] },
+    { "id": "S12", "host": "next-shadcn", "task": "charts-marketing", "expected_selected": ["bklit-ui", "magic-ui"] },
+    { "id": "S13", "host": "next-shadcn", "task": "full-product", "expected_selected": ["bklit-ui", "kokonut-ui"], "expected_rejected": ["daisyui"] },
+    { "id": "S14", "host": "next-shadcn", "task": "marketing-bespoke", "expected_selected": ["magic-ui", "animejs"] },
+    { "id": "S15", "host": "next-shadcn", "task": "data-rive", "expected_selected": ["bklit-ui", "rive"] },
+
+    { "id": "S16", "host": "react-empty", "task": "preserve", "expected_selected": [] },
+    { "id": "S17", "host": "react-empty", "task": "charts", "expected_selected": ["bklit-ui"] },
+    { "id": "S18", "host": "react-empty", "task": "forms", "expected_selected": ["daisyui"] },
+    { "id": "S19", "host": "react-empty", "task": "polish", "expected_selected": ["kokonut-ui"] },
+    { "id": "S20", "host": "react-empty", "task": "forms-polish", "expected_selected": ["daisyui"], "expected_rejected": ["kokonut-ui"] },
+    { "id": "S21", "host": "react-empty", "task": "full-product", "expected_selected": ["daisyui", "bklit-ui"], "expected_rejected": ["kokonut-ui"] },
+    { "id": "S22", "host": "react-empty", "task": "marketing", "expected_selected": ["magic-ui"] },
+    { "id": "S23", "host": "react-empty", "task": "bespoke", "expected_selected": ["animejs"] },
+    { "id": "S24", "host": "react-empty", "task": "data-rive", "expected_selected": ["bklit-ui", "rive"] },
+    { "id": "S25", "host": "react-empty", "task": "rive-blocked", "expected_selected": [], "expected_rejected": ["rive"] },
+
+    { "id": "S26", "host": "daisy-admin", "task": "forms", "expected_selected": ["daisyui"], "expected_existing": ["daisyui"] },
+    { "id": "S27", "host": "daisy-admin", "task": "polish", "expected_selected": [], "expected_rejected": ["kokonut-ui"] },
+    { "id": "S28", "host": "daisy-admin", "task": "forms-polish", "expected_selected": ["daisyui"], "expected_existing": ["daisyui"], "expected_rejected": ["kokonut-ui"] },
+    { "id": "S29", "host": "daisy-admin", "task": "charts", "expected_selected": ["bklit-ui"] },
+    { "id": "S30", "host": "daisy-admin", "task": "full-product", "expected_selected": ["daisyui", "bklit-ui"], "expected_existing": ["daisyui"], "expected_rejected": ["kokonut-ui"] },
+    { "id": "S31", "host": "daisy-admin", "task": "marketing-signature", "expected_selected": ["magic-ui", "react-bits"] },
+
+    { "id": "S32", "host": "shadcn-recharts", "task": "charts", "expected_selected": [], "expected_rejected": ["bklit-ui"] },
+    { "id": "S33", "host": "shadcn-recharts", "task": "charts-marketing", "expected_selected": ["magic-ui"], "expected_rejected": ["bklit-ui"] },
+    { "id": "S34", "host": "shadcn-recharts", "task": "data-rive", "expected_selected": ["rive"], "expected_rejected": ["bklit-ui"] },
+
+    { "id": "S35", "host": "shadcn-framer", "task": "bespoke", "expected_selected": [], "expected_rejected": ["animejs"] },
+    { "id": "S36", "host": "shadcn-framer", "task": "marketing-bespoke", "expected_selected": ["magic-ui"], "expected_rejected": ["animejs"] },
+    { "id": "S37", "host": "shadcn-framer", "task": "marketing-signature", "expected_selected": ["magic-ui", "react-bits"] },
+
+    { "id": "S38", "host": "shadcn-bklit", "task": "charts", "expected_selected": ["bklit-ui"], "expected_existing": ["bklit-ui"] },
+    { "id": "S39", "host": "shadcn-bklit", "task": "full-product", "expected_selected": ["bklit-ui", "kokonut-ui"], "expected_existing": ["bklit-ui"], "expected_rejected": ["daisyui"] },
+
+    { "id": "S40", "host": "daisy-framer", "task": "forms-polish", "expected_selected": ["daisyui"], "expected_existing": ["daisyui"], "expected_rejected": ["kokonut-ui"] },
+    { "id": "S41", "host": "daisy-framer", "task": "marketing-bespoke", "expected_selected": ["magic-ui"], "expected_rejected": ["animejs"] },
+    { "id": "S42", "host": "daisy-framer", "task": "full-product", "expected_selected": ["daisyui", "bklit-ui"], "expected_existing": ["daisyui"], "expected_rejected": ["kokonut-ui"] },
+
+    { "id": "S43", "host": "vue-tailwind", "task": "forms", "expected_selected": ["daisyui"] },
+    { "id": "S44", "host": "vue-tailwind", "task": "marketing", "expected_selected": [], "expected_rejected": ["magic-ui"] },
+    { "id": "S45", "host": "vue-tailwind", "task": "full-product", "expected_selected": ["daisyui"], "expected_rejected": ["kokonut-ui", "bklit-ui"] },
+    { "id": "S46", "host": "vue-tailwind", "task": "data-rive", "expected_selected": [], "expected_rejected": ["bklit-ui", "rive"] },
+
+    { "id": "S47", "host": "shadcn-anime", "task": "bespoke", "expected_selected": ["animejs"], "expected_existing": ["animejs"] },
+    { "id": "S48", "host": "shadcn-anime", "task": "marketing-bespoke", "expected_selected": ["magic-ui", "animejs"], "expected_existing": ["animejs"] },
+    { "id": "S49", "host": "shadcn-anime", "task": "marketing-signature", "expected_selected": ["magic-ui", "react-bits"] },
+    { "id": "S50", "host": "shadcn-anime", "task": "full-product", "expected_selected": ["bklit-ui", "kokonut-ui"], "expected_rejected": ["daisyui"] }
+  ]
+}

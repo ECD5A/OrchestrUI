@@ -1,14 +1,23 @@
-# Routing guide
+# Structured routing
 
-| Need | Primary | Optional | Usually reject |
-|---|---|---|---|
-| SaaS analytics | Bklit + existing base | Kokonut | React Bits everywhere |
-| Forms/settings | existing base or intentional daisyUI | Kokonut polish | multiple bases |
-| Landing page | Magic UI or Kokonut | React Bits signature effect | unrelated dashboard tooling |
-| Creative portfolio | React Bits or Magic UI | Anime.js if bespoke | Bklit without data |
-| Custom timeline/SVG | Anime.js | native components | Rive unless vector state machine needed |
-| Interactive mascot | Rive | host system around it | Rive for ordinary controls |
+`recommend_stack` is profile-first. It does not select libraries from prompt keywords when structured profiles are supplied.
 
-If two libraries compete for the same major role, remove one unless there is a documented isolation strategy.
+```text
+HostProfile + TaskProfile
+        ↓
+capability routes from catalog/routing-rules.json
+        ↓
+existing role owners + exclusive-role conflicts
+        ↓
+selected and rejected candidates with rule evidence
+```
 
-The MCP `recommend_stack` tool applies this policy deterministically from bounded task/stack/constraint text. Its result is a recommendation, not authorization to install packages. `audit_plan` provides a provisional score; the rendered `ui-quality-audit` remains required after implementation.
+`HostProfile` records the framework and versions, package manager, design system, component primitives, motion stack, chart stack, tokens, and accessibility constraints. `TaskProfile` records required capabilities, surface type, interaction complexity, data-visualization need, motion requirement, asset rights, and constraints.
+
+The policy catalog maps seven capabilities to explicit roles and ordered candidates. Exclusive roles preserve a declared host owner. Host and selected-library incompatibilities are also catalog data, so the engine can state which rule rejected a candidate and which owner caused the conflict.
+
+Legacy `task`, `existing_stack`, and `constraints` inputs remain supported. Text-only results are marked `legacy-text-inference`; calls that supply only one profile are marked `hybrid-profile-inference`. Both modes return a risk asking the caller to provide both structured profiles.
+
+The committed benchmark covers 50 structured scenarios. CI verifies exact selection, expected conflict rejection, one owner per role, and rule evidence on every decision. Three project fixtures exercise host snapshots through routing and audit boundaries.
+
+`audit_plan` reports `pass`, `fail`, or `pending`. Pending rendered checks never increase `verified_score` or `verified_maximum`; evidence must be supplied before they become verified. A recommendation never authorizes package installation.

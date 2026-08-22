@@ -13,6 +13,7 @@ import { pathToFileURL } from "node:url";
 
 const ignoredDirectories = new Set([".git", "dist", "node_modules"]);
 const checkedExtensions = new Set([".md", ".json", ".yml", ".yaml"]);
+const packageVersion = JSON.parse(fs.readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 
 function isNonPublicIpv4(hostname) {
   const parts = hostname.split(".").map(Number);
@@ -72,7 +73,7 @@ export async function checkExternalUrl(url, fetchImpl = fetch) {
     const response = await fetchImpl(requestUrl, {
       method: "HEAD",
       redirect: "error",
-      headers: { "user-agent": "OrchestrUI-release-check/0.1" },
+      headers: { "user-agent": `OrchestrUI-release-check/${packageVersion}` },
       signal: AbortSignal.timeout(12_000),
     });
     return { url, status: response.status };

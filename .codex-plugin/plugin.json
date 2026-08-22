@@ -1,7 +1,7 @@
 {
   "name": "orchestrui",
   "version": "0.1.0",
-  "description": "Route frontend work across seven UI ecosystems and query verified read-only guidance.",
+  "description": "Apply deterministic UI policy across seven ecosystems with verified read-only guidance.",
   "author": {
     "name": "ECD5A",
     "url": "https://github.com/ECD5A"
@@ -14,8 +14,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "OrchestrUI",
-    "shortDescription": "Route UI work without stacking redundant libraries.",
-    "longDescription": "Three agent skills and a read-only MCP server for selecting, retrieving and auditing a minimal coherent UI stack.",
+    "shortDescription": "Compute a minimal UI plan with explicit policy evidence.",
+    "longDescription": "Three agent skills and a read-only MCP server for structured host/task routing, public discovery and evidence-based plan audits.",
     "developerName": "ECD5A",
     "category": "Developer Tools",
     "capabilities": ["Read-only", "UI planning", "Public metadata discovery"],

@@ -10,6 +10,12 @@ npm run start:mcp
 
 The server exposes six read-only tools over stdio. It never executes install commands. See [`../docs/MCP_SPEC.md`](../docs/MCP_SPEC.md) for the contract and [`../docs/SECURITY_MODEL.md`](../docs/SECURITY_MODEL.md) for trust boundaries.
 
+`recommend_stack` prefers structured `HostProfile` and `TaskProfile` inputs. Run the committed 50-scenario policy benchmark with:
+
+```bash
+npm run benchmark
+```
+
 Normal tests are offline and deterministic. Run the optional public-registry smoke test explicitly:
 
 ```bash

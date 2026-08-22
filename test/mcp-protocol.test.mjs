@@ -35,4 +35,37 @@ test("MCP exposes six read-only tools and serves structured results", async (t) 
   const response = await client.callTool({ name: "list_libraries", arguments: {} });
   assert.equal(response.isError, undefined);
   assert.equal(response.structuredContent?.result?.count, 7);
+
+  const recommendation = await client.callTool({
+    name: "recommend_stack",
+    arguments: {
+      host_profile: {
+        framework: "Next.js",
+        design_system: "shadcn/ui",
+        component_primitives: ["Radix UI"],
+        motion_stack: [],
+        chart_stack: [],
+        tokens: ["CSS variables"],
+        accessibility_constraints: ["WCAG 2.2 AA"],
+      },
+      task_profile: {
+        surface: "application",
+        required_capabilities: ["forms-controls", "data-visualization"],
+        interaction_complexity: "high",
+        data_visualization: "advanced",
+        motion_requirement: "native",
+        rive_asset_rights: "not-applicable",
+        constraints: [],
+      },
+    },
+  });
+  assert.equal(recommendation.isError, undefined);
+  assert.equal(recommendation.structuredContent?.result?.input_mode, "structured-profiles");
+  assert.deepEqual(
+    recommendation.structuredContent?.result?.selected.map((entry) => entry.id),
+    ["bklit-ui"],
+  );
+  assert.ok(recommendation.structuredContent?.result?.rejected.some((entry) => (
+    entry.id === "daisyui" && entry.rule_id === "base-system-conflict"
+  )));
 });
