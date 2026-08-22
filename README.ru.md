@@ -12,44 +12,23 @@
   [![Agent Skills](https://img.shields.io/badge/agent%20skills-3-4f46e5.svg)](.agents/skills)
   [![UI ecosystems](https://img.shields.io/badge/UI%20ecosystems-7-0f766e.svg)](#экосистемы)
   [![MCP](https://img.shields.io/badge/MCP-read--only%20v2-7c3aed.svg)](docs/MCP_SPEC.md)
+
+  <p>
+    <a href="#quick-start">Быстрый старт</a>
+    &nbsp;·&nbsp;
+    <a href="#output">Результат</a>
+    &nbsp;·&nbsp;
+    <a href="#skills-and-mcp">Skills и MCP</a>
+    &nbsp;·&nbsp;
+    <a href="#ecosystems">Экосистемы</a>
+    &nbsp;·&nbsp;
+    <a href="docs/">Документация</a>
+  </p>
 </div>
 
-OrchestrUI принимает структурированные `HostProfile` и `TaskProfile`, сохраняет существующих владельцев design system, charts и motion и вычисляет минимальную допустимую UI-композицию с доказательством каждого выбора и отклонения.
+OrchestrUI анализирует структурированный профиль проекта, сохраняет совместимых владельцев ролей и возвращает минимальную допустимую UI-композицию с обоснованием каждого решения.
 
-`HostProfile + TaskProfile → policy matrix → role ownership → conflicts → recommendation + evidence`
-
-```json
-{
-  "input_mode": "structured-profiles",
-  "selected": [{ "id": "bklit-ui", "role": "data-visualization" }],
-  "role_ownership": {
-    "base-system": "host:shadcn-ui",
-    "data-visualization": "bklit-ui"
-  },
-  "rejected": [{
-    "id": "daisyui",
-    "rule_id": "base-system-conflict",
-    "conflicting_owner": "host:shadcn-ui"
-  }]
-}
-```
-
-Routing benchmark в репозитории сейчас проходит **50/50** структурированных сценариев и три project fixtures в CI.
-
-## Экосистемы
-
-| Экосистема | Роль |
-|---|---|
-| **Kokonut UI** | выборочный product polish для React/shadcn |
-| **React Bits** | один выразительный creative effect |
-| **daisyUI** | осознанная semantic base для Tailwind |
-| **Bklit UI** | charts и data visualization |
-| **Anime.js** | bespoke timeline, SVG или scroll motion |
-| **Rive** | лицензированная interactive vector/state-machine графика |
-| **Magic UI** | animated marketing enhancement |
-
-OrchestrUI — независимый проект, не аффилированный и не одобренный перечисленными upstream-проектами.
-
+<a id="quick-start"></a>
 ## Быстрый старт
 
 Требуются Git и Node.js 20+.
@@ -61,17 +40,23 @@ npm ci && npm run check
 npm run benchmark
 ```
 
-Установить skills:
+<details>
+<summary><strong>Установить skills на macOS / Linux</strong></summary>
 
 ```bash
-# macOS / Linux
 bash scripts/install-codex.sh
 ```
 
+</details>
+
+<details>
+<summary><strong>Установить skills на Windows</strong></summary>
+
 ```powershell
-# Windows PowerShell
 powershell -ExecutionPolicy Bypass -File scripts\install-codex.ps1
 ```
+
+</details>
 
 Использовать из frontend-проекта:
 
@@ -81,6 +66,24 @@ $ui-orchestrator реализуй согласованный план.
 $ui-quality-audit проверь готовый интерфейс.
 ```
 
+<a id="output"></a>
+## Что возвращает OrchestrUI
+
+```json
+{
+  "input_mode": "structured-profiles",
+  "selected": ["bklit-ui"],
+  "owners": {
+    "base-system": "host:shadcn-ui",
+    "data-visualization": "bklit-ui"
+  },
+  "rejected": [{ "id": "daisyui", "rule": "base-system-conflict" }]
+}
+```
+
+Routing benchmark в репозитории проходит **50/50** структурированных сценариев и три project fixtures в CI.
+
+<a id="skills-and-mcp"></a>
 ## Skills и MCP
 
 - `ui-library-router` — изучает host project и распределяет роли.
@@ -95,7 +98,22 @@ npm run start:mcp
 
 MCP-конфигурация находится в [`.mcp.json`](.mcp.json). Setup, architecture, security, licensing и contribution details находятся в [`docs/`](docs/), [`SECURITY.md`](SECURITY.md), [`THIRD_PARTY.md`](THIRD_PARTY.md) и [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-MCP server не запускает install commands и не записывает файлы проекта. OrchestrUI не копирует коллекцию React Bits, paid/Pro content, authenticated material, credentials, license keys или сторонние `.riv` assets.
+MCP-интерфейс работает только на чтение и использует публичные upstream-метаданные; implementation code и сторонние assets остаются в host project.
+
+<a id="ecosystems"></a>
+## Экосистемы
+
+| Экосистема | Роль |
+|---|---|
+| **Kokonut UI** | выборочный product polish для React/shadcn |
+| **React Bits** | один выразительный creative effect |
+| **daisyUI** | осознанная semantic base для Tailwind |
+| **Bklit UI** | charts и data visualization |
+| **Anime.js** | bespoke timeline, SVG или scroll motion |
+| **Rive** | лицензированная interactive vector/state-machine графика |
+| **Magic UI** | animated marketing enhancement |
+
+OrchestrUI — независимый проект, не аффилированный и не одобренный перечисленными upstream-проектами.
 
 ## Поддержка
 

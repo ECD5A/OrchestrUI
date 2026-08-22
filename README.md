@@ -12,44 +12,23 @@
   [![Agent Skills](https://img.shields.io/badge/agent%20skills-3-4f46e5.svg)](.agents/skills)
   [![UI ecosystems](https://img.shields.io/badge/UI%20ecosystems-7-0f766e.svg)](#ecosystems)
   [![MCP](https://img.shields.io/badge/MCP-read--only%20v2-7c3aed.svg)](docs/MCP_SPEC.md)
+
+  <p>
+    <a href="#quick-start">Quick start</a>
+    &nbsp;·&nbsp;
+    <a href="#output">Output</a>
+    &nbsp;·&nbsp;
+    <a href="#skills-and-mcp">Skills &amp; MCP</a>
+    &nbsp;·&nbsp;
+    <a href="#ecosystems">Ecosystems</a>
+    &nbsp;·&nbsp;
+    <a href="docs/">Docs</a>
+  </p>
 </div>
 
-OrchestrUI accepts a structured `HostProfile` and `TaskProfile`, preserves existing design/chart/motion owners, and computes the smallest admissible UI composition with evidence for every selection and rejection.
+OrchestrUI inspects a structured project profile, preserves compatible owners, and returns the smallest admissible UI composition with evidence for every decision.
 
-`HostProfile + TaskProfile → policy matrix → role ownership → conflicts → recommendation + evidence`
-
-```json
-{
-  "input_mode": "structured-profiles",
-  "selected": [{ "id": "bklit-ui", "role": "data-visualization" }],
-  "role_ownership": {
-    "base-system": "host:shadcn-ui",
-    "data-visualization": "bklit-ui"
-  },
-  "rejected": [{
-    "id": "daisyui",
-    "rule_id": "base-system-conflict",
-    "conflicting_owner": "host:shadcn-ui"
-  }]
-}
-```
-
-The committed routing benchmark currently passes **50/50** structured scenarios and three project fixtures in CI.
-
-## Ecosystems
-
-| Ecosystem | Role |
-|---|---|
-| **Kokonut UI** | selective React/shadcn product polish |
-| **React Bits** | one signature creative effect |
-| **daisyUI** | intentional Tailwind semantic base |
-| **Bklit UI** | charts and data visualization |
-| **Anime.js** | bespoke timeline, SVG, or scroll motion |
-| **Rive** | licensed interactive vector/state-machine graphics |
-| **Magic UI** | animated marketing enhancement |
-
-OrchestrUI is independent and is not affiliated with or endorsed by these upstream projects.
-
+<a id="quick-start"></a>
 ## Quick start
 
 Requires Git and Node.js 20+.
@@ -61,17 +40,23 @@ npm ci && npm run check
 npm run benchmark
 ```
 
-Install the skills:
+<details>
+<summary><strong>Install skills on macOS / Linux</strong></summary>
 
 ```bash
-# macOS / Linux
 bash scripts/install-codex.sh
 ```
 
+</details>
+
+<details>
+<summary><strong>Install skills on Windows</strong></summary>
+
 ```powershell
-# Windows PowerShell
 powershell -ExecutionPolicy Bypass -File scripts\install-codex.ps1
 ```
+
+</details>
 
 Use them from a frontend project:
 
@@ -81,6 +66,24 @@ $ui-orchestrator implement the approved plan.
 $ui-quality-audit audit the rendered result.
 ```
 
+<a id="output"></a>
+## What it returns
+
+```json
+{
+  "input_mode": "structured-profiles",
+  "selected": ["bklit-ui"],
+  "owners": {
+    "base-system": "host:shadcn-ui",
+    "data-visualization": "bklit-ui"
+  },
+  "rejected": [{ "id": "daisyui", "rule": "base-system-conflict" }]
+}
+```
+
+The committed routing benchmark passes **50/50** structured scenarios and three project fixtures in CI.
+
+<a id="skills-and-mcp"></a>
 ## Skills and MCP
 
 - `ui-library-router` — inspects the host and assigns role ownership.
@@ -95,7 +98,22 @@ npm run start:mcp
 
 MCP configuration is in [`.mcp.json`](.mcp.json). Setup, architecture, security, licensing, and contribution details live in [`docs/`](docs/), [`SECURITY.md`](SECURITY.md), [`THIRD_PARTY.md`](THIRD_PARTY.md), and [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-The MCP server does not execute install commands or write project files. OrchestrUI never mirrors the React Bits collection, paid/Pro content, authenticated material, credentials, license keys, or third-party `.riv` artwork.
+The MCP surface is read-only and uses public upstream metadata; implementation code and third-party assets remain in the host project.
+
+<a id="ecosystems"></a>
+## Ecosystems
+
+| Ecosystem | Role |
+|---|---|
+| **Kokonut UI** | selective React/shadcn product polish |
+| **React Bits** | one signature creative effect |
+| **daisyUI** | intentional Tailwind semantic base |
+| **Bklit UI** | charts and data visualization |
+| **Anime.js** | bespoke timeline, SVG, or scroll motion |
+| **Rive** | licensed interactive vector/state-machine graphics |
+| **Magic UI** | animated marketing enhancement |
+
+OrchestrUI is independent and is not affiliated with or endorsed by these upstream projects.
 
 ## Support
 
