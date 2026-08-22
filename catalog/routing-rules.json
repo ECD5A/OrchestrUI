@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "rules": [
     {
       "id": "existing-stack-first",
@@ -55,6 +55,16 @@
       "id": "base-system-conflict",
       "priority": 11,
       "text": "An occupied exclusive role rejects a second owner unless an isolation strategy exists outside this recommendation."
+    },
+    {
+      "id": "candidate-ranking",
+      "priority": 12,
+      "text": "Rank admissible candidates by policy order, installed evidence, bounded dependency and bundle cost, overlap, and declared version constraints."
+    },
+    {
+      "id": "version-compatibility",
+      "priority": 13,
+      "text": "Reject a candidate when a supplied host version violates its bounded declared compatibility range."
     }
   ],
   "roles": {
@@ -99,7 +109,7 @@
     "product-polish": {
       "priority": 40,
       "role": "product-polish",
-      "candidates": ["kokonut-ui"]
+      "candidates": ["kokonut-ui", "daisyui"]
     },
     "data-visualization": {
       "priority": 20,
@@ -109,12 +119,12 @@
     "marketing-motion": {
       "priority": 30,
       "role": "marketing-enhancement",
-      "candidates": ["magic-ui"]
+      "candidates": ["magic-ui", "react-bits"]
     },
     "signature-creative-effect": {
       "priority": 50,
       "role": "signature-effect",
-      "candidates": ["react-bits"]
+      "candidates": ["react-bits", "magic-ui"]
     },
     "bespoke-motion": {
       "priority": 60,
@@ -132,6 +142,64 @@
           "reason": "Rive asset rights must be confirmed for the exact .riv asset."
         }
       ]
+    }
+  },
+  "candidate_profiles": {
+    "kokonut-ui": {
+      "dependency_cost": 1,
+      "bundle_cost": 1,
+      "package_names": [],
+      "overlap_groups": ["shadcn-components", "product-ui"],
+      "version_constraints": [
+        {
+          "host_field": "tailwind_version",
+          "range": ">=4.0.0",
+          "reason": "Current Kokonut UI guidance targets Tailwind CSS v4 hosts."
+        }
+      ]
+    },
+    "react-bits": {
+      "dependency_cost": 1,
+      "bundle_cost": 3,
+      "package_names": [],
+      "overlap_groups": ["creative-effects", "motion"]
+    },
+    "daisyui": {
+      "dependency_cost": 2,
+      "bundle_cost": 2,
+      "package_names": ["daisyui"],
+      "overlap_groups": ["base-system", "product-ui"],
+      "version_constraints": [
+        {
+          "host_field": "tailwind_version",
+          "range": ">=4.0.0",
+          "reason": "Current daisyUI guidance targets Tailwind CSS v4 hosts."
+        }
+      ]
+    },
+    "bklit-ui": {
+      "dependency_cost": 1,
+      "bundle_cost": 2,
+      "package_names": [],
+      "overlap_groups": ["data-visualization", "shadcn-components"]
+    },
+    "animejs": {
+      "dependency_cost": 2,
+      "bundle_cost": 2,
+      "package_names": ["animejs"],
+      "overlap_groups": ["motion", "motion-engine"]
+    },
+    "rive": {
+      "dependency_cost": 3,
+      "bundle_cost": 5,
+      "package_names": ["@rive-app/react-webgl2", "@rive-app/react-canvas"],
+      "overlap_groups": ["motion", "vector-runtime"]
+    },
+    "magic-ui": {
+      "dependency_cost": 1,
+      "bundle_cost": 2,
+      "package_names": [],
+      "overlap_groups": ["creative-effects", "marketing-motion", "shadcn-components"]
     }
   },
   "host_conflicts": [

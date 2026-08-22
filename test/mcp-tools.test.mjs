@@ -118,6 +118,63 @@ test("recommend_stack marks partial structured input as hybrid inference", () =>
   assert.match(recommendation.risks.join(" "), /supply both HostProfile and TaskProfile/i);
 });
 
+test("recommend_stack ranks an installed admissible candidate above a new dependency", () => {
+  const recommendation = recommendStack({
+    hostProfile: {
+      framework: "React",
+      dependencies: {},
+      component_primitives: ["React Bits"],
+      motion_stack: [],
+      chart_stack: [],
+      tokens: [],
+      accessibility_constraints: ["prefers-reduced-motion"],
+    },
+    taskProfile: {
+      surface: "marketing",
+      required_capabilities: ["marketing-motion"],
+      interaction_complexity: "medium",
+      data_visualization: "none",
+      motion_requirement: "native",
+      rive_asset_rights: "not-applicable",
+      constraints: ["low bundle impact"],
+    },
+  }, data);
+
+  assert.deepEqual(recommendation.selected.map((item) => item.id), ["react-bits"]);
+  const ranking = recommendation.candidate_rankings.filter((entry) => entry.capability === "marketing-motion");
+  assert.deepEqual(ranking.map((entry) => entry.candidate), ["react-bits", "magic-ui"]);
+  assert.equal(ranking[0].outcome, "selected");
+  assert.ok(ranking[0].factors.some((factor) => factor.id === "installed-evidence" && factor.score > 0));
+});
+
+test("recommend_stack treats supplied semver incompatibility as a hard blocker", () => {
+  const recommendation = recommendStack({
+    hostProfile: {
+      framework: "React",
+      tailwind_version: "3.4.0",
+      dependencies: {},
+      component_primitives: [],
+      motion_stack: [],
+      chart_stack: [],
+      tokens: [],
+      accessibility_constraints: [],
+    },
+    taskProfile: {
+      surface: "application",
+      required_capabilities: ["forms-controls"],
+      interaction_complexity: "medium",
+      data_visualization: "none",
+      motion_requirement: "none",
+      rive_asset_rights: "not-applicable",
+      constraints: [],
+    },
+  }, data);
+
+  assert.deepEqual(recommendation.selected, []);
+  assert.ok(recommendation.rejected.some((item) => item.id === "daisyui" && item.rule_id === "version-compatibility"));
+  assert.ok(recommendation.candidate_rankings.some((entry) => entry.candidate === "daisyui" && entry.blocked_by === "version-compatibility"));
+});
+
 test("get_library_guidance exposes React Bits redistribution boundary", () => {
   const guidance = getLibraryGuidance({ libraryId: "react-bits" }, data);
   assert.match(guidance.library.legal.license_note, /Commons Clause/i);

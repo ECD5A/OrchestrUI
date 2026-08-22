@@ -14,6 +14,12 @@
     "react_version": "19",
     "tailwind_version": "4",
     "package_manager": "npm",
+    "dependencies": {
+      "next": "15",
+      "react": "19",
+      "@radix-ui/react-slot": "latest",
+      "tailwindcss": "4"
+    },
     "design_system": "shadcn/ui",
     "component_primitives": ["Radix UI"],
     "motion_stack": [],

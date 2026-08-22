@@ -102,7 +102,7 @@ $ui-quality-audit проверь готовый интерфейс.
 }
 ```
 
-Routing benchmark в репозитории проходит **50/50** структурированных сценариев и три project fixtures в CI.
+Набор проверок проходит **50/50** структурированных сценариев, **8/8** независимо заданных adversarial goldens и три project fixtures в CI.
 
 <a id="skills-and-mcp"></a>
 ## Skills и MCP

@@ -13,7 +13,7 @@ Implemented with `@modelcontextprotocol/server` 2.0.0 and the MCP 2026-07-28 sta
 
 Inputs use bounded Zod schemas. Results contain both model-readable JSON text and `structuredContent`. Unknown library IDs and unsafe component identifiers return tool errors without exposing stack traces.
 
-`recommend_stack` accepts `host_profile` and `task_profile`. It returns normalized profiles, input mode, selected and rejected candidates, role ownership, decisions, rule evidence, risks and validation steps. Bounded text fields remain available for backward compatibility; partial-profile calls report `hybrid-profile-inference` and text-only calls report `legacy-text-inference`.
+`recommend_stack` accepts `host_profile` and `task_profile`. It returns normalized profiles, input mode, selected and rejected candidates, role ownership, decisions, evidence-bearing `candidate_rankings`, risks and validation steps. Ranking factors cover policy order, installed evidence, dependency/bundle cost, overlap and bounded version compatibility; hard gates cannot be overridden by score. Bounded text fields remain available for backward compatibility; partial-profile calls report `hybrid-profile-inference` and text-only calls report `legacy-text-inference`.
 
 `audit_plan` uses `pass`, `fail` and `pending`. Callers may attach bounded verification evidence. Pending categories do not increase `verified_score` or `verified_maximum`; blockers are derived only from failed checks.
 

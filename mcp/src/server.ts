@@ -98,6 +98,10 @@ export function createOrchestrUiServer(options: { data?: OrchestrUiData; fetchIm
           react_version: z.string().trim().min(1).max(40).optional(),
           tailwind_version: z.string().trim().min(1).max(40).optional(),
           package_manager: z.enum(["npm", "pnpm", "yarn", "bun", "other"]).optional(),
+          dependencies: z.record(
+            z.string().trim().min(1).max(120),
+            z.string().trim().min(1).max(80),
+          ).refine((value) => Object.keys(value).length <= 100, "At most 100 dependencies are accepted.").default({}),
           design_system: z.string().trim().min(1).max(100).optional(),
           component_primitives: z.array(z.string().trim().min(1).max(80)).max(30).default([]),
           motion_stack: z.array(z.string().trim().min(1).max(80)).max(20).default([]),

@@ -13,6 +13,11 @@
     "react_version": "19",
     "tailwind_version": "4",
     "package_manager": "pnpm",
+    "dependencies": {
+      "react": "19",
+      "daisyui": "5",
+      "tailwindcss": "4"
+    },
     "design_system": "daisyUI",
     "component_primitives": ["daisyUI form controls", "daisyUI modal"],
     "motion_stack": [],

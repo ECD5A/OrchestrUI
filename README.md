@@ -102,7 +102,7 @@ $ui-quality-audit audit the rendered result.
 }
 ```
 
-The committed routing benchmark passes **50/50** structured scenarios and three project fixtures in CI.
+The committed suite passes **50/50** structured scenarios, **8/8** independently specified adversarial goldens, and three project fixtures in CI.
 
 <a id="skills-and-mcp"></a>
 ## Skills and MCP

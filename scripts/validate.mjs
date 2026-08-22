@@ -15,6 +15,7 @@ const catalog = readJson("catalog/libraries.json");
 const components = readJson("catalog/components.json");
 const routing = readJson("catalog/routing-rules.json");
 const benchmark = readJson("benchmark/routing-benchmark.json");
+const adversarial = readJson("benchmark/adversarial-golden-cases.json");
 const packageManifest = readJson("package.json");
 const pluginManifest = readJson(".codex-plugin/plugin.json");
 const mcpConfig = readJson(".mcp.json");
@@ -117,10 +118,10 @@ if (components.policy.max_live_response_bytes > 524288 || components.policy.live
 }
 
 const ruleIds = new Set(routing.rules.map((rule) => rule.id));
-if (routing.schema_version !== 2) fail("Unexpected routing policy schema version");
+if (routing.schema_version !== 3) fail("Unexpected routing policy schema version");
 for (const id of [
   "minimum-set", "base-system-conflict", "framework-compatibility",
-  "structured-input-first", "react-bits-no-vendor", "no-pro-by-default",
+  "structured-input-first", "react-bits-no-vendor", "no-pro-by-default", "candidate-ranking", "version-compatibility",
 ]) {
   if (!ruleIds.has(id)) fail(`Missing routing guard ${id}`);
 }
@@ -140,6 +141,21 @@ for (const [capability, route] of Object.entries(routing.capability_routes)) {
   routePriorities.add(route.priority);
   if (!Array.isArray(route.candidates) || !route.candidates.length) fail(`${capability} has no candidates`);
   for (const candidate of route.candidates) if (!ids.has(candidate)) fail(`${capability} references unknown library ${candidate}`);
+}
+if (JSON.stringify(Object.keys(routing.candidate_profiles).sort()) !== JSON.stringify([...ids].sort())) {
+  fail("Candidate ranking profiles must cover exactly seven libraries");
+}
+for (const [id, profile] of Object.entries(routing.candidate_profiles)) {
+  if (!Number.isInteger(profile.dependency_cost) || profile.dependency_cost < 0 || profile.dependency_cost > 5
+      || !Number.isInteger(profile.bundle_cost) || profile.bundle_cost < 0 || profile.bundle_cost > 5
+      || !Array.isArray(profile.package_names) || !Array.isArray(profile.overlap_groups)) {
+    fail(`Invalid candidate ranking profile for ${id}`);
+  }
+  for (const constraint of profile.version_constraints ?? []) {
+    if (!/^(?:>=|<=|>|<|=)\d+(?:\.\d+){0,2}$/.test(constraint.range)) {
+      fail(`Invalid bounded semver constraint for ${id}`);
+    }
+  }
 }
 for (const conflict of routing.host_conflicts) {
   if (!ruleIds.has(conflict.rule_id) || !ids.has(conflict.candidate) || !conflict.patterns?.length) {
@@ -163,6 +179,23 @@ for (const scenario of benchmark.scenarios) {
   if (!benchmark.hosts[scenario.host] || !benchmark.tasks[scenario.task]) fail(`${scenario.id} references an unknown profile`);
   for (const id of [...scenario.expected_selected, ...(scenario.expected_existing ?? []), ...(scenario.expected_rejected ?? [])]) {
     if (!ids.has(id)) fail(`${scenario.id} references unknown library ${id}`);
+  }
+}
+if (adversarial.schema_version !== 1 || adversarial.provenance?.policy_catalog_imported !== false
+    || adversarial.cases.length < 6 || adversarial.cases.length > 20) {
+  fail("Adversarial golden set must contain 6 to 20 independently specified cases");
+}
+const adversarialIds = new Set();
+for (const testCase of adversarial.cases) {
+  if (!testCase.id || adversarialIds.has(testCase.id)) fail(`Invalid or duplicate adversarial case ${testCase.id}`);
+  adversarialIds.add(testCase.id);
+  for (const id of [
+    ...(testCase.expected?.selected ?? []),
+    ...(testCase.expected?.existing ?? []),
+    ...Object.keys(testCase.expected?.rejected_rules ?? {}),
+    ...Object.values(testCase.expected?.ranking_winners ?? {}),
+  ]) {
+    if (!ids.has(id)) fail(`${testCase.id} references unknown library ${id}`);
   }
 }
 
@@ -227,7 +260,8 @@ for (const file of [
   "README.md", "README.ru.md", "LICENSE", "PRIVACY.md", "TERMS.md", "SECURITY.md", "CONTRIBUTING.md",
   "CODE_OF_CONDUCT.md", "SUPPORT.md", "GOVERNANCE.md", "ROADMAP.md", "CHANGELOG.md",
   "THIRD_PARTY.md", "TRADEMARKS.md", ".github/CODEOWNERS", ".github/assets/orchestrui-readme-pro.gif", "package-lock.json", "server.json",
-  "benchmark/routing-benchmark.json", "benchmark/run.mjs", "catalog/routing-rules.schema.json",
+  "benchmark/routing-benchmark.json", "benchmark/run.mjs", "benchmark/adversarial-golden-cases.json",
+  "benchmark/adversarial.mjs", "catalog/routing-rules.schema.json",
   "examples/fixtures/run.mjs",
   "docs/CLAUDE_CODE.md", "docs/GITHUB_SETUP_CHECKLIST.md", "docs/RELEASE_NOTES_0.1.0.md",
   "docs/RELEASE_NOTES_0.2.0.md", ".github/release.yml",

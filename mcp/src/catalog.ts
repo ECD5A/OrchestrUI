@@ -53,7 +53,7 @@ export function loadOrchestrUiData(projectRoot = findProjectRoot()): OrchestrUiD
   if (Object.keys(components.libraries).length !== 7) {
     throw new Error("Invalid OrchestrUI component catalog");
   }
-  if (routing.schema_version !== 2 || !Object.keys(routing.capability_routes).length) {
+  if (routing.schema_version !== 3 || !Object.keys(routing.capability_routes).length) {
     throw new Error("Invalid OrchestrUI routing policy catalog");
   }
   return { catalog, components, routing, version };

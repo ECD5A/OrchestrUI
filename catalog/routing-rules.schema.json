@@ -4,9 +4,9 @@
   "title": "OrchestrUI structured routing policy",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "rules", "roles", "capability_routes", "host_conflicts", "selected_conflicts"],
+  "required": ["schema_version", "rules", "roles", "capability_routes", "candidate_profiles", "host_conflicts", "selected_conflicts"],
   "properties": {
-    "schema_version": { "const": 2 },
+    "schema_version": { "const": 3 },
     "rules": {
       "type": "array",
       "minItems": 1,
@@ -71,6 +71,41 @@
               "properties": {
                 "field": { "const": "rive_asset_rights" },
                 "equals": { "enum": ["confirmed", "unconfirmed", "not-applicable"] },
+                "reason": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "candidate_profiles": {
+      "type": "object",
+      "minProperties": 7,
+      "maxProperties": 7,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dependency_cost", "bundle_cost", "package_names", "overlap_groups"],
+        "properties": {
+          "dependency_cost": { "type": "integer", "minimum": 0, "maximum": 5 },
+          "bundle_cost": { "type": "integer", "minimum": 0, "maximum": 5 },
+          "package_names": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "overlap_groups": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+          },
+          "version_constraints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["host_field", "range", "reason"],
+              "properties": {
+                "host_field": { "enum": ["framework_version", "react_version", "tailwind_version"] },
+                "range": { "type": "string", "pattern": "^(?:>=|<=|>|<|=)\\d+(?:\\.\\d+){0,2}$" },
                 "reason": { "type": "string", "minLength": 1 }
               }
             }
