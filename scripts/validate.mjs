@@ -275,7 +275,7 @@ function validateGif(file, width, height, maximumBytes) {
   }
   if (image.length > maximumBytes) fail(`${file} exceeds the ${maximumBytes}-byte README budget`);
 }
-validateGif("assets/readme-demo.gif", 960, 480, 400000);
+validateGif("assets/readme-demo.gif", 960, 540, 400000);
 
 for (const file of ["assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg"]) {
   const svg = fs.readFileSync(file, "utf8");

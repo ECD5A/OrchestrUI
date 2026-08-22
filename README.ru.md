@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <img src="assets/readme-demo.gif" alt="Анимированная трассировка политики OrchestrUI: структурированный fixture Next.js dashboard, выбор Bklit UI, доказательства правил и честные pending-проверки аудита" width="960">
+  <img src="assets/readme-demo.gif" alt="Анимированная трассировка OrchestrUI: анализ структурированного Next.js-проекта, выбор минимального UI-стека, согласование владельцев ролей и аудит подтверждённых проверок" width="960">
 
   <p><strong>Детерминированные UI-политики и quality gates для coding agents.</strong></p>
 
