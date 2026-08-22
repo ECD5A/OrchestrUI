@@ -60,6 +60,7 @@
     "check": "npm run validate && npm run typecheck && npm test",
     "check:links": "node scripts/check-external-links.mjs",
     "render:brand": "node scripts/render-brand-assets.mjs",
+    "render:demo": "node scripts/render-readme-demo.mjs",
     "start:mcp": "node dist/mcp/src/server.js",
     "pack:check": "npm pack --dry-run",
     "prepack": "npm run check"

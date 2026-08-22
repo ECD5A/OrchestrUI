@@ -3,9 +3,10 @@
 </p>
 
 <div align="center">
-  <a href="https://ecd5a.github.io/OrchestrUI/" title="Открыть демонстрацию работы OrchestrUI">
-    <img src="assets/social-preview.svg" alt="OrchestrUI — семь UI-экосистем сходятся в один цельный интерфейс" width="100%">
-  </a>
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="assets/readme-demo.png">
+    <img src="assets/readme-demo.gif" alt="Анимированная демонстрация OrchestrUI: изучение React dashboard, выбор Bklit UI для графиков, согласование плана и проверка результата" width="100%">
+  </picture>
 
   <p><strong>Agent-native оркестрация UI для современных frontend-стеков.</strong></p>
 
@@ -80,19 +81,17 @@ MCP-конфигурация находится в [`.mcp.json`](.mcp.json). Set
 
 MCP server не запускает install commands и не записывает файлы проекта. OrchestrUI не копирует коллекцию React Bits, paid/Pro content, authenticated material, credentials, license keys или сторонние `.riv` assets.
 
-## Поддержать OrchestrUI
+## Поддержка
 
-Если OrchestrUI полезен в вашей работе, вы можете поддержать дальнейшее развитие и сопровождение проекта:
+Если OrchestrUI полезен в вашей работе, вы можете поддержать его дальнейшее развитие:
 
 * TON: `pointoncurve.ton`
 * Bitcoin (BTC): `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN`
 * USDT (TRC20): `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75`
 
-Поддержка полностью добровольна и не изменяет права, предоставленные лицензией MIT.
-
 ## Контакты
 
-По вопросам коммерческой интеграции, консультаций, сотрудничества и партнёрства:
+По вопросам OrchestrUI, интеграции, консультаций или сотрудничества:
 
 <p>
   <a href="mailto:stelmak159@gmail.com" aria-label="Email"><img alt="Email" height="24" src="https://cdn.simpleicons.org/gmail/EA4335"></a>
@@ -101,4 +100,3 @@ MCP server не запускает install commands и не записывает
   &nbsp;
   <a href="https://github.com/ECD5A/OrchestrUI" aria-label="GitHub repository"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/FFFFFF"><img alt="GitHub repository" height="24" src="https://cdn.simpleicons.org/github/181717"></picture></a>
 </p>
-

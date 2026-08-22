@@ -217,11 +217,9 @@ for (const file of ["assets/icon.svg", "assets/logo.svg", "assets/social-preview
 
 const readme = fs.readFileSync("README.md", "utf8").replaceAll("\r\n", "\n");
 const readmeRu = fs.readFileSync("README.ru.md", "utf8").replaceAll("\r\n", "\n");
-const hasProjectWebsiteLink = (markdown) => [...markdown.matchAll(/href="([^"]+)"/g)]
-  .some(([, href]) => href === projectWebsite);
-if (!hasProjectWebsiteLink(readme) || !hasProjectWebsiteLink(readmeRu)
+if (!readme.includes('src="assets/readme-demo.gif"') || !readmeRu.includes('src="assets/readme-demo.gif"')
   || readme.includes("readme-hero") || readmeRu.includes("readme-hero")) {
-  fail("Both READMEs must use the shared artwork and link to the interactive presentation");
+  fail("Both READMEs must use the shared animated walkthrough");
 }
 for (const address of [
   "pointoncurve.ton",
