@@ -29,3 +29,15 @@ OrchestrUI is a deterministic UI policy, discovery and quality layer for coding 
 - Network access only for explicitly requested live public-registry lookup.
 
 Documentation: [README](https://github.com/ECD5A/OrchestrUI/tree/v0.2.0#readme) · [Routing](https://github.com/ECD5A/OrchestrUI/blob/v0.2.0/docs/ROUTING.md) · [MCP specification](https://github.com/ECD5A/OrchestrUI/blob/v0.2.0/docs/MCP_SPEC.md)
+
+## Contact
+
+For questions about OrchestrUI, integration, consulting, or collaboration:
+
+<p>
+  <a href="mailto:stelmak159@gmail.com" aria-label="Email"><img alt="Email" height="24" src="https://cdn.simpleicons.org/gmail/EA4335"></a>
+  &nbsp;
+  <a href="https://t.me/ECDS4" aria-label="Telegram"><img alt="Telegram" height="24" src="https://cdn.simpleicons.org/telegram/26A5E4"></a>
+  &nbsp;
+  <a href="https://github.com/ECD5A/OrchestrUI" aria-label="GitHub repository"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/FFFFFF"><img alt="GitHub repository" height="24" src="https://cdn.simpleicons.org/github/181717"></picture></a>
+</p>
