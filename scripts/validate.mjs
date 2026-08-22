@@ -226,7 +226,7 @@ if (!/^\^?2\./.test(packageManifest.dependencies?.["@modelcontextprotocol/server
 for (const file of [
   "README.md", "README.ru.md", "LICENSE", "PRIVACY.md", "TERMS.md", "SECURITY.md", "CONTRIBUTING.md",
   "CODE_OF_CONDUCT.md", "SUPPORT.md", "GOVERNANCE.md", "ROADMAP.md", "CHANGELOG.md",
-  "THIRD_PARTY.md", "TRADEMARKS.md", ".github/CODEOWNERS", "package-lock.json", "server.json",
+  "THIRD_PARTY.md", "TRADEMARKS.md", ".github/CODEOWNERS", ".github/assets/orchestrui-readme-pro.gif", "package-lock.json", "server.json",
   "benchmark/routing-benchmark.json", "benchmark/run.mjs", "catalog/routing-rules.schema.json",
   "examples/fixtures/run.mjs",
   "docs/CLAUDE_CODE.md", "docs/GITHUB_SETUP_CHECKLIST.md", "docs/RELEASE_NOTES_0.1.0.md",
@@ -276,6 +276,7 @@ function validateGif(file, width, height, maximumBytes) {
   if (image.length > maximumBytes) fail(`${file} exceeds the ${maximumBytes}-byte README budget`);
 }
 validateGif("assets/readme-demo.gif", 960, 540, 400000);
+validateGif(".github/assets/orchestrui-readme-pro.gif", 1100, 619, 2800000);
 
 for (const file of ["assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg"]) {
   const svg = fs.readFileSync(file, "utf8");
@@ -286,9 +287,9 @@ for (const file of ["assets/icon.svg", "assets/logo.svg", "assets/social-preview
 
 const readme = fs.readFileSync("README.md", "utf8").replaceAll("\r\n", "\n");
 const readmeRu = fs.readFileSync("README.ru.md", "utf8").replaceAll("\r\n", "\n");
-if (!readme.includes('src="assets/readme-demo.gif"') || !readmeRu.includes('src="assets/readme-demo.gif"')
+if (!readme.includes('src=".github/assets/orchestrui-readme-pro.gif"') || !readmeRu.includes('src=".github/assets/orchestrui-readme-pro.gif"')
   || readme.includes("readme-hero") || readmeRu.includes("readme-hero")) {
-  fail("Both READMEs must use the shared animated walkthrough");
+  fail("Both READMEs must use the shared professional animated walkthrough");
 }
 for (const address of [
   "pointoncurve.ton",
