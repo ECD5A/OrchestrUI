@@ -1,6 +1,6 @@
 # Brand assets
 
-OrchestrUI uses a restrained routing system: seven input paths converge through one orchestration node and leave as one coherent output. The mark is original project artwork and does not reuse upstream logos.
+OrchestrUI uses a restrained visual system: inspect the host, make one scoped UI decision, then verify the coherent plan. The mark is original project artwork and does not reuse upstream logos.
 
 ## Files
 
