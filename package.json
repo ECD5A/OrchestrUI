@@ -26,7 +26,7 @@
   "main": "./dist/mcp/src/server.js",
   "types": "./dist/mcp/src/server.d.ts",
   "bin": {
-    "orchestrui-mcp": "./dist/mcp/src/server.js"
+    "orchestrui-mcp": "dist/mcp/src/server.js"
   },
   "files": [
     "dist/",

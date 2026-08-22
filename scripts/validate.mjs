@@ -255,6 +255,9 @@ if (serverManifest.packages?.[0]?.identifier !== packageManifest.name) fail("MCP
 if (!/^\^?2\./.test(packageManifest.dependencies?.["@modelcontextprotocol/server"] ?? "")) {
   fail("OrchestrUI must use the stable MCP TypeScript SDK v2 server package");
 }
+if (packageManifest.bin?.["orchestrui-mcp"] !== "dist/mcp/src/server.js") {
+  fail("The npm executable path must be normalized for npm 11 and point to the built MCP server");
+}
 
 for (const file of [
   "README.md", "README_RU.md", "LICENSE", "PRIVACY.md", "TERMS.md", "SECURITY.md", "CONTRIBUTING.md",

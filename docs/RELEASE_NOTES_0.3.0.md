@@ -11,6 +11,7 @@ OrchestrUI now explains not only which UI ecosystem wins, but how every admissib
 - Eight independently specified adversarial goldens run separately from the 50-case internal policy benchmark.
 - All three executable fixtures now include installed dependency versions and captured ranking evidence.
 - The npm archive excludes heavyweight promotional renders that are unnecessary at runtime.
+- The `orchestrui-mcp` executable is normalized for current npm clients and checked against its built entrypoint.
 
 ## Compatibility
 
