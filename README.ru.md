@@ -3,10 +3,7 @@
 </p>
 
 <div align="center">
-  <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="assets/readme-demo.png">
-    <img src="assets/readme-demo.gif" alt="Анимированная демонстрация OrchestrUI: изучение React dashboard, выбор Bklit UI для графиков, согласование плана и проверка результата" width="100%">
-  </picture>
+  <img src="assets/readme-demo.gif" alt="Анимированная трассировка политики OrchestrUI: структурированный fixture Next.js dashboard, выбор Bklit UI, доказательства правил и честные pending-проверки аудита" width="960">
 
   <p><strong>Детерминированные UI-политики и quality gates для coding agents.</strong></p>
 

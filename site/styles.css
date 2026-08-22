@@ -323,7 +323,7 @@ h1 {
 }
 
 .data-card dt { color: #687990; }
-.data-card dd { margin: 0; color: #d7e1ef; text-align: right; }
+.data-card dd { max-width: 62%; margin: 0; color: #d7e1ef; overflow-wrap: anywhere; text-align: right; }
 .output-card dd { transition: color 180ms ease; }
 .output-card .status-value { color: var(--mint); font-weight: 800; text-transform: uppercase; }
 
@@ -485,30 +485,30 @@ h1 {
 
 @keyframes chart-build { 0%, 12% { transform: scaleY(0.18); opacity: 0.35; } 40%, 100% { transform: scaleY(1); opacity: 1; } }
 
-.console[data-scenario="landing"] .preview-canvas {
+.console[data-scenario="marketing-landing"] .preview-canvas {
   align-items: stretch;
   grid-template: 12px 14px 1fr / 1fr 0.7fr;
 }
 
-.console[data-scenario="landing"] .preview-canvas span {
+.console[data-scenario="marketing-landing"] .preview-canvas span {
   width: auto;
   height: auto;
   border-radius: 3px;
   animation: surface-in 2.6s ease-in-out infinite;
 }
 
-.console[data-scenario="landing"] .preview-canvas span:first-child { grid-column: 1 / -1; }
-.console[data-scenario="landing"] .preview-canvas span:nth-child(2) { grid-column: 1; }
-.console[data-scenario="landing"] .preview-canvas span:nth-child(3) { grid-column: 1; }
-.console[data-scenario="landing"] .preview-canvas span:nth-child(4) { grid-column: 2; grid-row: 2 / 4; }
-.console[data-scenario="landing"] .preview-canvas span:nth-child(5) { display: none; }
+.console[data-scenario="marketing-landing"] .preview-canvas span:first-child { grid-column: 1 / -1; }
+.console[data-scenario="marketing-landing"] .preview-canvas span:nth-child(2) { grid-column: 1; }
+.console[data-scenario="marketing-landing"] .preview-canvas span:nth-child(3) { grid-column: 1; }
+.console[data-scenario="marketing-landing"] .preview-canvas span:nth-child(4) { grid-column: 2; grid-row: 2 / 4; }
+.console[data-scenario="marketing-landing"] .preview-canvas span:nth-child(5) { display: none; }
 
-.console[data-scenario="existing"] .preview-canvas {
+.console[data-scenario="daisy-admin"] .preview-canvas {
   align-items: stretch;
   grid-template: repeat(2, 1fr) / repeat(3, 1fr);
 }
 
-.console[data-scenario="existing"] .preview-canvas span {
+.console[data-scenario="daisy-admin"] .preview-canvas span {
   width: auto;
   height: auto;
   border-color: rgba(139, 124, 255, 0.22);
@@ -517,7 +517,7 @@ h1 {
   animation: surface-in 2.6s ease-in-out infinite;
 }
 
-.console[data-scenario="existing"] .preview-canvas span:first-child { grid-column: 1 / -1; }
+.console[data-scenario="daisy-admin"] .preview-canvas span:first-child { grid-column: 1 / -1; }
 
 @keyframes surface-in { 0%, 12% { opacity: 0.25; transform: translateY(3px); } 40%, 100% { opacity: 1; transform: translateY(0); } }
 

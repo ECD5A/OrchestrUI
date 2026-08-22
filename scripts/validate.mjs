@@ -231,8 +231,8 @@ for (const file of [
   "examples/fixtures/run.mjs",
   "docs/CLAUDE_CODE.md", "docs/GITHUB_SETUP_CHECKLIST.md", "docs/RELEASE_NOTES_0.1.0.md",
   "assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg", "assets/social-preview.png",
-  "site/index.html", "site/styles.css", "site/app.js", "site/robots.txt", "site/sitemap.xml",
-  ".github/workflows/pages.yml", "scripts/render-brand-assets.mjs",
+  "site/index.html", "site/styles.css", "site/app.js", "site/fixtures.js", "site/robots.txt", "site/sitemap.xml",
+  ".github/workflows/pages.yml", "scripts/render-brand-assets.mjs", "scripts/build-site-data.mjs",
   "scripts/check-external-links.mjs",
   "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts",
 ]) {
@@ -255,6 +255,18 @@ function validatePng(file, width, height) {
   }
 }
 validatePng("assets/social-preview.png", 1280, 640);
+
+function validateGif(file, width, height, maximumBytes) {
+  const image = fs.readFileSync(file);
+  if (image.length < 14 || image.subarray(0, 6).toString("ascii") !== "GIF89a" || image.at(-1) !== 0x3b) {
+    fail(`${file} is not a complete GIF89a image`);
+  }
+  if (image.readUInt16LE(6) !== width || image.readUInt16LE(8) !== height) {
+    fail(`${file} must be ${width}x${height}`);
+  }
+  if (image.length > maximumBytes) fail(`${file} exceeds the ${maximumBytes}-byte README budget`);
+}
+validateGif("assets/readme-demo.gif", 960, 480, 400000);
 
 for (const file of ["assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg"]) {
   const svg = fs.readFileSync(file, "utf8");
@@ -334,6 +346,7 @@ for (const sourceFile of [
   "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts", "mcp/src/catalog.ts", "mcp/src/routing.ts",
   "benchmark/run.mjs", "examples/fixtures/run.mjs",
   "scripts/validate.mjs", "scripts/check-external-links.mjs", "scripts/render-brand-assets.mjs",
+  "scripts/render-readme-demo.mjs", "scripts/build-site-data.mjs",
   "scripts/install-codex.sh", "scripts/install-codex.ps1",
 ]) {
   const source = fs.readFileSync(sourceFile, "utf8");

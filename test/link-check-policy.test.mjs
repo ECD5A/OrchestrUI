@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   checkExternalUrl,
+  isDeferredCanonicalUrl,
   isPublicHttpsUrl,
 } from "../scripts/check-external-links.mjs";
 
@@ -25,6 +26,18 @@ test("external link policy rejects non-public HTTPS destinations before fetch", 
   });
   assert.equal(called, false);
   assert.match(result.detail, /non-public/i);
+});
+
+test("publication deferral is restricted to canonical OrchestrUI URLs", () => {
+  for (const url of [
+    "https://github.com/ECD5A/OrchestrUI",
+    "https://raw.githubusercontent.com/ECD5A/OrchestrUI/main/catalog/libraries.json",
+    "https://ecd5a.github.io/OrchestrUI/",
+  ]) {
+    assert.equal(isDeferredCanonicalUrl(url), true);
+  }
+  assert.equal(isDeferredCanonicalUrl("https://github.com/ECD5A/another-repository"), false);
+  assert.equal(isDeferredCanonicalUrl("https://example.com/OrchestrUI"), false);
 });
 
 test("external link policy refuses redirects", async () => {

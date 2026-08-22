@@ -6,6 +6,7 @@
 - Structured `HostProfile` and `TaskProfile` routing with evidence-bearing decisions.
 - Declarative capability, role-priority and conflict policy matrix.
 - 50-scenario routing benchmark and three executable project fixtures.
+- Reproducible Pages data generated from the committed fixture results.
 - Compact GitHub Pages engineering demo with a keyboard-accessible, reduced-motion orchestration loop.
 - macOS and Windows platform-smoke jobs alongside the existing Linux/Node.js matrix.
 
@@ -15,6 +16,8 @@
 - Unified the README hero and GitHub social preview into one reproducible artwork.
 - Reduced both READMEs to compact project showcases, removed the duplicate workflow diagram, and added maintainer contact links.
 - Refined the workflow demo with three interactive routing scenarios, an animated processing state, and scenario-specific result previews.
+- Replaced the custom README GIF encoder with a standards-compatible implementation and enforced a 400 KB asset budget.
+- Pages now skips deployment cleanly while the repository is private and resumes when it becomes public.
 - Replaced the README footer with the standard OrchestrUI Donate and Contact blocks.
 
 ## [0.1.0] - 2026-08-20

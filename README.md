@@ -3,10 +3,7 @@
 </p>
 
 <div align="center">
-  <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="assets/readme-demo.png">
-    <img src="assets/readme-demo.gif" alt="Animated OrchestrUI routing demo: inspect a React dashboard, select Bklit UI for charts, harmonize the plan, and verify the result" width="100%">
-  </picture>
+  <img src="assets/readme-demo.gif" alt="Animated OrchestrUI policy trace: normalize a structured Next.js dashboard fixture, select Bklit UI, show rule evidence, and keep unverified audit checks pending" width="960">
 
   <p><strong>Deterministic UI policy and quality gates for coding agents.</strong></p>
 

@@ -82,7 +82,21 @@ export async function checkExternalUrl(url, fetchImpl = fetch) {
   }
 }
 
-export async function runExternalLinkCheck(root = ".") {
+export function isDeferredCanonicalUrl(value) {
+  try {
+    const url = new URL(value);
+    const pathName = url.pathname.toLowerCase();
+    return (url.hostname === "github.com" && pathName.startsWith("/ecd5a/orchestrui"))
+      || (url.hostname === "raw.githubusercontent.com" && pathName.startsWith("/ecd5a/orchestrui/"))
+      || (url.hostname === "ecd5a.github.io" && (pathName === "/orchestrui" || pathName.startsWith("/orchestrui/")));
+  } catch {
+    return false;
+  }
+}
+
+export async function runExternalLinkCheck(root = ".", {
+  allowPrivateCanonical = process.env.ORCHESTRUI_PUBLICATION_DEFERRED === "1",
+} = {}) {
   const urls = new Map();
   for (const file of listFiles(root).filter((candidate) => checkedExtensions.has(path.extname(candidate).toLowerCase()))) {
     if (path.basename(file) === "package-lock.json") continue;
@@ -102,7 +116,11 @@ export async function runExternalLinkCheck(root = ".") {
     results.push(...await Promise.all(entries.slice(index, index + 6).map((url) => checkExternalUrl(url))));
   }
 
-  const broken = results.filter(({ status }) => status === 404 || status === 410);
+  const deferred = results.filter(({ url, status }) => allowPrivateCanonical
+    && status === 404
+    && isDeferredCanonicalUrl(url));
+  const deferredUrls = new Set(deferred.map(({ url }) => url));
+  const broken = results.filter(({ url, status }) => (status === 404 || status === 410) && !deferredUrls.has(url));
   const inconclusive = results.filter(({ status }) => status === 0
     || status === 401
     || status === 403
@@ -111,12 +129,15 @@ export async function runExternalLinkCheck(root = ".") {
   for (const result of broken) {
     console.error(`BROKEN ${result.status} ${result.url} (${[...urls.get(result.url)].join(", ")})`);
   }
+  for (const result of deferred) {
+    console.warn(`DEFERRED ${result.status} ${result.url} — canonical project URL is hidden while the repository is private`);
+  }
   for (const result of inconclusive) {
     console.warn(`WARN ${result.status || "network"} ${result.url}${result.detail ? ` — ${result.detail}` : ""}`);
   }
-  console.log(`External link check: ${entries.length} unique URLs; ${broken.length} broken; ${inconclusive.length} inconclusive.`);
+  console.log(`External link check: ${entries.length} unique URLs; ${broken.length} broken; ${deferred.length} deferred; ${inconclusive.length} inconclusive.`);
   if (broken.length) process.exitCode = 1;
-  return { checked: entries.length, broken: broken.length, inconclusive: inconclusive.length };
+  return { checked: entries.length, broken: broken.length, deferred: deferred.length, inconclusive: inconclusive.length };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {

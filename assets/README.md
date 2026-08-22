@@ -6,8 +6,8 @@ OrchestrUI uses a restrained visual system: inspect the host, make one scoped UI
 
 - `icon.svg` — square application/favicon mark.
 - `logo.svg` — horizontal project lockup.
-- `readme-demo.gif` — generated 960×480 animated README walkthrough of one routing decision.
-- `readme-demo.png` — static reduced-motion frame of the README walkthrough.
+- `readme-demo.gif` — generated 960×480 standards-compatible animated README walkthrough, kept below a 400 KB repository budget.
+- `readme-demo.png` — static final frame for documentation and fallback use.
 - `social-preview.svg` — editable 1280×640 artwork for the GitHub social preview.
 - `social-preview.png` — generated upload-ready rendering of the same artwork.
 
