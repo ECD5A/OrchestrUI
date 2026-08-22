@@ -16,49 +16,49 @@ const { GIFEncoder, applyPalette } = gifenc;
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const width = 960;
-const height = 480;
-const frameDelay = 440;
+const height = 540;
+const frameDelay = 460;
 const palette = [
-  [7, 16, 29], [11, 23, 41], [13, 23, 40], [20, 36, 58], [38, 54, 80], [65, 81, 108],
-  [103, 121, 144], [148, 163, 184], [168, 179, 199], [201, 210, 225], [248, 250, 252],
-  [34, 211, 238], [45, 212, 191], [118, 103, 244], [103, 232, 249], [94, 234, 212],
-  [169, 158, 255], [31, 44, 64], [51, 67, 91], [84, 100, 123], [111, 129, 152],
-  [28, 53, 72], [20, 58, 70], [42, 39, 85], [19, 42, 58], [26, 65, 77],
-  [231, 253, 255], [220, 252, 231], [237, 233, 254], [14, 31, 50], [9, 21, 34], [0, 0, 0],
+  [7, 8, 16], [8, 9, 18], [10, 11, 21], [12, 14, 24], [15, 18, 30], [19, 21, 35],
+  [26, 28, 44], [38, 40, 58], [61, 64, 83], [92, 96, 116], [126, 130, 149], [170, 174, 191],
+  [209, 211, 222], [243, 244, 251], [161, 120, 255], [181, 140, 255], [114, 217, 237], [120, 229, 207],
+  [72, 58, 112], [47, 39, 74], [31, 33, 50], [13, 31, 37], [19, 48, 54], [45, 85, 87],
+  [96, 174, 163], [113, 88, 164], [104, 107, 126], [82, 86, 105], [55, 59, 76], [28, 53, 60],
+  [11, 13, 22], [0, 0, 0],
 ];
 
 const phases = [
   {
-    code: "01 / PROFILE",
-    title: "Normalize explicit project evidence",
-    copy: "HostProfile and TaskProfile replace prompt-keyword guessing.",
-    status: "STRUCTURED",
-    values: ["mode  /  structured", "base  /  shadcn/ui", "need  /  data-viz"],
-    color: "#22D3EE",
+    code: "01 / INSPECT",
+    name: "Inspect",
+    title: "Read the host before choosing.",
+    detail: "Structured project evidence replaces prompt-keyword guessing.",
+    color: "#A178FF",
+    output: ["base owner  /  inspected", "specialist  /  pending", "state       /  structured"],
   },
   {
     code: "02 / ROUTE",
-    title: "Apply the deterministic policy matrix",
-    copy: "Keep the existing base and add only the missing specialist.",
-    status: "ROUTED",
-    values: ["selected  /  Bklit UI", "rejected  /  6", "owners  /  2"],
-    color: "#2DD4BF",
+    name: "Route",
+    title: "Choose the smallest valid stack.",
+    detail: "Keep shadcn/ui. Add Bklit only for the data-visualization gap.",
+    color: "#72D9ED",
+    output: ["base owner  /  shadcn/ui", "specialist  /  Bklit UI", "state       /  routed"],
   },
   {
-    code: "03 / EVIDENCE",
-    title: "Explain ownership and rejection",
-    copy: "Every decision carries a rule ID and inspectable evidence.",
-    status: "EXPLICIT",
-    values: ["role  /  data-viz", "rule  /  ownership", "base  /  preserved"],
-    color: "#7667F4",
+    code: "03 / HARMONIZE",
+    name: "Harmonize",
+    title: "Give every major role one owner.",
+    detail: "Preserved, selected, and rejected candidates carry rule evidence.",
+    color: "#B58CFF",
+    output: ["base owner  /  shadcn/ui", "charts      /  Bklit UI", "state       /  2 owners"],
   },
   {
     code: "04 / AUDIT",
-    title: "Score only verified checks",
-    copy: "Rendered-host checks stay pending until evidence is attached.",
-    status: "5 PENDING",
-    values: ["verified  /  8/8", "pending  /  5", "blockers  /  0"],
-    color: "#67E8F9",
+    name: "Audit",
+    title: "Report evidence, not confidence.",
+    detail: "Verified checks score. Rendered-host checks stay pending.",
+    color: "#78E5CF",
+    output: ["verified    /  8 / 8", "pending     /  5", "blockers    /  0"],
   },
 ];
 
@@ -68,63 +68,100 @@ function esc(value) {
 
 function phaseSvg(phaseIndex, localProgress) {
   const phase = phases[phaseIndex];
-  const pulseX = 318 + localProgress * 328;
-  const rightPulseX = 648 + localProgress * 95;
-  const orbit = Math.round(localProgress * 360);
-  const checkOpacity = phaseIndex === 0 ? 0.25 : 0.45 + localProgress * 0.55;
-  const outputOpacity = phaseIndex === 0 ? 0.42 + localProgress * 0.24 : 1;
-  const progressWidth = 180 + (phaseIndex + localProgress) * 112;
-  const rows = phase.values.map((value, index) => `<text x="${684}" y="${212 + index * 38}" fill="#D7E1EF" font-family="Segoe UI, Arial, sans-serif" font-size="15" opacity="${outputOpacity}">${esc(value)}</text>`).join("");
+  const nodes = [120, 360, 600, 840];
+  const progress = (phaseIndex + localProgress) / (phases.length - 1);
+  const signalX = Math.min(nodes[3], nodes[0] + (nodes[3] - nodes[0]) * progress);
+  const outputOpacity = phaseIndex === 0 ? .44 + localProgress * .32 : 1;
+  const orbit = Math.round(localProgress * 220 + phaseIndex * 70);
+  const nodeMarkup = phases.map((item, index) => {
+    const active = index === phaseIndex;
+    const complete = index < phaseIndex;
+    const nodeColor = active ? phase.color : complete ? "#78E5CF" : "#4D5062";
+    const glow = active ? `<circle cx="${nodes[index]}" cy="179" r="20" fill="${phase.color}" fill-opacity=".07"/>` : "";
+    return `${glow}
+      <circle cx="${nodes[index]}" cy="179" r="13" fill="#0B0C15" stroke="${nodeColor}" stroke-width="${active ? 2 : 1}"/>
+      <circle cx="${nodes[index]}" cy="179" r="3" fill="${nodeColor}"/>
+      <text x="${nodes[index]}" y="151" fill="${active ? "#F3F4FB" : "#686C7E"}" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle">${item.name}</text>
+      <text x="${nodes[index]}" y="209" fill="${active ? nodeColor : "#45495A"}" font-family="Consolas, monospace" font-size="9" text-anchor="middle">0${index + 1}</text>`;
+  }).join("");
+  const outputRows = phase.output.map((row, index) => `<text x="697" y="329" dy="${index * 33}" fill="#C9CCD8" font-family="Consolas, monospace" font-size="13" opacity="${outputOpacity}">${esc(row)}</text>`).join("");
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
     <defs>
-      <linearGradient id="bg" x1="0" y1="0" x2="960" y2="480" gradientUnits="userSpaceOnUse"><stop stop-color="#122039"/><stop offset="1" stop-color="#07101D"/></linearGradient>
-      <linearGradient id="route" x1="318" y1="0" x2="743" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#22D3EE"/><stop offset="0.52" stop-color="#2DD4BF"/><stop offset="1" stop-color="#7667F4"/></linearGradient>
-      <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#94A3B8" stroke-opacity="0.055"/></pattern>
+      <linearGradient id="bg" x1="0" y1="0" x2="960" y2="540" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#160E28"/><stop offset=".48" stop-color="#080912"/><stop offset="1" stop-color="#061A20"/>
+      </linearGradient>
+      <radialGradient id="violetGlow" cx="0" cy="0" r="1" gradientTransform="translate(80 20) rotate(39) scale(400 330)" gradientUnits="userSpaceOnUse"><stop stop-color="#6B36AE" stop-opacity=".42"/><stop offset="1" stop-color="#6B36AE" stop-opacity="0"/></radialGradient>
+      <radialGradient id="mintGlow" cx="0" cy="0" r="1" gradientTransform="translate(920 530) rotate(-132) scale(390 330)" gradientUnits="userSpaceOnUse"><stop stop-color="#087988" stop-opacity=".34"/><stop offset="1" stop-color="#087988" stop-opacity="0"/></radialGradient>
+      <linearGradient id="route" x1="120" y1="0" x2="840" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#A178FF"/><stop offset=".5" stop-color="#72D9ED"/><stop offset="1" stop-color="#78E5CF"/></linearGradient>
+      <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+      <pattern id="grain" width="96" height="96" patternUnits="userSpaceOnUse"><path d="M8 17h1M56 7h1M74 49h1M22 71h1M91 83h1M43 41h1" stroke="#F3F4FB" stroke-opacity=".06"/></pattern>
     </defs>
-    <rect width="960" height="480" fill="url(#bg)"/>
-    <rect width="960" height="480" fill="url(#grid)"/>
-    <rect x="25" y="25" width="910" height="430" rx="28" fill="#0B1729" fill-opacity="0.74" stroke="#263650" stroke-width="2"/>
-    <text x="62" y="76" fill="#E7FDFF" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="-1">OrchestrUI</text>
-    <text x="62" y="104" fill="#8FA0B8" font-family="Consolas, monospace" font-size="13" letter-spacing="1.5">STRUCTURED INPUT, EXPLICIT POLICY EVIDENCE</text>
-    <text x="780" y="76" fill="${phase.color}" font-family="Consolas, monospace" font-size="13" font-weight="700" text-anchor="end">${phase.code}</text>
 
-    <rect x="62" y="150" width="228" height="236" rx="16" fill="#0D1728" stroke="#2C425F"/>
-    <text x="86" y="187" fill="#67E8F9" font-family="Consolas, monospace" font-size="12" font-weight="700" letter-spacing="1.5">FIXTURE INPUT</text>
-    <text x="86" y="228" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Next.js dashboard</text>
-    <text x="86" y="267" fill="#A8B3C7" font-family="Consolas, monospace" font-size="15">base     / shadcn/ui</text>
-    <text x="86" y="300" fill="#A8B3C7" font-family="Consolas, monospace" font-size="15">tokens   / detected</text>
-    <text x="86" y="333" fill="#A8B3C7" font-family="Consolas, monospace" font-size="15">gap      / charts</text>
+    <rect width="960" height="540" fill="url(#bg)"/>
+    <rect width="960" height="540" fill="url(#violetGlow)"/>
+    <rect width="960" height="540" fill="url(#mintGlow)"/>
+    <rect width="960" height="540" fill="url(#grain)"/>
 
-    <path d="M290 268H650" fill="none" stroke="#41516C" stroke-width="4" stroke-linecap="round"/>
-    <path d="M290 268H${progressWidth}" fill="none" stroke="url(#route)" stroke-width="6" stroke-linecap="round"/>
-    <circle cx="${pulseX}" cy="268" r="9" fill="#F8FAFC" stroke="${phase.color}" stroke-width="5"/>
-    <circle cx="${rightPulseX}" cy="268" r="5" fill="${phase.color}" opacity="${0.25 + localProgress * 0.75}"/>
-
-    <g transform="translate(470 268) rotate(${orbit})">
-      <circle r="63" fill="#0D1728" stroke="#263650" stroke-width="5"/>
-      <path d="M0-57A57 57 0 ${localProgress > 0.5 ? 1 : 0} 1 ${Math.round(57 * Math.sin(localProgress * Math.PI * 2))} ${Math.round(-57 * Math.cos(localProgress * Math.PI * 2))}" fill="none" stroke="${phase.color}" stroke-width="6" stroke-linecap="round"/>
+    <g transform="translate(48 48)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#B897FF" stroke-width="1" opacity=".6"/>
+      <circle cx="12" cy="12" r="5" fill="none" stroke="#B897FF" stroke-width="1.4"/>
+      <circle cx="12" cy="12" r="1.4" fill="#B897FF"/>
+      <text x="34" y="17" fill="#F3F4FB" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700">OrchestrUI</text>
     </g>
-    <circle cx="470" cy="268" r="38" fill="#122039" stroke="${phase.color}" stroke-width="2"/>
-    <path d="M453 268L465 280L489 252" fill="none" stroke="#F8FAFC" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="${checkOpacity}"/>
-    <text x="470" y="354" fill="${phase.color}" font-family="Consolas, monospace" font-size="12" font-weight="700" text-anchor="middle">${phase.status}</text>
+    <g transform="translate(720 47)">
+      <rect width="124" height="26" rx="13" fill="#FFFFFF" fill-opacity=".025" stroke="#B4C0DC" stroke-opacity=".18"/>
+      <circle cx="15" cy="13" r="3" fill="#78E5CF"/>
+      <text x="25" y="17" fill="#BFC2CF" font-family="Consolas, monospace" font-size="10" font-weight="700" letter-spacing=".8">READ-ONLY MCP</text>
+      <rect x="132" width="80" height="26" rx="13" fill="#FFFFFF" fill-opacity=".025" stroke="#B4C0DC" stroke-opacity=".18"/>
+      <text x="172" y="17" fill="#BFC2CF" font-family="Consolas, monospace" font-size="10" font-weight="700" text-anchor="middle" letter-spacing=".7">SKILLS</text>
+    </g>
 
-    <rect x="650" y="150" width="228" height="236" rx="16" fill="#0D1728" stroke="#2C425F"/>
-    <text x="674" y="187" fill="#A99EFF" font-family="Consolas, monospace" font-size="12" font-weight="700" letter-spacing="1.5">POLICY OUTPUT</text>
-    ${rows}
-    <rect x="674" y="334" width="154" height="29" rx="14.5" fill="${phase.color}" fill-opacity="0.14" stroke="${phase.color}" stroke-opacity="0.5"/>
-    <text x="751" y="354" fill="${phase.color}" font-family="Consolas, monospace" font-size="12" font-weight="700" text-anchor="middle">${phase.status}</text>
+    <text x="48" y="115" fill="#A995D9" font-family="Consolas, monospace" font-size="10" font-weight="700" letter-spacing="1.8">LIVE POLICY TRACE</text>
+    <text x="912" y="115" fill="${phase.color}" font-family="Consolas, monospace" font-size="10" font-weight="700" text-anchor="end" letter-spacing="1">${phase.code}</text>
 
-    <text x="62" y="422" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="650">${esc(phase.title)}</text>
-    <text x="62" y="445" fill="#8FA0B8" font-family="Segoe UI, Arial, sans-serif" font-size="14">${esc(phase.copy)}</text>
+    <path d="M120 179H840" stroke="#B4C0DC" stroke-opacity=".14"/>
+    <path d="M120 179H${signalX}" stroke="url(#route)" stroke-width="2"/>
+    <circle cx="${signalX}" cy="179" r="4" fill="#F3F4FB"/>
+    <circle cx="${signalX}" cy="179" r="10" fill="${phase.color}" fill-opacity=".11"/>
+    ${nodeMarkup}
+
+    <rect x="48" y="246" width="244" height="177" rx="13" fill="#090B14" fill-opacity=".7" stroke="#B4C0DC" stroke-opacity=".14"/>
+    <text x="70" y="277" fill="#777C8F" font-family="Consolas, monospace" font-size="10" font-weight="700" letter-spacing="1.3">INPUT</text>
+    <path d="M70 295H270" stroke="#B4C0DC" stroke-opacity=".12"/>
+    <text x="70" y="325" fill="#555A6E" font-family="Consolas, monospace" font-size="11">framework</text><text x="270" y="325" fill="#D1D3DE" font-family="Consolas, monospace" font-size="11" text-anchor="end">Next.js 15</text>
+    <text x="70" y="356" fill="#555A6E" font-family="Consolas, monospace" font-size="11">base owner</text><text x="270" y="356" fill="#D1D3DE" font-family="Consolas, monospace" font-size="11" text-anchor="end">shadcn/ui</text>
+    <text x="70" y="387" fill="#555A6E" font-family="Consolas, monospace" font-size="11">capability gap</text><text x="270" y="387" fill="#D1D3DE" font-family="Consolas, monospace" font-size="11" text-anchor="end">data-viz</text>
+
+    <rect x="318" y="226" width="324" height="217" rx="15" fill="#0B0C15" fill-opacity=".76" stroke="#B4C0DC" stroke-opacity=".16"/>
+    <circle cx="480" cy="303" r="44" fill="none" stroke="${phase.color}" stroke-opacity=".18"/>
+    <g transform="translate(480 303) rotate(${orbit})"><circle r="34" fill="none" stroke="${phase.color}" stroke-width="1.5" stroke-dasharray="56 158" stroke-linecap="round"/></g>
+    <circle cx="480" cy="303" r="18" fill="${phase.color}" fill-opacity=".06" stroke="${phase.color}" stroke-opacity=".7"/>
+    <circle cx="480" cy="303" r="5" fill="none" stroke="${phase.color}" stroke-width="1.4"/>
+    <circle cx="480" cy="303" r="1.5" fill="${phase.color}"/>
+    <text x="480" y="374" fill="#F3F4FB" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" text-anchor="middle">${esc(phase.title)}</text>
+    <text x="480" y="399" fill="#858A9D" font-family="Segoe UI, Arial, sans-serif" font-size="11" text-anchor="middle">${esc(phase.detail)}</text>
+    <rect x="420" y="413" width="120" height="18" rx="9" fill="${phase.color}" fill-opacity=".09" stroke="${phase.color}" stroke-opacity=".25"/>
+    <text x="480" y="425" fill="${phase.color}" font-family="Consolas, monospace" font-size="8" font-weight="700" text-anchor="middle" letter-spacing="1">${phase.name.toUpperCase()}</text>
+
+    <rect x="668" y="246" width="244" height="177" rx="13" fill="#090B14" fill-opacity=".7" stroke="${phase.color}" stroke-opacity=".25"/>
+    <text x="692" y="277" fill="${phase.color}" font-family="Consolas, monospace" font-size="10" font-weight="700" letter-spacing="1.3">DECISION</text>
+    <path d="M692 295H888" stroke="${phase.color}" stroke-opacity=".18"/>
+    ${outputRows}
+
+    <text x="48" y="498" fill="#575B6D" font-family="Consolas, monospace" font-size="9">one owner per role</text>
+    <circle cx="166" cy="495" r="1.5" fill="#665177"/><text x="180" y="498" fill="#575B6D" font-family="Consolas, monospace" font-size="9">public upstream only</text>
+    <circle cx="306" cy="495" r="1.5" fill="#665177"/><text x="320" y="498" fill="#575B6D" font-family="Consolas, monospace" font-size="9">no install execution</text>
+    <text x="912" y="498" fill="#656A7C" font-family="Consolas, monospace" font-size="9" text-anchor="end">Inspect → Route → Harmonize → Audit</text>
   </svg>`;
 }
 
 const encoder = GIFEncoder();
 let frameCount = 0;
 let stillFrame;
+
 for (let phaseIndex = 0; phaseIndex < phases.length; phaseIndex += 1) {
-  for (const step of [0, 0.55, 1]) {
+  for (const step of [0, .58, 1]) {
     const image = new Resvg(phaseSvg(phaseIndex, step), {
       fitTo: { mode: "width", value: width },
       font: { loadSystemFonts: true, defaultFontFamily: "Segoe UI" },
@@ -138,6 +175,7 @@ for (let phaseIndex = 0; phaseIndex < phases.length; phaseIndex += 1) {
     if (phaseIndex === phases.length - 1 && step === 1) stillFrame = image.asPng();
   }
 }
+
 encoder.finish();
 
 const destination = path.join(root, "assets", "readme-demo.gif");

@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <img src="assets/readme-demo.gif" alt="Animated OrchestrUI policy trace: normalize a structured Next.js dashboard fixture, select Bklit UI, show rule evidence, and keep unverified audit checks pending" width="960">
+  <img src="assets/readme-demo.gif" alt="Animated OrchestrUI trace: inspect a structured Next.js host, route the smallest UI stack, harmonize role ownership, and audit verified evidence" width="960">
 
   <p><strong>Deterministic UI policy and quality gates for coding agents.</strong></p>
 

@@ -2,31 +2,27 @@ const phaseOrder = ["profile", "route", "ownership", "audit"];
 
 const phaseContent = {
   profile: {
-    code: "01 / PROFILE",
-    label: "PROFILE",
-    title: "Normalize the inspected host.",
-    copy: "Use explicit HostProfile and TaskProfile fields instead of guessing the stack from prompt keywords.",
-    progress: 25,
+    code: "01 / INSPECT",
+    title: "Read the host before choosing.",
+    copy: "Normalize explicit project evidence instead of guessing from prompt keywords.",
+    progress: 0,
   },
   route: {
     code: "02 / ROUTE",
-    label: "ROUTE",
-    title: "Apply the policy matrix.",
-    copy: "Preserve compatible owners, select the smallest capability set, and reject every unnecessary candidate.",
-    progress: 50,
+    title: "Choose the smallest valid stack.",
+    copy: "Keep compatible owners, fill only the capability gap, and reject redundant candidates.",
+    progress: 33.333,
   },
   ownership: {
-    code: "03 / EVIDENCE",
-    label: "EVIDENCE",
-    title: "Make ownership explicit.",
-    copy: "Every preserved, selected, and rejected candidate carries a rule identifier and inspectable evidence.",
-    progress: 75,
+    code: "03 / HARMONIZE",
+    title: "Give every major role one owner.",
+    copy: "Make preservation, selection, and rejection explicit before implementation begins.",
+    progress: 66.667,
   },
   audit: {
     code: "04 / AUDIT",
-    label: "AUDIT",
-    title: "Keep unverified checks pending.",
-    copy: "The audit reports only verified points. Rendered-host checks remain pending until evidence is attached.",
+    title: "Report evidence, not confidence.",
+    copy: "Verified checks score. Rendered-host checks remain pending until evidence exists.",
     progress: 100,
   },
 };
@@ -54,25 +50,24 @@ function createScenario(fixture) {
 
   return {
     runId: fixture.run_id,
-    preview: fixture.id,
     input: fixture.host,
     phases: {
       profile: {
         points: [
-          `input mode: ${fixture.input_mode}`,
-          `capability: ${fixture.host.gap}`,
+          `input: ${fixture.input_mode}`,
+          `gap: ${fixture.host.gap}`,
         ],
         output: { base: "inspected", selected: "pending", rejected: "pending", status: "structured" },
       },
       route: {
         points: [
-          fixture.summary,
           selected.length ? `selected: ${selected.join(", ")}` : "selected: none",
+          `rejected: ${rejected.length} candidates`,
         ],
         output: {
           base: fixture.host.base,
           selected: selected.join(", ") || "none",
-          rejected: `${rejected.length} candidates`,
+          rejected: `${rejected.length} rejected`,
           status: "routed",
         },
       },
@@ -95,7 +90,7 @@ function createScenario(fixture) {
         output: {
           base: fixture.host.base,
           selected: selected.join(", ") || "none",
-          rejected: `${rejected.length} candidates`,
+          rejected: `${rejected.length} rejected`,
           status: auditStatus,
         },
       },
@@ -104,7 +99,7 @@ function createScenario(fixture) {
 }
 
 const scenarioContent = Object.fromEntries(fixtures.map((fixture) => [fixture.id, createScenario(fixture)]));
-const consoleElement = document.querySelector(".console");
+const workbench = document.querySelector(".workbench");
 const phaseButtons = [...document.querySelectorAll("[data-phase-button]")];
 const scenarioButtons = [...document.querySelectorAll("[data-scenario-button]")];
 const playControl = document.querySelector("[data-play-control]");
@@ -112,10 +107,10 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const fields = {
   runState: document.querySelector("[data-run-state]"),
   runId: document.querySelector("[data-run-id]"),
-  playIcon: document.querySelector("[data-play-icon]"),
+  playIcon: document.querySelector("[data-play-icon] path"),
   playLabel: document.querySelector("[data-play-label]"),
   progress: document.querySelector("[data-progress]"),
-  engineLabel: document.querySelector("[data-engine-label]"),
+  signal: document.querySelector("[data-signal]"),
   code: document.querySelector("[data-phase-code]"),
   title: document.querySelector("[data-phase-title]"),
   copy: document.querySelector("[data-phase-copy]"),
@@ -128,7 +123,6 @@ const fields = {
   selected: document.querySelector("[data-output-selected]"),
   rejected: document.querySelector("[data-output-rejected]"),
   status: document.querySelector("[data-output-status]"),
-  previewLabel: document.querySelector("[data-preview-label]"),
 };
 
 let activePhaseIndex = 0;
@@ -140,13 +134,13 @@ function renderPhase(phase) {
   const phaseData = phaseContent[phase];
   const scenarioPhase = scenarioContent[activeScenario].phases[phase];
   activePhaseIndex = phaseOrder.indexOf(phase);
-  consoleElement.dataset.phase = phase;
-  consoleElement.dataset.phaseIndex = String(activePhaseIndex);
+  workbench.dataset.phase = phase;
+  workbench.dataset.phaseIndex = String(activePhaseIndex);
   fields.code.textContent = phaseData.code;
-  fields.engineLabel.textContent = phaseData.label;
   fields.title.textContent = phaseData.title;
   fields.copy.textContent = phaseData.copy;
   fields.progress.style.width = `${phaseData.progress}%`;
+  fields.signal.style.left = `${phaseData.progress}%`;
   fields.list.replaceChildren(...scenarioPhase.points.map((point) => {
     const item = document.createElement("li");
     item.textContent = point;
@@ -161,9 +155,8 @@ function renderPhase(phase) {
 function renderScenario(scenario) {
   const content = scenarioContent[scenario];
   activeScenario = scenario;
-  consoleElement.dataset.scenario = scenario;
+  workbench.dataset.scenario = scenario;
   fields.runId.textContent = content.runId;
-  fields.previewLabel.textContent = content.preview;
   for (const [key, value] of Object.entries(content.input)) {
     fields[`input${key[0].toUpperCase()}${key.slice(1)}`].textContent = value;
   }
@@ -175,8 +168,8 @@ function renderScenario(scenario) {
 
 function updatePlayback() {
   fields.runState.textContent = paused ? "paused" : "running";
-  fields.playIcon.textContent = paused ? "▶" : "Ⅱ";
-  fields.playLabel.textContent = paused ? "run" : "pause";
+  fields.playIcon.setAttribute("d", paused ? "M4.5 3.25 12.25 8 4.5 12.75Z" : "M5 3.5v9M11 3.5v9");
+  fields.playLabel.textContent = paused ? "Run" : "Pause";
   playControl.setAttribute("aria-pressed", String(paused));
   playControl.setAttribute("aria-label", paused ? "Run automatic policy trace" : "Pause automatic policy trace");
 }

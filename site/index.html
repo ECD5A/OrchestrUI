@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#07101d">
-    <meta name="description" content="A compact interactive trace of real OrchestrUI routing fixtures, policy evidence, role ownership, and honest audit gates.">
+    <meta name="theme-color" content="#080912">
+    <meta name="description" content="A compact interactive OrchestrUI trace: inspect a host, route the smallest stack, harmonize ownership, and audit evidence.">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta property="og:title" content="OrchestrUI — policy trace">
-    <meta property="og:description" content="Run structured project fixtures through deterministic UI policy, ownership, conflict resolution, and audit gates.">
+    <meta property="og:title" content="OrchestrUI — orchestration trace">
+    <meta property="og:description" content="Inspect → Route → Harmonize → Audit. A deterministic UI policy trace built from committed fixtures.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ecd5a.github.io/OrchestrUI/">
     <meta property="og:image" content="https://ecd5a.github.io/OrchestrUI/assets/social-preview.png">
@@ -15,118 +15,112 @@
     <link rel="canonical" href="https://ecd5a.github.io/OrchestrUI/">
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
-    <title>OrchestrUI — policy trace</title>
+    <title>OrchestrUI — orchestration trace</title>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to demo</a>
+    <a class="skip-link" href="#main">Skip to trace</a>
+    <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
 
-    <div class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="https://github.com/ECD5A/OrchestrUI" aria-label="OrchestrUI repository">
-          <svg viewBox="0 0 36 36" aria-hidden="true">
-            <circle cx="16" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="3"/>
-            <path d="M3 7l7 7M3 18h3M3 29l7-7M26 18h7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="m12 18 3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span>OrchestrUI</span>
-        </a>
-        <span class="topbar-label">policy trace</span>
-        <a class="source-link" href="https://github.com/ECD5A/OrchestrUI">source <span aria-hidden="true">↗</span></a>
-      </header>
-
-      <main id="main">
-        <section class="demo" aria-labelledby="demo-title">
-          <div class="demo-heading">
-            <div>
-              <p class="overline">DETERMINISTIC UI POLICY</p>
-              <h1 id="demo-title">Structured routing trace</h1>
-            </div>
-            <p>Real fixtures → policy rules → role ownership → honest audit</p>
+    <main id="main">
+      <section class="trace" aria-labelledby="trace-title">
+        <header class="topbar">
+          <a class="brand" href="https://github.com/ECD5A/OrchestrUI" aria-label="Open the OrchestrUI repository">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <circle cx="16" cy="16" r="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".55"/>
+              <circle cx="16" cy="16" r="5.2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="16" cy="16" r="1.5" fill="currentColor"/>
+            </svg>
+            <span>OrchestrUI</span>
+          </a>
+          <div class="topbar-badges" aria-label="Project capabilities">
+            <span><i aria-hidden="true"></i>Read-only MCP</span>
+            <span>Agent skills</span>
           </div>
+        </header>
 
-          <div class="scenario-picker" role="group" aria-label="Demo scenario">
-            <span>SCENARIO</span>
+        <div class="trace-head">
+          <div>
+            <p class="eyebrow">LIVE POLICY TRACE</p>
+            <h1 id="trace-title">One system. Clear ownership.</h1>
+          </div>
+          <div class="scenario-picker" role="group" aria-label="Project fixture">
             <button type="button" data-scenario-button="next-shadcn-dashboard" aria-pressed="true">Next.js dashboard</button>
             <button type="button" data-scenario-button="daisy-admin" aria-pressed="false">daisyUI admin</button>
-            <button type="button" data-scenario-button="marketing-landing" aria-pressed="false">Marketing landing</button>
+            <button type="button" data-scenario-button="marketing-landing" aria-pressed="false">Marketing</button>
+          </div>
+        </div>
+
+        <div class="workbench" data-phase="profile" data-phase-index="0" data-scenario="next-shadcn-dashboard">
+          <div class="workbench-bar">
+            <span class="run-state"><i aria-hidden="true"></i><span data-run-state>running</span></span>
+            <span class="run-id"><span data-run-id>NEXT-SHADCN-DASHBOARD</span> / STRUCTURED</span>
+            <button class="play-control" type="button" data-play-control aria-label="Pause automatic policy trace" aria-pressed="false">
+              <svg data-play-icon viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9M11 3.5v9"/></svg>
+              <span data-play-label>Pause</span>
+            </button>
           </div>
 
-          <div class="console" data-phase="profile" data-phase-index="0" data-scenario="next-shadcn-dashboard">
-            <div class="console-bar">
-              <span class="run-state"><i aria-hidden="true"></i><span data-run-state>running</span></span>
-              <span class="run-id">FIXTURE / <span data-run-id>NEXT-SHADCN-DASHBOARD</span></span>
-              <button class="pause-control" type="button" data-play-control aria-label="Pause automatic policy trace" aria-pressed="false">
-                <span data-play-icon aria-hidden="true">Ⅱ</span>
-                <span data-play-label>pause</span>
-              </button>
-            </div>
-
-            <ol class="steps" aria-label="Orchestration phases">
-              <li><button type="button" data-phase-button="profile" aria-pressed="true"><span>01</span>Profile</button></li>
-              <li><button type="button" data-phase-button="route" aria-pressed="false"><span>02</span>Route</button></li>
-              <li><button type="button" data-phase-button="ownership" aria-pressed="false"><span>03</span>Evidence</button></li>
-              <li><button type="button" data-phase-button="audit" aria-pressed="false"><span>04</span>Audit</button></li>
+          <div class="pipeline-wrap">
+            <div class="pipeline-line" aria-hidden="true"><span data-progress></span><i data-signal></i></div>
+            <ol class="pipeline" aria-label="Orchestration phases">
+              <li><button type="button" data-phase-button="profile" aria-pressed="true"><i>01</i><span>Inspect</span><small>Host evidence</small></button></li>
+              <li><button type="button" data-phase-button="route" aria-pressed="false"><i>02</i><span>Route</span><small>Smallest stack</small></button></li>
+              <li><button type="button" data-phase-button="ownership" aria-pressed="false"><i>03</i><span>Harmonize</span><small>Role owners</small></button></li>
+              <li><button type="button" data-phase-button="audit" aria-pressed="false"><i>04</i><span>Audit</span><small>Verified gates</small></button></li>
             </ol>
-
-            <div class="progress-track" aria-hidden="true"><span data-progress></span></div>
-
-            <div class="stage-grid">
-              <article class="data-card input-card">
-                <p class="card-label">HOST INPUT</p>
-                <dl>
-                  <div><dt>framework</dt><dd data-input-framework>Next.js 15</dd></div>
-                  <div><dt>base</dt><dd data-input-base>shadcn/ui</dd></div>
-                  <div><dt>tokens</dt><dd data-input-tokens>CSS variables, shadcn semantic colors</dd></div>
-                  <div><dt>capability gap</dt><dd data-input-gap>data-visualization</dd></div>
-                </dl>
-              </article>
-
-              <div class="processor" aria-live="polite" aria-atomic="true">
-                <div class="engine" aria-hidden="true">
-                  <span class="engine-orbit orbit-one"></span>
-                  <span class="engine-orbit orbit-two"></span>
-                  <span class="engine-pulse pulse-one"></span>
-                  <span class="engine-pulse pulse-two"></span>
-                  <svg viewBox="0 0 36 36">
-                    <circle cx="16" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="3"/>
-                    <path d="M3 7l7 7M3 18h3M3 29l7-7M26 18h7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                    <path d="m12 18 3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <strong data-engine-label>PROFILE</strong>
-                </div>
-                <p class="phase-code" data-phase-code>01 / PROFILE</p>
-                <h2 data-phase-title>Normalize the inspected host.</h2>
-                <p data-phase-copy>Use explicit HostProfile and TaskProfile fields instead of guessing the stack from prompt keywords.</p>
-                <ul data-phase-list>
-                  <li>input mode: structured-profiles</li>
-                  <li>capability: data-visualization</li>
-                </ul>
-              </div>
-
-              <article class="data-card output-card">
-                <p class="card-label">PLAN OUTPUT</p>
-                <dl>
-                  <div><dt>base owner</dt><dd data-output-base>pending</dd></div>
-                  <div><dt>selected</dt><dd data-output-selected>pending</dd></div>
-                  <div><dt>rejected</dt><dd data-output-rejected>pending</dd></div>
-                  <div><dt>status</dt><dd class="status-value" data-output-status>structured</dd></div>
-                </dl>
-                <div class="result-preview" aria-hidden="true">
-                  <div class="preview-toolbar"><i></i><i></i><i></i><span data-preview-label>next-shadcn-dashboard</span></div>
-                  <div class="preview-canvas">
-                    <span></span><span></span><span></span><span></span><span></span>
-                  </div>
-                </div>
-              </article>
-            </div>
           </div>
 
-          <footer class="demo-footer">
-            <span>50 / 50 benchmark</span><span>generated from result.json</span><span>pending never scores</span>
-          </footer>
-        </section>
-      </main>
-    </div>
+          <div class="stage">
+            <article class="terminal input-terminal">
+              <div class="terminal-title"><span>Input</span><i aria-hidden="true"></i></div>
+              <dl>
+                <div><dt>framework</dt><dd data-input-framework>Next.js 15</dd></div>
+                <div><dt>base owner</dt><dd data-input-base>shadcn/ui</dd></div>
+                <div><dt>tokens</dt><dd data-input-tokens>CSS variables</dd></div>
+                <div><dt>capability gap</dt><dd data-input-gap>data-visualization</dd></div>
+              </dl>
+            </article>
+
+            <div class="core" aria-live="polite" aria-atomic="true">
+              <div class="core-mark" aria-hidden="true">
+                <span class="orbit orbit-a"></span>
+                <span class="orbit orbit-b"></span>
+                <span class="core-glow"></span>
+                <svg viewBox="0 0 32 32">
+                  <circle cx="16" cy="16" r="9" fill="none" stroke="currentColor" stroke-width="1.25" opacity=".55"/>
+                  <circle cx="16" cy="16" r="4.2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="16" cy="16" r="1.4" fill="currentColor"/>
+                </svg>
+              </div>
+              <p class="phase-code" data-phase-code>01 / INSPECT</p>
+              <h2 data-phase-title>Read the host before choosing.</h2>
+              <p data-phase-copy>Normalize explicit project evidence instead of guessing from prompt keywords.</p>
+              <ul data-phase-list>
+                <li>input mode: structured-profiles</li>
+                <li>capability: data-visualization</li>
+              </ul>
+            </div>
+
+            <article class="terminal output-terminal">
+              <div class="terminal-title"><span>Decision</span><i aria-hidden="true"></i></div>
+              <dl>
+                <div><dt>base owner</dt><dd data-output-base>inspected</dd></div>
+                <div><dt>specialist</dt><dd data-output-selected>pending</dd></div>
+                <div><dt>evidence</dt><dd data-output-rejected>pending</dd></div>
+                <div><dt>state</dt><dd class="status-value" data-output-status>structured</dd></div>
+              </dl>
+            </article>
+          </div>
+        </div>
+
+        <footer class="trace-footer">
+          <div class="principles" aria-label="Core principles">
+            <span>one owner per role</span><span>public upstream only</span><span>no install execution</span>
+          </div>
+          <p>Inspect <i>→</i> Route <i>→</i> Harmonize <i>→</i> Audit</p>
+        </footer>
+      </section>
+    </main>
 
     <script src="fixtures.js"></script>
     <script src="app.js" defer></script>
