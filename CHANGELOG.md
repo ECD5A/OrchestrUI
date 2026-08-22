@@ -14,6 +14,7 @@
 - Recommendations expose ranked candidates, factor scores and evidence instead of only the winning ecosystem.
 - Project fixtures and policy documentation now exercise and explain candidate ranking.
 - The npm package ships runtime and brand essentials without bundling heavyweight promotional renders.
+- The npm executable path is normalized for current npm clients and verified against the built MCP entrypoint.
 
 ## [0.2.1] - 2026-08-22
 
