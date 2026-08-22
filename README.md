@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <img src="assets/readme-demo.gif" alt="Animated OrchestrUI trace: inspect a structured Next.js host, route the smallest UI stack, harmonize role ownership, and audit verified evidence" width="960">
+  <img src=".github/assets/orchestrui-readme-pro.gif" alt="Animated OrchestrUI trace: inspect a structured host, route the smallest UI stack, harmonize role ownership, and audit verified evidence" width="1100">
 
   <p><strong>Deterministic UI policy and quality gates for coding agents.</strong></p>
 

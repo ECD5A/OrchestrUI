@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <img src="assets/readme-demo.gif" alt="Анимированная трассировка OrchestrUI: анализ структурированного Next.js-проекта, выбор минимального UI-стека, согласование владельцев ролей и аудит подтверждённых проверок" width="960">
+  <img src=".github/assets/orchestrui-readme-pro.gif" alt="Анимированная трассировка OrchestrUI: анализ структурированного проекта, выбор минимального UI-стека, согласование владельцев ролей и аудит подтверждённых проверок" width="1100">
 
   <p><strong>Детерминированные UI-политики и quality gates для coding agents.</strong></p>
 

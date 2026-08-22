@@ -8,6 +8,7 @@ OrchestrUI uses a restrained visual system: inspect the host, make one scoped UI
 - `logo.svg` — horizontal project lockup.
 - `readme-demo.gif` — generated 960×540 standards-compatible animated README walkthrough, kept below a 400 KB repository budget.
 - `readme-demo.png` — static final frame for documentation and fallback use.
+- `.github/assets/orchestrui-readme-pro.gif` — authored 1100×619 README hero kept outside the published npm package.
 - `social-preview.svg` — editable 1280×640 artwork for the GitHub social preview.
 - `social-preview.png` — generated upload-ready rendering of the same artwork.
 
