@@ -6,7 +6,9 @@ OrchestrUI uses a restrained routing system: seven input paths converge through 
 
 - `icon.svg` — square application/favicon mark.
 - `logo.svg` — horizontal project lockup.
-- `social-preview.svg` — editable 1280×640 artwork shared by the repository README and GitHub social preview.
+- `readme-demo.gif` — generated 960×480 animated README walkthrough of one routing decision.
+- `readme-demo.png` — static reduced-motion frame of the README walkthrough.
+- `social-preview.svg` — editable 1280×640 artwork for the GitHub social preview.
 - `social-preview.png` — generated upload-ready rendering of the same artwork.
 
 ## Visual system
@@ -21,8 +23,14 @@ OrchestrUI uses a restrained routing system: seven input paths converge through 
 
 Typography uses a system sans-serif stack so the SVGs remain self-contained. Keep generous negative space, crisp routing geometry and limited color. Do not add generic robot/brain imagery, stock assets, upstream logos or claims of partnership.
 
-Regenerate the PNG locally after editing the SVG source:
+Regenerate the static social preview after editing the SVG source:
 
 ```bash
 npm run render:brand
+```
+
+Regenerate the animated README walkthrough:
+
+```bash
+npm run render:demo
 ```
