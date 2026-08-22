@@ -18,7 +18,7 @@
 ## [0.2.1] - 2026-08-22
 
 ### Fixed
-- Corrected the case-sensitive MCP Registry namespace to `io.github.ECD5A/orchestrui`.
+- Aligned the case-sensitive MCP Registry namespace with `io.github.ECD5A/orchestrui`.
 
 ## [0.2.0] - 2026-08-22
 

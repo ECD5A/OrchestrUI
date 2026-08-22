@@ -6,7 +6,7 @@ GitHub is canonical. Local source, npm, the MCP Registry and the OpenAI plugin d
 
 1. Re-verify [`SOURCES.md`](SOURCES.md) and update both catalog verification dates.
 2. Set one exact semantic version in `package.json`, `.codex-plugin/plugin.json`, `server.json` and MCP server metadata.
-3. Regenerate brand PNGs with `npm run render:brand`, the README animation with `npm run render:demo`, and fixture-backed Pages data with `npm run site:data:write`; confirm the working tree contains only expected changes.
+3. Regenerate fixture-backed Pages data with `npm run site:data:write`. Run `npm run render:brand` or `npm run render:demo` only when the corresponding visual source intentionally changed; confirm the working tree contains only expected changes.
 4. Run `npm ci`, `npm run check`, `npm run check:links`, `ORCHESTRUI_LIVE_TESTS=1 npm test`, `npm audit`, `npm audit --omit=dev` and `npm run pack:check`.
 5. Inspect the shared `assets/social-preview.png` README/social artwork at its native dimensions.
 6. Inspect the tarball file list for secrets, Pro content, vendored collections and missing legal files.
@@ -36,15 +36,16 @@ The following commands are intentionally documented, not automated. Run them onl
 The immutable `v0.1.0` tag is already public. Never move or overwrite an existing release tag. Prepare every later release on a branch, merge it through the protected `main` workflow, and tag the exact tested merge commit.
 
 ```bash
-git switch -c release/v0.1.1
-npm version 0.1.1 --no-git-tag-version
+release_version=x.y.z
+git switch -c "release/v${release_version}"
+npm version "${release_version}" --no-git-tag-version
 git add --all
-git commit -m "chore: prepare OrchestrUI v0.1.1"
-git push -u origin release/v0.1.1
+git commit -m "chore: prepare OrchestrUI v${release_version}"
+git push -u origin "release/v${release_version}"
 # Merge the reviewed pull request and return to the tested main branch.
-git tag -a v0.1.1 -m "OrchestrUI v0.1.1"
-git push origin v0.1.1
-gh release create v0.1.1 --title "OrchestrUI v0.1.1" --generate-notes
+git tag -a "v${release_version}" -m "OrchestrUI v${release_version}"
+git push origin "v${release_version}"
+gh release create "v${release_version}" --title "OrchestrUI v${release_version}" --notes-file "docs/RELEASE_NOTES_${release_version}.md"
 npm publish --access public
 mcp-publisher validate
 mcp-publisher login github

@@ -26,4 +26,24 @@ OrchestrUI now explains not only which UI ecosystem wins, but how every admissib
 - Paid, Pro, authenticated and credentialed upstream content remains excluded.
 - Rive runtime licensing remains separate from rights to individual `.riv` assets.
 
-See the [README](../README.md), [routing guide](ROUTING.md), [MCP specification](MCP_SPEC.md), [security model](SECURITY_MODEL.md) and [publishing guide](PUBLISHING.md).
+Documentation: [README](https://github.com/ECD5A/OrchestrUI/tree/v0.3.0#readme) · [Routing](https://github.com/ECD5A/OrchestrUI/blob/v0.3.0/docs/ROUTING.md) · [MCP specification](https://github.com/ECD5A/OrchestrUI/blob/v0.3.0/docs/MCP_SPEC.md)
+
+## Support
+
+If OrchestrUI helps your work, you can support its ongoing maintenance:
+
+* TON: `pointoncurve.ton`
+* Bitcoin (BTC): `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN`
+* USDT (TRC20): `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75`
+
+## Contact
+
+For questions about OrchestrUI, integration, consulting, or collaboration:
+
+<p>
+  <a href="mailto:stelmak159@gmail.com" aria-label="Email"><img alt="Email" height="24" src="https://cdn.simpleicons.org/gmail/EA4335"></a>
+  &nbsp;
+  <a href="https://t.me/ECDS4" aria-label="Telegram"><img alt="Telegram" height="24" src="https://cdn.simpleicons.org/telegram/26A5E4"></a>
+  &nbsp;
+  <a href="https://github.com/ECD5A/OrchestrUI" aria-label="GitHub repository"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/FFFFFF"><img alt="GitHub repository" height="24" src="https://cdn.simpleicons.org/github/181717"></picture></a>
+</p>

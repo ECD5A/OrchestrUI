@@ -26,7 +26,7 @@ OrchestrUI is an agent-facing UI orchestration layer that helps coding agents ch
 - Git for repository installation.
 - Network access only when live public registry lookup is explicitly requested.
 
-See the [README](../README.md), [setup guide](SETUP.md), [security model](SECURITY_MODEL.md) and [publishing guide](PUBLISHING.md) for details.
+Documentation: [README](https://github.com/ECD5A/OrchestrUI/tree/v0.1.0#readme) · [Setup](https://github.com/ECD5A/OrchestrUI/blob/v0.1.0/docs/SETUP.md) · [Security model](https://github.com/ECD5A/OrchestrUI/blob/v0.1.0/docs/SECURITY_MODEL.md)
 
 ## Support
 

@@ -28,7 +28,7 @@ OrchestrUI is a deterministic UI policy, discovery and quality layer for coding 
 - Git for repository installation.
 - Network access only for explicitly requested live public-registry lookup.
 
-See the [README](../README.md), [setup guide](SETUP.md), [routing guide](ROUTING.md), [security model](SECURITY_MODEL.md) and [publishing guide](PUBLISHING.md).
+Documentation: [README](https://github.com/ECD5A/OrchestrUI/tree/v0.2.0#readme) · [Routing](https://github.com/ECD5A/OrchestrUI/blob/v0.2.0/docs/ROUTING.md) · [MCP specification](https://github.com/ECD5A/OrchestrUI/blob/v0.2.0/docs/MCP_SPEC.md)
 
 ## Support
 
