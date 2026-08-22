@@ -257,7 +257,7 @@ if (!/^\^?2\./.test(packageManifest.dependencies?.["@modelcontextprotocol/server
 }
 
 for (const file of [
-  "README.md", "README.ru.md", "LICENSE", "PRIVACY.md", "TERMS.md", "SECURITY.md", "CONTRIBUTING.md",
+  "README.md", "README_RU.md", "LICENSE", "PRIVACY.md", "TERMS.md", "SECURITY.md", "CONTRIBUTING.md",
   "CODE_OF_CONDUCT.md", "SUPPORT.md", "GOVERNANCE.md", "ROADMAP.md", "CHANGELOG.md",
   "THIRD_PARTY.md", "TRADEMARKS.md", ".github/CODEOWNERS", ".github/assets/orchestrui-readme-pro.gif", "package-lock.json", "server.json",
   "benchmark/routing-benchmark.json", "benchmark/run.mjs", "benchmark/adversarial-golden-cases.json",
@@ -283,7 +283,7 @@ if (!releaseConfig.includes('- "*"') || !releaseConfig.includes("skip-changelog"
 }
 
 const expectedPackageFiles = [
-  "assets/", "benchmark/", "catalog/", "docs/", ".agents/skills/", "skills/", "README.ru.md", "TRADEMARKS.md",
+  "assets/icon.svg", "assets/logo.svg", "benchmark/", "catalog/", "docs/", ".agents/skills/", "skills/", "README_RU.md", "TRADEMARKS.md",
 ];
 for (const entry of expectedPackageFiles) {
   if (!packageManifest.files?.includes(entry)) fail(`npm package files must include ${entry}`);
@@ -320,7 +320,7 @@ for (const file of ["assets/icon.svg", "assets/logo.svg", "assets/social-preview
 }
 
 const readme = fs.readFileSync("README.md", "utf8").replaceAll("\r\n", "\n");
-const readmeRu = fs.readFileSync("README.ru.md", "utf8").replaceAll("\r\n", "\n");
+const readmeRu = fs.readFileSync("README_RU.md", "utf8").replaceAll("\r\n", "\n");
 if (!readme.includes('src=".github/assets/orchestrui-readme-pro.gif"') || !readmeRu.includes('src=".github/assets/orchestrui-readme-pro.gif"')
   || readme.includes("readme-hero") || readmeRu.includes("readme-hero")) {
   fail("Both READMEs must use the shared professional animated walkthrough");
@@ -334,11 +334,11 @@ for (const address of [
     fail(`English or Russian README is missing support address ${address}`);
   }
 }
-if (!readme.startsWith('<p align="right">\n  <a href="README.ru.md">Русская версия</a>\n</p>')) {
+if (!readme.startsWith('<p align="right">\n  <a href="README_RU.md">Русская версия</a>\n</p>')) {
   fail("README.md must begin with the restrained Russian language link");
 }
 if (!readmeRu.startsWith('<p align="right">\n  <a href="README.md">English version</a>\n</p>')) {
-  fail("README.ru.md must begin with the restrained English language link");
+  fail("README_RU.md must begin with the restrained English language link");
 }
 if (fs.existsSync(".github/FUNDING.yml") || fs.existsSync(".github/FUNDING.yaml")) {
   fail("Direct support must not be duplicated through GitHub FUNDING metadata");
