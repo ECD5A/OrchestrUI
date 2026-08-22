@@ -2,21 +2,30 @@
 
 Use this checklist immediately before making `ECD5A/OrchestrUI` public. Repository settings remain maintainer-controlled external changes.
 
-- [ ] Description: `Agent-native UI orchestration that routes seven frontend ecosystems into one coherent interface.`
-- [ ] Homepage: `https://ecd5a.github.io/OrchestrUI/`
+- [x] Description: `Deterministic UI policy, discovery and quality gates for coding agents.`
+- [x] Homepage: `https://ecd5a.github.io/OrchestrUI/`
 - [ ] Public repository with `main` as the default branch
-- [ ] Issues and Discussions enabled
+- [x] Issues and Discussions enabled
 - [ ] Ruleset/branch protection enabled; require the CI workflow when practical and disable force-pushes/deletion
 - [ ] Social preview uploaded from `assets/social-preview.png` (1280 × 640)
-- [ ] Topics added: `ui`, `frontend`, `coding-agents`, `codex`, `mcp`, `agent-skills`, `design-system`, `react`, `shadcn`, `open-source`
+- [x] Topics added for UI, frontend, coding agents, MCP, TypeScript, design systems and code quality
 - [ ] Private Vulnerability Reporting enabled
-- [ ] Dependabot alerts/security updates enabled
+- [x] Dependabot alerts and automated security updates enabled
 - [ ] Secret scanning/push protection where available
-- [ ] CodeQL default setup where appropriate
+- [ ] CodeQL default setup enabled for JavaScript/TypeScript after the repository becomes public
 - [ ] Confirm README/LICENSE/CONTRIBUTING/CODE_OF_CONDUCT/SECURITY detection
-- [ ] Create labels: `bug`, `feature`, `documentation`, `design`, `integration`, `mcp`, `agent-skill`, `security`, `good first issue`, `help wanted`
-- [ ] Create a `0.1` milestone if issue planning is needed
-- [ ] Create the first release from tag `v0.1.0` using `docs/RELEASE_NOTES_0.1.0.md`
+- [x] Community and release labels created
+- [x] First release published from `v0.1.0`
+- [ ] Publish `v0.2.0` from the final tested public commit using `docs/RELEASE_NOTES_0.2.0.md`
+
+## Public launch order
+
+1. Merge the final release-preparation PR and confirm all CI jobs pass.
+2. Change repository visibility to public.
+3. Enable branch protection/rules, CodeQL default setup, Private Vulnerability Reporting and available secret-scanning protections.
+4. Trigger Pages and verify the canonical site.
+5. Run strict external-link checks without publication deferral.
+6. Tag the tested commit and publish `v0.2.0` with the committed release description.
 
 ## Name-availability snapshot
 

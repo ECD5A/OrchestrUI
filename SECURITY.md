@@ -6,7 +6,7 @@
 
 For the public repository, enable GitHub **Private Vulnerability Reporting** and use the repository Security page / **Report a vulnerability** flow.
 
-If private reporting is temporarily unavailable, open a non-sensitive issue asking for a private security contact **without disclosing exploit details, secrets, tokens or reproduction data**.
+If private reporting is unavailable, email `stelmak159@gmail.com` with the subject `[OrchestrUI Security]`. Do not disclose vulnerability details in a public Issue or Discussion.
 
 ## Useful reports
 
