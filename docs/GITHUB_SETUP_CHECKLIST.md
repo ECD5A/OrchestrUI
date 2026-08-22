@@ -16,7 +16,7 @@ Current public-repository state for `ECD5A/OrchestrUI`. Unchecked items still re
 - [x] Confirm README/LICENSE/CONTRIBUTING/CODE_OF_CONDUCT/SECURITY detection
 - [x] Community and release labels created
 - [x] First release published from `v0.1.0`
-- [x] Publish `v0.2.0` and the registry-corrected `v0.2.1` patch release from tested commits
+- [x] Publish `v0.2.0` and the registry-alignment `v0.2.1` patch release from tested commits
 
 ## Completed public launch
 

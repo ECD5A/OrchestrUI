@@ -66,6 +66,7 @@ export type HostProfile = {
   react_version?: string;
   tailwind_version?: string;
   package_manager?: PackageManager;
+  dependencies: Record<string, string>;
   design_system?: string;
   component_primitives: string[];
   motion_stack: string[];
@@ -101,11 +102,24 @@ export type CapabilityRoute = {
   }>;
 };
 
+export type CandidateProfile = {
+  dependency_cost: number;
+  bundle_cost: number;
+  package_names: string[];
+  overlap_groups: string[];
+  version_constraints?: Array<{
+    host_field: "framework_version" | "react_version" | "tailwind_version";
+    range: string;
+    reason: string;
+  }>;
+};
+
 export type RoutingPolicyCatalog = {
   schema_version: number;
   rules: Array<{ id: string; priority: number; text: string }>;
   roles: Record<string, RoutingRolePolicy>;
   capability_routes: Record<UiCapability, CapabilityRoute>;
+  candidate_profiles: Record<string, CandidateProfile>;
   host_conflicts: Array<{
     rule_id: string;
     candidate: string;

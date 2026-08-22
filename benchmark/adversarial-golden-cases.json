@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "description": "Adversarial expectations specified independently from the routing policy catalog.",
+  "provenance": {
+    "source": "maintainer-supplied independent review",
+    "policy_catalog_imported": false
+  },
+  "cases": [
+    {
+      "id": "A01-structured-beats-keyword-pressure",
+      "input": {
+        "task": "Add charts, landing motion, Rive, React Bits and every possible UI library.",
+        "hostProfile": {
+          "framework": "Next.js",
+          "framework_version": "15",
+          "react_version": "19",
+          "tailwind_version": "4",
+          "dependencies": { "next": "15", "react": "19", "tailwindcss": "4" },
+          "design_system": "shadcn/ui",
+          "component_primitives": ["Radix UI"],
+          "motion_stack": [],
+          "chart_stack": [],
+          "tokens": ["CSS variables"],
+          "accessibility_constraints": ["WCAG 2.2 AA"]
+        },
+        "taskProfile": {
+          "surface": "application",
+          "required_capabilities": ["forms-controls"],
+          "interaction_complexity": "medium",
+          "data_visualization": "none",
+          "motion_requirement": "none",
+          "rive_asset_rights": "not-applicable",
+          "constraints": []
+        }
+      },
+      "expected": {
+        "selected": [],
+        "rejected_rules": { "daisyui": "base-system-conflict" }
+      }
+    },
+    {
+      "id": "A02-installed-candidate-wins",
+      "input": {
+        "hostProfile": {
+          "framework": "React",
+          "dependencies": {},
+          "component_primitives": ["React Bits"],
+          "motion_stack": [],
+          "chart_stack": [],
+          "tokens": [],
+          "accessibility_constraints": ["prefers-reduced-motion"]
+        },
+        "taskProfile": {
+          "surface": "marketing",
+          "required_capabilities": ["marketing-motion"],
+          "interaction_complexity": "medium",
+          "data_visualization": "none",
+          "motion_requirement": "native",
+          "rive_asset_rights": "not-applicable",
+          "constraints": ["low bundle impact"]
+        }
+      },
+      "expected": {
+        "selected": ["react-bits"],
+        "existing": ["react-bits"],
+        "ranking_winners": { "marketing-motion": "react-bits" },
+        "rejected_rules": { "magic-ui": "candidate-ranking" }
+      }
+    },
+    {
+      "id": "A03-semver-is-a-hard-gate",
+      "input": {
+        "hostProfile": {
+          "framework": "React",
+          "tailwind_version": "3.4.0",
+          "dependencies": { "tailwindcss": "3.4.0" },
+          "component_primitives": [],
+          "motion_stack": [],
+          "chart_stack": [],
+          "tokens": [],
+          "accessibility_constraints": []
+        },
+        "taskProfile": {
+          "surface": "application",
+          "required_capabilities": ["forms-controls"],
+          "interaction_complexity": "medium",
+          "data_visualization": "none",
+          "motion_requirement": "none",
+          "rive_asset_rights": "not-applicable",
+          "constraints": []
+        }
+      },
+      "expected": {
+        "selected": [],
+        "rejected_rules": { "daisyui": "version-compatibility" }
+      }
+    },
+    {
+      "id": "A04-existing-chart-owner-is-preserved",
+      "input": {
+        "hostProfile": {
+          "framework": "Next.js",
+          "dependencies": { "recharts": "3.1.0" },
+          "design_system": "shadcn/ui",
+          "component_primitives": ["Radix UI"],
+          "motion_stack": [],
+          "chart_stack": ["Recharts"],
+          "tokens": ["CSS variables"],
+          "accessibility_constraints": []
+        },
+        "taskProfile": {
+          "surface": "application",
+          "required_capabilities": ["data-visualization"],
+          "interaction_complexity": "high",
+          "data_visualization": "advanced",
+          "motion_requirement": "native",
+          "rive_asset_rights": "not-applicable",
+          "constraints": []
+        }
+      },
+      "expected": {
+        "selected": [],
+        "owners": { "data-visualization": "host:recharts" },
+        "rejected_rules": { "bklit-ui": "base-system-conflict" }
+      }
+    },
+    {
+      "id": "A05-rive-rights-cannot-be-ranked-away",
+      "input": {
+        "hostProfile": {
+          "framework": "React",
+          "dependencies": {},
+          "component_primitives": [],
+          "motion_stack": [],
+          "chart_stack": [],
+          "tokens": [],
+          "accessibility_constraints": []
+        },
+        "taskProfile": {
+          "surface": "application",
+          "required_capabilities": ["interactive-vector"],
+          "interaction_complexity": "high",
+          "data_visualization": "none",
+          "motion_requirement": "interactive-vector",
+          "rive_asset_rights": "unconfirmed",
+          "constraints": []
+        }
+      },
+      "expected": {
+        "selected": [],
+        "rejected_rules": { "rive": "rive-purpose" }
+      }
+    },
+    {
+      "id": "A06-framework-gates-all-marketing-candidates",
+      "input": {
+        "hostProfile": {
+          "framework": "Vue",
+          "tailwind_version": "4",
+          "dependencies": { "vue": "3.5.0", "tailwindcss": "4" },
+          "component_primitives": [],
+          "motion_stack": [],
+          "chart_stack": [],
+          "tokens": ["CSS variables"],
+          "accessibility_constraints": []
+        },
+        "taskProfile": {
+          "surface": "marketing",
+          "required_capabilities": ["marketing-motion"],
+          "interaction_complexity": "medium",
+          "data_visualization": "none",
+          "motion_requirement": "native",
+          "rive_asset_rights": "not-applicable",
+          "constraints": []
+        }
+      },
+      "expected": {
+        "selected": [],
+        "rejected_rules": {
+          "magic-ui": "framework-compatibility",
+          "react-bits": "framework-compatibility"
+        }
+      }
+    },
+    {
+      "id": "A07-existing-base-satisfies-product-polish",
+      "input": {
+        "hostProfile": {
+          "framework": "React",
+          "tailwind_version": "4",
+          "dependencies": { "daisyui": "5", "tailwindcss": "4" },
+          "design_system": "daisyUI",
+          "component_primitives": ["daisyUI controls"],
+          "motion_stack": [],
+          "chart_stack": [],
+          "tokens": ["daisyUI themes"],
+          "accessibility_constraints": []
+        },
+        "taskProfile": {
+          "surface": "application",
+          "required_capabilities": ["product-polish"],
+          "interaction_complexity": "medium",
+          "data_visualization": "none",
+          "motion_requirement": "none",
+          "rive_asset_rights": "not-applicable",
+          "constraints": ["keep the existing base"]
+        }
+      },
+      "expected": {
+        "selected": ["daisyui"],
+        "existing": ["daisyui"],
+        "ranking_winners": { "product-polish": "daisyui" },
+        "rejected_rules": { "kokonut-ui": "candidate-ranking" }
+      }
+    },
+    {
+      "id": "A08-distinct-marketing-roles-remain-explicit",
+      "input": {
+        "hostProfile": {
+          "framework": "Next.js",
+          "tailwind_version": "4",
+          "dependencies": { "next": "15", "react": "19", "tailwindcss": "4" },
+          "design_system": "shadcn/ui",
+          "component_primitives": ["Radix UI"],
+          "motion_stack": [],
+          "chart_stack": [],
+          "tokens": ["CSS variables"],
+          "accessibility_constraints": ["prefers-reduced-motion"]
+        },
+        "taskProfile": {
+          "surface": "marketing",
+          "required_capabilities": ["marketing-motion", "signature-creative-effect"],
+          "interaction_complexity": "high",
+          "data_visualization": "none",
+          "motion_requirement": "native",
+          "rive_asset_rights": "not-applicable",
+          "constraints": ["one signature effect"]
+        }
+      },
+      "expected": {
+        "selected": ["magic-ui", "react-bits"],
+        "ranking_winners": {
+          "marketing-motion": "magic-ui",
+          "signature-creative-effect": "react-bits"
+        },
+        "owners": {
+          "marketing-enhancement": "magic-ui",
+          "signature-effect": "react-bits"
+        }
+      }
+    }
+  ]
+}

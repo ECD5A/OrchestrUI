@@ -257,7 +257,7 @@
     { "id": "S25", "host": "react-empty", "task": "rive-blocked", "expected_selected": [], "expected_rejected": ["rive"] },
 
     { "id": "S26", "host": "daisy-admin", "task": "forms", "expected_selected": ["daisyui"], "expected_existing": ["daisyui"] },
-    { "id": "S27", "host": "daisy-admin", "task": "polish", "expected_selected": [], "expected_rejected": ["kokonut-ui"] },
+    { "id": "S27", "host": "daisy-admin", "task": "polish", "expected_selected": ["daisyui"], "expected_existing": ["daisyui"], "expected_rejected": ["kokonut-ui"] },
     { "id": "S28", "host": "daisy-admin", "task": "forms-polish", "expected_selected": ["daisyui"], "expected_existing": ["daisyui"], "expected_rejected": ["kokonut-ui"] },
     { "id": "S29", "host": "daisy-admin", "task": "charts", "expected_selected": ["bklit-ui"] },
     { "id": "S30", "host": "daisy-admin", "task": "full-product", "expected_selected": ["daisyui", "bklit-ui"], "expected_existing": ["daisyui"], "expected_rejected": ["kokonut-ui"] },

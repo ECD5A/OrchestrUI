@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "fixture_id": "marketing-landing",
-  "policy_schema_version": 2,
-  "package_version": "0.2.1",
+  "policy_schema_version": 3,
+  "package_version": "0.3.0",
   "recommendation": {
     "input_mode": "structured-profiles",
     "summary": "Add 2 ecosystems; preserve every compatible host owner.",
@@ -13,6 +13,12 @@
         "react_version": "19",
         "tailwind_version": "4",
         "package_manager": "npm",
+        "dependencies": {
+          "next": "15",
+          "react": "19",
+          "@radix-ui/react-slot": "latest",
+          "tailwindcss": "4"
+        },
         "design_system": "shadcn/ui",
         "component_primitives": [
           "Radix UI"
@@ -48,25 +54,39 @@
       {
         "id": "magic-ui",
         "role": "marketing-enhancement",
+        "roles": [
+          "marketing-enhancement"
+        ],
         "capability": "marketing-motion",
+        "capabilities": [
+          "marketing-motion"
+        ],
         "reason": "Magic UI is the policy owner for marketing-enhancement because the task explicitly requires marketing-motion.",
         "retrieval_method": "shadcn-registry",
         "already_present": false,
         "evidence": [
           "TaskProfile.required_capabilities includes marketing-motion.",
-          "Policy route marketing-motion -> marketing-enhancement -> magic-ui."
+          "Policy route marketing-motion -> marketing-enhancement ranked magic-ui first among admissible candidates.",
+          "Candidate score 980; rank 1/2."
         ]
       },
       {
         "id": "react-bits",
         "role": "signature-effect",
+        "roles": [
+          "signature-effect"
+        ],
         "capability": "signature-creative-effect",
+        "capabilities": [
+          "signature-creative-effect"
+        ],
         "reason": "React Bits is the policy owner for signature-effect because the task explicitly requires signature-creative-effect.",
         "retrieval_method": "shadcn-registry",
         "already_present": false,
         "evidence": [
           "TaskProfile.required_capabilities includes signature-creative-effect.",
-          "Policy route signature-creative-effect -> signature-effect -> react-bits."
+          "Policy route signature-creative-effect -> signature-effect ranked react-bits first among admissible candidates.",
+          "Candidate score 950; rank 1/2."
         ]
       }
     ],
@@ -129,19 +149,187 @@
       {
         "outcome": "selected",
         "subject": "magic-ui",
-        "rule_id": "role-ownership",
+        "rule_id": "candidate-ranking",
         "evidence": [
           "TaskProfile.required_capabilities includes marketing-motion.",
-          "Policy route marketing-motion -> marketing-enhancement -> magic-ui."
+          "Policy route marketing-motion -> marketing-enhancement ranked magic-ui first among admissible candidates.",
+          "Candidate score 980; rank 1/2."
         ]
       },
       {
         "outcome": "selected",
         "subject": "react-bits",
-        "rule_id": "role-ownership",
+        "rule_id": "candidate-ranking",
         "evidence": [
           "TaskProfile.required_capabilities includes signature-creative-effect.",
-          "Policy route signature-creative-effect -> signature-effect -> react-bits."
+          "Policy route signature-creative-effect -> signature-effect ranked react-bits first among admissible candidates.",
+          "Candidate score 950; rank 1/2."
+        ]
+      }
+    ],
+    "candidate_rankings": [
+      {
+        "capability": "marketing-motion",
+        "role": "marketing-enhancement",
+        "candidate": "magic-ui",
+        "score": 980,
+        "rank": 1,
+        "eligible": true,
+        "outcome": "selected",
+        "factors": [
+          {
+            "id": "policy-order",
+            "score": 1000,
+            "evidence": "magic-ui is policy candidate 1 for marketing-motion."
+          },
+          {
+            "id": "installed-evidence",
+            "score": 0,
+            "evidence": "No installed candidate evidence was supplied."
+          },
+          {
+            "id": "current-plan-reuse",
+            "score": 0,
+            "evidence": "magic-ui is not yet in the current recommendation."
+          },
+          {
+            "id": "dependency-cost",
+            "score": -10,
+            "evidence": "Declared dependency cost is 1/5."
+          },
+          {
+            "id": "bundle-cost",
+            "score": -10,
+            "evidence": "Declared bundle cost is 2/5."
+          },
+          {
+            "id": "role-overlap",
+            "score": 0,
+            "evidence": "No selected overlap group is duplicated."
+          }
+        ]
+      },
+      {
+        "capability": "marketing-motion",
+        "role": "marketing-enhancement",
+        "candidate": "react-bits",
+        "score": 875,
+        "rank": 2,
+        "eligible": true,
+        "outcome": "lower-ranked",
+        "factors": [
+          {
+            "id": "policy-order",
+            "score": 900,
+            "evidence": "react-bits is policy candidate 2 for marketing-motion."
+          },
+          {
+            "id": "installed-evidence",
+            "score": 0,
+            "evidence": "No installed candidate evidence was supplied."
+          },
+          {
+            "id": "current-plan-reuse",
+            "score": 0,
+            "evidence": "react-bits is not yet in the current recommendation."
+          },
+          {
+            "id": "dependency-cost",
+            "score": -10,
+            "evidence": "Declared dependency cost is 1/5."
+          },
+          {
+            "id": "bundle-cost",
+            "score": -15,
+            "evidence": "Declared bundle cost is 3/5."
+          },
+          {
+            "id": "role-overlap",
+            "score": 0,
+            "evidence": "No selected overlap group is duplicated."
+          }
+        ]
+      },
+      {
+        "capability": "signature-creative-effect",
+        "role": "signature-effect",
+        "candidate": "react-bits",
+        "score": 950,
+        "rank": 1,
+        "eligible": true,
+        "outcome": "selected",
+        "factors": [
+          {
+            "id": "policy-order",
+            "score": 1000,
+            "evidence": "react-bits is policy candidate 1 for signature-creative-effect."
+          },
+          {
+            "id": "installed-evidence",
+            "score": 0,
+            "evidence": "No installed candidate evidence was supplied."
+          },
+          {
+            "id": "current-plan-reuse",
+            "score": 0,
+            "evidence": "react-bits is not yet in the current recommendation."
+          },
+          {
+            "id": "dependency-cost",
+            "score": -10,
+            "evidence": "Declared dependency cost is 1/5."
+          },
+          {
+            "id": "bundle-cost",
+            "score": -15,
+            "evidence": "Declared bundle cost is 3/5."
+          },
+          {
+            "id": "role-overlap",
+            "score": -25,
+            "evidence": "1 overlap group(s) are already represented."
+          }
+        ]
+      },
+      {
+        "capability": "signature-creative-effect",
+        "role": "signature-effect",
+        "candidate": "magic-ui",
+        "score": 845,
+        "rank": 2,
+        "eligible": true,
+        "outcome": "lower-ranked",
+        "factors": [
+          {
+            "id": "policy-order",
+            "score": 900,
+            "evidence": "magic-ui is policy candidate 2 for signature-creative-effect."
+          },
+          {
+            "id": "installed-evidence",
+            "score": 0,
+            "evidence": "No installed candidate evidence was supplied."
+          },
+          {
+            "id": "current-plan-reuse",
+            "score": 40,
+            "evidence": "magic-ui is already in the current recommendation."
+          },
+          {
+            "id": "dependency-cost",
+            "score": -10,
+            "evidence": "Declared dependency cost is 1/5."
+          },
+          {
+            "id": "bundle-cost",
+            "score": -10,
+            "evidence": "Declared bundle cost is 2/5."
+          },
+          {
+            "id": "role-overlap",
+            "score": -75,
+            "evidence": "3 overlap group(s) are already represented."
+          }
         ]
       }
     ],

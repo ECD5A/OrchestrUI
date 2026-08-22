@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "fixture_id": "next-shadcn-dashboard",
-  "policy_schema_version": 2,
-  "package_version": "0.2.1",
+  "policy_schema_version": 3,
+  "package_version": "0.3.0",
   "recommendation": {
     "input_mode": "structured-profiles",
     "summary": "Add 1 ecosystem; preserve every compatible host owner.",
@@ -13,6 +13,12 @@
         "react_version": "19",
         "tailwind_version": "4",
         "package_manager": "npm",
+        "dependencies": {
+          "next": "15",
+          "react": "19",
+          "@radix-ui/react-dialog": "latest",
+          "tailwindcss": "4"
+        },
         "design_system": "shadcn/ui",
         "component_primitives": [
           "Radix UI"
@@ -47,13 +53,20 @@
       {
         "id": "bklit-ui",
         "role": "data-visualization",
+        "roles": [
+          "data-visualization"
+        ],
         "capability": "data-visualization",
+        "capabilities": [
+          "data-visualization"
+        ],
         "reason": "Bklit UI is the policy owner for data-visualization because the task explicitly requires data-visualization.",
         "retrieval_method": "shadcn-registry",
         "already_present": false,
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
-          "Policy route data-visualization -> data-visualization -> bklit-ui."
+          "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
+          "Candidate score 980; rank 1/1."
         ]
       }
     ],
@@ -115,10 +128,54 @@
       {
         "outcome": "selected",
         "subject": "bklit-ui",
-        "rule_id": "role-ownership",
+        "rule_id": "candidate-ranking",
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
-          "Policy route data-visualization -> data-visualization -> bklit-ui."
+          "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
+          "Candidate score 980; rank 1/1."
+        ]
+      }
+    ],
+    "candidate_rankings": [
+      {
+        "capability": "data-visualization",
+        "role": "data-visualization",
+        "candidate": "bklit-ui",
+        "score": 980,
+        "rank": 1,
+        "eligible": true,
+        "outcome": "selected",
+        "factors": [
+          {
+            "id": "policy-order",
+            "score": 1000,
+            "evidence": "bklit-ui is policy candidate 1 for data-visualization."
+          },
+          {
+            "id": "installed-evidence",
+            "score": 0,
+            "evidence": "No installed candidate evidence was supplied."
+          },
+          {
+            "id": "current-plan-reuse",
+            "score": 0,
+            "evidence": "bklit-ui is not yet in the current recommendation."
+          },
+          {
+            "id": "dependency-cost",
+            "score": -10,
+            "evidence": "Declared dependency cost is 1/5."
+          },
+          {
+            "id": "bundle-cost",
+            "score": -10,
+            "evidence": "Declared bundle cost is 2/5."
+          },
+          {
+            "id": "role-overlap",
+            "score": 0,
+            "evidence": "No selected overlap group is duplicated."
+          }
         ]
       }
     ],

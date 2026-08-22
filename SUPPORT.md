@@ -1,5 +1,5 @@
 # Support
 
-Use Discussions for open-ended usage questions once enabled, and Issues for reproducible bugs or scoped feature requests. Do not use either for vulnerabilities; follow `SECURITY.md`.
+Use [Discussions](https://github.com/ECD5A/OrchestrUI/discussions) for open-ended usage questions and [Issues](https://github.com/ECD5A/OrchestrUI/issues) for reproducible bugs or scoped feature requests. For vulnerabilities, follow [`SECURITY.md`](SECURITY.md).
 
-Direct donations listed in README are optional and do not purchase priority, support obligations, ownership or additional licensing rights.
+Project support links are listed in the [README](README.md).

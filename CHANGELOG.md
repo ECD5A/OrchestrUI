@@ -2,10 +2,23 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-22
+
+### Added
+- Evidence-bearing multi-candidate ranking across compatibility, installed ownership, current-plan reuse, dependency cost, bundle cost and role overlap.
+- Bounded host-version constraints that act as hard compatibility gates.
+- Eight independently specified adversarial golden cases with a separate benchmark runner.
+
+### Changed
+- Structured `HostProfile` input now records installed dependency versions.
+- Recommendations expose ranked candidates, factor scores and evidence instead of only the winning ecosystem.
+- Project fixtures and policy documentation now exercise and explain candidate ranking.
+- The npm package ships runtime and brand essentials without bundling heavyweight promotional renders.
+
 ## [0.2.1] - 2026-08-22
 
 ### Fixed
-- Corrected the case-sensitive MCP Registry namespace to `io.github.ECD5A/orchestrui`.
+- Aligned the case-sensitive MCP Registry namespace with `io.github.ECD5A/orchestrui`.
 
 ## [0.2.0] - 2026-08-22
 

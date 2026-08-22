@@ -43,8 +43,8 @@
 
 ## 0.6 — Adoption proof
 - [ ] one rendered end-to-end frontend case study with captured before/after evidence
-- [ ] multi-candidate ranking by compatibility, installed ownership, dependency cost, overlap and semver constraints
-- [ ] independently authored adversarial golden cases alongside the internal policy benchmark
+- [x] multi-candidate ranking by compatibility, installed ownership, dependency cost, overlap and semver constraints
+- [x] independently authored adversarial golden cases alongside the internal policy benchmark
 - [ ] additional agent-host guides based on real adoption
 
 ## 1.0

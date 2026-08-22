@@ -28,15 +28,7 @@ OrchestrUI is a deterministic UI policy, discovery and quality layer for coding 
 - Git for repository installation.
 - Network access only for explicitly requested live public-registry lookup.
 
-See the [README](../README.md), [setup guide](SETUP.md), [routing guide](ROUTING.md), [security model](SECURITY_MODEL.md) and [publishing guide](PUBLISHING.md).
-
-## Support
-
-If OrchestrUI helps your work, you can support its ongoing maintenance:
-
-* TON: `pointoncurve.ton`
-* Bitcoin (BTC): `1ECDSA1b4d5TcZHtqNpcxmY8pBH1GgHntN`
-* USDT (TRC20): `TUF4vPdB6QkjCvZq18rBL4Qj4dK5ihCN75`
+Documentation: [README](https://github.com/ECD5A/OrchestrUI/tree/v0.2.0#readme) · [Routing](https://github.com/ECD5A/OrchestrUI/blob/v0.2.0/docs/ROUTING.md) · [MCP specification](https://github.com/ECD5A/OrchestrUI/blob/v0.2.0/docs/MCP_SPEC.md)
 
 ## Contact
 

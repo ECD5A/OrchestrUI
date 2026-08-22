@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "fixture_id": "daisy-admin",
-  "policy_schema_version": 2,
-  "package_version": "0.2.1",
+  "policy_schema_version": 3,
+  "package_version": "0.3.0",
   "recommendation": {
     "input_mode": "structured-profiles",
     "summary": "Preserve the existing host system without adding an OrchestrUI ecosystem.",
@@ -12,6 +12,11 @@
         "react_version": "19",
         "tailwind_version": "4",
         "package_manager": "pnpm",
+        "dependencies": {
+          "react": "19",
+          "daisyui": "5",
+          "tailwindcss": "4"
+        },
         "design_system": "daisyUI",
         "component_primitives": [
           "daisyUI form controls",
@@ -46,21 +51,33 @@
       {
         "id": "daisyui",
         "role": "base-system",
+        "roles": [
+          "base-system",
+          "product-polish"
+        ],
         "capability": "forms-controls",
-        "reason": "daisyUI already owns base-system; preserve it.",
+        "capabilities": [
+          "forms-controls",
+          "product-polish"
+        ],
+        "reason": "daisyUI is already present and can own base-system; preserve it.",
         "retrieval_method": "tailwind-plugin",
         "already_present": true,
         "evidence": [
           "TaskProfile.required_capabilities includes forms-controls.",
-          "HostProfile.design_system declares daisyUI."
+          "HostProfile.design_system declares daisyUI.",
+          "Candidate score 1150; rank 1/1.",
+          "TaskProfile.required_capabilities includes product-polish.",
+          "HostProfile already identifies daisyui in its UI stacks or primitives.",
+          "Candidate score 1040; rank 1/2."
         ]
       }
     ],
     "rejected": [
       {
         "id": "kokonut-ui",
-        "reason": "Kokonut is a shadcn-compatible layer and is not added on top of a daisyUI base without an isolation plan.",
-        "rule_id": "base-system-conflict"
+        "reason": "A higher-ranked admissible candidate owns product-polish.",
+        "rule_id": "candidate-ranking"
       },
       {
         "id": "react-bits",
@@ -94,6 +111,12 @@
         "owner": "daisyui",
         "source": "host-profile",
         "evidence": "HostProfile.design_system declares daisyUI."
+      },
+      {
+        "role": "product-polish",
+        "owner": "daisyui",
+        "source": "host-profile",
+        "evidence": "HostProfile already identifies daisyui in its UI stacks or primitives."
       }
     ],
     "decisions": [
@@ -111,15 +134,161 @@
         "rule_id": "existing-stack-first",
         "evidence": [
           "TaskProfile.required_capabilities includes forms-controls.",
-          "HostProfile.design_system declares daisyUI."
+          "HostProfile.design_system declares daisyUI.",
+          "Candidate score 1150; rank 1/1."
         ]
       },
       {
-        "outcome": "rejected",
-        "subject": "kokonut-ui",
-        "rule_id": "base-system-conflict",
+        "outcome": "preserved",
+        "subject": "daisyui",
+        "rule_id": "existing-stack-first",
         "evidence": [
-          "Kokonut is a shadcn-compatible layer and is not added on top of a daisyUI base without an isolation plan."
+          "TaskProfile.required_capabilities includes forms-controls.",
+          "HostProfile.design_system declares daisyUI.",
+          "Candidate score 1150; rank 1/1.",
+          "TaskProfile.required_capabilities includes product-polish.",
+          "HostProfile already identifies daisyui in its UI stacks or primitives.",
+          "Candidate score 1040; rank 1/2."
+        ]
+      }
+    ],
+    "candidate_rankings": [
+      {
+        "capability": "forms-controls",
+        "role": "base-system",
+        "candidate": "daisyui",
+        "score": 1150,
+        "rank": 1,
+        "eligible": true,
+        "outcome": "selected",
+        "factors": [
+          {
+            "id": "policy-order",
+            "score": 1000,
+            "evidence": "daisyui is policy candidate 1 for forms-controls."
+          },
+          {
+            "id": "installed-evidence",
+            "score": 180,
+            "evidence": "HostProfile already identifies daisyui in its UI stacks or primitives."
+          },
+          {
+            "id": "current-plan-reuse",
+            "score": 0,
+            "evidence": "daisyui is not yet in the current recommendation."
+          },
+          {
+            "id": "dependency-cost",
+            "score": -20,
+            "evidence": "Declared dependency cost is 2/5."
+          },
+          {
+            "id": "bundle-cost",
+            "score": -10,
+            "evidence": "Declared bundle cost is 2/5."
+          },
+          {
+            "id": "role-overlap",
+            "score": 0,
+            "evidence": "No selected overlap group is duplicated."
+          },
+          {
+            "id": "semver-compatibility",
+            "score": 0,
+            "evidence": "HostProfile.tailwind_version 4 is checked against >=4.0.0."
+          }
+        ]
+      },
+      {
+        "capability": "product-polish",
+        "role": "product-polish",
+        "candidate": "daisyui",
+        "score": 1040,
+        "rank": 1,
+        "eligible": true,
+        "outcome": "selected",
+        "factors": [
+          {
+            "id": "policy-order",
+            "score": 900,
+            "evidence": "daisyui is policy candidate 2 for product-polish."
+          },
+          {
+            "id": "installed-evidence",
+            "score": 180,
+            "evidence": "HostProfile already identifies daisyui in its UI stacks or primitives."
+          },
+          {
+            "id": "current-plan-reuse",
+            "score": 40,
+            "evidence": "daisyui is already in the current recommendation."
+          },
+          {
+            "id": "dependency-cost",
+            "score": -20,
+            "evidence": "Declared dependency cost is 2/5."
+          },
+          {
+            "id": "bundle-cost",
+            "score": -10,
+            "evidence": "Declared bundle cost is 2/5."
+          },
+          {
+            "id": "role-overlap",
+            "score": -50,
+            "evidence": "2 overlap group(s) are already represented."
+          },
+          {
+            "id": "semver-compatibility",
+            "score": 0,
+            "evidence": "HostProfile.tailwind_version 4 is checked against >=4.0.0."
+          }
+        ]
+      },
+      {
+        "capability": "product-polish",
+        "role": "product-polish",
+        "candidate": "kokonut-ui",
+        "score": 960,
+        "rank": 2,
+        "eligible": true,
+        "outcome": "lower-ranked",
+        "factors": [
+          {
+            "id": "policy-order",
+            "score": 1000,
+            "evidence": "kokonut-ui is policy candidate 1 for product-polish."
+          },
+          {
+            "id": "installed-evidence",
+            "score": 0,
+            "evidence": "No installed candidate evidence was supplied."
+          },
+          {
+            "id": "current-plan-reuse",
+            "score": 0,
+            "evidence": "kokonut-ui is not yet in the current recommendation."
+          },
+          {
+            "id": "dependency-cost",
+            "score": -10,
+            "evidence": "Declared dependency cost is 1/5."
+          },
+          {
+            "id": "bundle-cost",
+            "score": -5,
+            "evidence": "Declared bundle cost is 1/5."
+          },
+          {
+            "id": "role-overlap",
+            "score": -25,
+            "evidence": "1 overlap group(s) are already represented."
+          },
+          {
+            "id": "semver-compatibility",
+            "score": 0,
+            "evidence": "HostProfile.tailwind_version 4 is checked against >=4.0.0."
+          }
         ]
       }
     ],
