@@ -17,7 +17,7 @@ While the canonical repository is private, run `$env:ORCHESTRUI_PUBLICATION_DEFE
 
 ## npm and MCP Registry
 
-The npm package name `orchestrui` was unclaimed when checked on 2026-08-20; re-check immediately before publication. The MCP Registry currently hosts metadata, not artifacts, so publish the public npm package first. `package.json#mcpName` and `server.json#name` are both `io.github.ecd5a/orchestrui` as required for GitHub authentication.
+The MCP Registry currently hosts metadata, not artifacts, so publish the public npm package first. `package.json#mcpName` and `server.json#name` must both be `io.github.ECD5A/orchestrui`; the GitHub owner segment is case-sensitive during Registry authorization.
 
 After npm publication, install the official `mcp-publisher`, then run `mcp-publisher validate`, `mcp-publisher login github` and `mcp-publisher publish`. Registry versions are immutable, and the Registry is still in preview; do not publish placeholder metadata.
 

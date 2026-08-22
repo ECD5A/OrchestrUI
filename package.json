@@ -1,6 +1,6 @@
 {
   "name": "orchestrui",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "description": "Deterministic UI policy, discovery and quality gates for coding agents",
   "type": "module",
@@ -22,7 +22,7 @@
     "frontend",
     "design-system"
   ],
-  "mcpName": "io.github.ecd5a/orchestrui",
+  "mcpName": "io.github.ECD5A/orchestrui",
   "main": "./dist/mcp/src/server.js",
   "types": "./dist/mcp/src/server.d.ts",
   "bin": {
