@@ -1,48 +1,66 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
   <title id="title">OrchestrUI — agent-native UI orchestration</title>
-  <desc id="desc">Seven UI ecosystems routed through three agent skills and six read-only MCP tools into one coherent interface.</desc>
+  <desc id="desc">A host project is resolved into one coherent UI plan: existing shadcn/ui base, Bklit UI charts, and zero conflicts.</desc>
   <defs>
-    <linearGradient id="preview-bg" x1="70" y1="40" x2="1210" y2="600" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#122039"/><stop offset="0.52" stop-color="#0B1729"/><stop offset="1" stop-color="#07101D"/>
+    <linearGradient id="background" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#122039"/>
+      <stop offset="0.55" stop-color="#0B1729"/>
+      <stop offset="1" stop-color="#07101D"/>
     </linearGradient>
-    <linearGradient id="preview-route" x1="82" y1="320" x2="1180" y2="320" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#22D3EE"/><stop offset="0.52" stop-color="#2DD4BF"/><stop offset="1" stop-color="#7667F4"/>
+    <linearGradient id="route" x1="400" y1="0" x2="880" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.5" stop-color="#2DD4BF"/>
+      <stop offset="1" stop-color="#7667F4"/>
     </linearGradient>
-    <radialGradient id="preview-glow" cx="0" cy="0" r="1" gradientTransform="translate(1050 270) rotate(180) scale(430 360)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7667F4" stop-opacity="0.22"/><stop offset="1" stop-color="#7667F4" stop-opacity="0"/>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(640 320) rotate(90) scale(270 360)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
     </radialGradient>
-    <pattern id="preview-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M40 0H0V40" fill="none" stroke="#94A3B8" stroke-opacity="0.055"/>
     </pattern>
   </defs>
-  <rect width="1280" height="640" fill="url(#preview-bg)"/>
-  <rect width="1280" height="640" fill="url(#preview-grid)"/>
-  <rect width="1280" height="640" fill="url(#preview-glow)"/>
-  <rect x="40" y="40" width="1200" height="560" rx="36" fill="none" stroke="#263650" stroke-width="2"/>
-  <g transform="translate(90 153)">
-    <g fill="none" stroke="#41516C" stroke-width="4" stroke-linecap="round">
-      <path d="M14 22C92 22 101 147 198 157"/><path d="M14 67C91 67 106 149 198 158"/>
-      <path d="M14 112C94 112 118 153 198 159"/><path d="M14 165H198"/>
-      <path d="M14 218C94 218 118 177 198 171"/><path d="M14 263C91 263 106 181 198 172"/>
-      <path d="M14 308C92 308 101 183 198 173"/>
-    </g>
-    <g fill="#22D3EE">
-      <circle cx="9" cy="22" r="7"/><circle cx="9" cy="67" r="7"/><circle cx="9" cy="112" r="7"/>
-      <circle cx="9" cy="165" r="7"/><circle cx="9" cy="218" r="7"/><circle cx="9" cy="263" r="7"/><circle cx="9" cy="308" r="7"/>
-    </g>
-    <circle cx="220" cy="165" r="30" fill="#0D1728" stroke="url(#preview-route)" stroke-width="8"/>
-    <path d="M209 165L217 173L233 151" fill="none" stroke="#F8FAFC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M254 165H322" stroke="url(#preview-route)" stroke-width="11" stroke-linecap="round"/>
-    <circle cx="330" cy="165" r="11" fill="#7667F4"/>
-  </g>
-  <g transform="translate(520 145)">
-    <text x="0" y="118" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="102" font-weight="720" letter-spacing="-4">OrchestrUI</text>
-    <text x="4" y="177" fill="#C9D2E1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="500">Agent-native UI orchestration</text>
-    <text x="4" y="220" fill="#A8B3C7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="23">Inspect · route · harmonize · audit · ship coherently.</text>
-    <g transform="translate(4 274)" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="650" letter-spacing="1.4">
-      <rect x="0" y="0" width="182" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="30" y="27" fill="#67E8F9">6 MCP TOOLS</text>
-      <rect x="196" y="0" width="182" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="226" y="27" fill="#5EEAD4">3 AGENT SKILLS</text>
-      <rect x="392" y="0" width="188" height="42" rx="21" fill="#14243A" stroke="#2C425F"/><text x="420" y="27" fill="#A99EFF">7 ECOSYSTEMS</text>
-    </g>
-  </g>
+
+  <rect width="1280" height="640" fill="url(#background)"/>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+  <rect width="1280" height="640" fill="url(#glow)"/>
+  <rect x="40" y="40" width="1200" height="560" rx="36" fill="#0B1729" fill-opacity="0.54" stroke="#263650" stroke-width="2"/>
+
+  <text x="84" y="112" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-1.4">OrchestrUI</text>
+  <text x="84" y="145" fill="#8FA0B8" font-family="Consolas, Menlo, monospace" font-size="15" letter-spacing="1.7">AGENT-NATIVE UI ORCHESTRATION</text>
+  <text x="1196" y="112" fill="#67E8F9" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" text-anchor="end" letter-spacing="1.2">STATUS / RESOLVED</text>
+
+  <rect x="84" y="204" width="316" height="250" rx="20" fill="#0D1728" stroke="#2C425F" stroke-width="2"/>
+  <text x="116" y="250" fill="#67E8F9" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" letter-spacing="1.6">HOST PROJECT</text>
+  <text x="116" y="304" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="29" font-weight="700">React dashboard</text>
+  <text x="116" y="355" fill="#B6C2D6" font-family="Consolas, Menlo, monospace" font-size="17">base      / shadcn/ui</text>
+  <text x="116" y="393" fill="#B6C2D6" font-family="Consolas, Menlo, monospace" font-size="17">gap       / charts</text>
+
+  <path d="M400 329H554" fill="none" stroke="#41516C" stroke-width="5" stroke-linecap="round"/>
+  <path d="M726 329H880" fill="none" stroke="#41516C" stroke-width="5" stroke-linecap="round"/>
+  <path d="M400 329H554" fill="none" stroke="url(#route)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M726 329H880" fill="none" stroke="url(#route)" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="554" cy="329" r="7" fill="#67E8F9"/>
+  <circle cx="726" cy="329" r="7" fill="#A99EFF"/>
+  <circle cx="640" cy="329" r="88" fill="#0D1728" stroke="#263650" stroke-width="7"/>
+  <circle cx="640" cy="329" r="62" fill="#122039" stroke="#22D3EE" stroke-width="3"/>
+  <path d="M612 329L632 349L672 306" fill="none" stroke="#F8FAFC" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="640" y="438" fill="#5EEAD4" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="1.5">RESOLVED</text>
+
+  <rect x="880" y="204" width="316" height="250" rx="20" fill="#0D1728" stroke="#2C425F" stroke-width="2"/>
+  <text x="912" y="250" fill="#A99EFF" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" letter-spacing="1.6">PLAN OUTPUT</text>
+  <text x="912" y="304" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="29" font-weight="700">Coherent UI plan</text>
+  <text x="912" y="355" fill="#B6C2D6" font-family="Consolas, Menlo, monospace" font-size="17">base      / shadcn/ui</text>
+  <text x="912" y="393" fill="#B6C2D6" font-family="Consolas, Menlo, monospace" font-size="17">charts    / Bklit UI</text>
+  <rect x="912" y="414" width="154" height="27" rx="13.5" fill="#67E8F9" fill-opacity="0.12" stroke="#67E8F9" stroke-opacity="0.52"/>
+  <text x="989" y="433" fill="#67E8F9" font-family="Consolas, Menlo, monospace" font-size="12" font-weight="700" text-anchor="middle">CONFLICTS / 0</text>
+
+  <line x1="84" y1="516" x2="1196" y2="516" stroke="#2C425F"/>
+  <text x="84" y="557" fill="#9DACC2" font-family="Consolas, Menlo, monospace" font-size="15" letter-spacing="1.4">INSPECT</text>
+  <circle cx="213" cy="552" r="4" fill="#22D3EE"/>
+  <text x="234" y="557" fill="#9DACC2" font-family="Consolas, Menlo, monospace" font-size="15" letter-spacing="1.4">ROUTE</text>
+  <circle cx="350" cy="552" r="4" fill="#2DD4BF"/>
+  <text x="371" y="557" fill="#9DACC2" font-family="Consolas, Menlo, monospace" font-size="15" letter-spacing="1.4">HARMONIZE</text>
+  <circle cx="548" cy="552" r="4" fill="#7667F4"/>
+  <text x="569" y="557" fill="#9DACC2" font-family="Consolas, Menlo, monospace" font-size="15" letter-spacing="1.4">AUDIT</text>
 </svg>
