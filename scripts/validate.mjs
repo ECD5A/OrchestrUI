@@ -230,6 +230,7 @@ for (const file of [
   "benchmark/routing-benchmark.json", "benchmark/run.mjs", "catalog/routing-rules.schema.json",
   "examples/fixtures/run.mjs",
   "docs/CLAUDE_CODE.md", "docs/GITHUB_SETUP_CHECKLIST.md", "docs/RELEASE_NOTES_0.1.0.md",
+  "docs/RELEASE_NOTES_0.2.0.md", ".github/release.yml",
   "assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg", "assets/social-preview.png",
   "site/index.html", "site/styles.css", "site/app.js", "site/fixtures.js", "site/robots.txt", "site/sitemap.xml",
   ".github/workflows/pages.yml", "scripts/render-brand-assets.mjs", "scripts/build-site-data.mjs",
@@ -237,6 +238,14 @@ for (const file of [
   "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts",
 ]) {
   if (!fs.existsSync(file)) fail(`Missing ${file}`);
+}
+
+const releaseConfig = fs.readFileSync(".github/release.yml", "utf8");
+for (const label of ["feature", "enhancement", "integration", "routing", "mcp", "agent-skill", "bug", "dependencies"]) {
+  if (!releaseConfig.includes(`- ${label}`)) fail(`Release-note configuration is missing ${label}`);
+}
+if (!releaseConfig.includes('- "*"') || !releaseConfig.includes("skip-changelog")) {
+  fail("Release-note configuration needs a catch-all category and explicit exclusion label");
 }
 
 const expectedPackageFiles = [

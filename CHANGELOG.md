@@ -7,6 +7,7 @@
 - Declarative capability, role-priority and conflict policy matrix.
 - 50-scenario routing benchmark and three executable project fixtures.
 - Reproducible Pages data generated from the committed fixture results.
+- GitHub release-note categories and a consistent `0.2.0` release description.
 - Compact GitHub Pages engineering demo with a keyboard-accessible, reduced-motion orchestration loop.
 - macOS and Windows platform-smoke jobs alongside the existing Linux/Node.js matrix.
 
