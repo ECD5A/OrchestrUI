@@ -9,6 +9,7 @@
 import fs from "node:fs";
 import { isIP } from "node:net";
 import path from "node:path";
+import { validRange } from "semver";
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
 const catalog = readJson("catalog/libraries.json");
@@ -20,6 +21,7 @@ const packageManifest = readJson("package.json");
 const pluginManifest = readJson(".codex-plugin/plugin.json");
 const mcpConfig = readJson(".mcp.json");
 const serverManifest = readJson("server.json");
+const semverRangePattern = /^(?:\^|~|>=|<=|>|<|=)?\d+(?:\.\d+){0,2}(?:\s+(?:\^|~|>=|<=|>|<|=)?\d+(?:\.\d+){0,2})*(?:\s*\|\|\s*(?:\^|~|>=|<=|>|<|=)?\d+(?:\.\d+){0,2}(?:\s+(?:\^|~|>=|<=|>|<|=)?\d+(?:\.\d+){0,2})*)*$/;
 
 const fail = (message) => { throw new Error(message); };
 const isNonPublicIpv4 = (hostname) => {
@@ -121,7 +123,7 @@ const ruleIds = new Set(routing.rules.map((rule) => rule.id));
 if (routing.schema_version !== 3) fail("Unexpected routing policy schema version");
 for (const id of [
   "minimum-set", "base-system-conflict", "framework-compatibility",
-  "structured-input-first", "react-bits-no-vendor", "no-pro-by-default", "candidate-ranking", "version-compatibility",
+  "structured-input-first", "react-bits-no-vendor", "no-pro-by-default", "candidate-ranking", "version-compatibility", "task-wide-minimum",
 ]) {
   if (!ruleIds.has(id)) fail(`Missing routing guard ${id}`);
 }
@@ -152,7 +154,7 @@ for (const [id, profile] of Object.entries(routing.candidate_profiles)) {
     fail(`Invalid candidate ranking profile for ${id}`);
   }
   for (const constraint of profile.version_constraints ?? []) {
-    if (!/^(?:>=|<=|>|<|=)\d+(?:\.\d+){0,2}$/.test(constraint.range)) {
+    if (!semverRangePattern.test(constraint.range) || !validRange(constraint.range)) {
       fail(`Invalid bounded semver constraint for ${id}`);
     }
   }
@@ -270,8 +272,9 @@ for (const file of [
   "docs/RELEASE_NOTES_0.2.0.md", ".github/release.yml",
   "assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg", "assets/social-preview.png",
   "site/index.html", "site/styles.css", "site/app.js", "site/fixtures.js", "site/robots.txt", "site/sitemap.xml",
-  ".github/workflows/pages.yml", "scripts/render-brand-assets.mjs", "scripts/build-site-data.mjs",
+  ".github/workflows/pages.yml", "scripts/ci-scope.mjs", "scripts/render-brand-assets.mjs", "scripts/build-site-data.mjs",
   "scripts/check-external-links.mjs",
+  "scripts/check-docs.mjs",
   "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts",
 ]) {
   if (!fs.existsSync(file)) fail(`Missing ${file}`);
@@ -394,6 +397,7 @@ for (const sourceFile of [
   "benchmark/run.mjs", "examples/fixtures/run.mjs",
   "scripts/validate.mjs", "scripts/check-external-links.mjs", "scripts/render-brand-assets.mjs",
   "scripts/render-readme-demo.mjs", "scripts/build-site-data.mjs",
+  "scripts/check-docs.mjs",
   "scripts/install-codex.sh", "scripts/install-codex.ps1",
 ]) {
   const source = fs.readFileSync(sourceFile, "utf8");

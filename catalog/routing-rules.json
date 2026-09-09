@@ -65,6 +65,11 @@
       "id": "version-compatibility",
       "priority": 13,
       "text": "Reject a candidate when a supplied host version violates its bounded declared compatibility range."
+    },
+    {
+      "id": "task-wide-minimum",
+      "priority": 14,
+      "text": "Prefer an admissible candidate combination that covers the required capabilities with the fewest additions and lowest declared dependency and bundle cost."
     }
   ],
   "roles": {

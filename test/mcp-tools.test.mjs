@@ -116,6 +116,7 @@ test("recommend_stack marks partial structured input as hybrid inference", () =>
   assert.equal(recommendation.input_mode, "hybrid-profile-inference");
   assert.deepEqual(recommendation.selected.map((item) => item.id), ["bklit-ui"]);
   assert.match(recommendation.risks.join(" "), /supply both HostProfile and TaskProfile/i);
+  assert.ok(recommendation.profile_diagnostics.some((diagnostic) => diagnostic.id === "inferred-profile"));
 });
 
 test("recommend_stack ranks an installed admissible candidate above a new dependency", () => {
@@ -173,6 +174,93 @@ test("recommend_stack treats supplied semver incompatibility as a hard blocker",
   assert.deepEqual(recommendation.selected, []);
   assert.ok(recommendation.rejected.some((item) => item.id === "daisyui" && item.rule_id === "version-compatibility"));
   assert.ok(recommendation.candidate_rankings.some((entry) => entry.candidate === "daisyui" && entry.blocked_by === "version-compatibility"));
+});
+
+test("recommend_stack ranks only admissible candidates and reports task coverage", () => {
+  const recommendation = recommendStack({
+    hostProfile: {
+      framework: "React",
+      tailwind_version: "4.0.0",
+      dependencies: {},
+      design_system: "shadcn/ui",
+      component_primitives: [],
+      motion_stack: [],
+      chart_stack: [],
+      tokens: [],
+      accessibility_constraints: [],
+    },
+    taskProfile: {
+      surface: "application",
+      required_capabilities: ["product-polish", "marketing-motion"],
+      interaction_complexity: "medium",
+      data_visualization: "none",
+      motion_requirement: "native",
+      rive_asset_rights: "not-applicable",
+      constraints: [],
+    },
+  }, data);
+
+  const marketing = recommendation.candidate_rankings.filter((entry) => entry.capability === "marketing-motion");
+  assert.ok(marketing.every((entry) => entry.eligible || entry.rank === null));
+  assert.ok(marketing.filter((entry) => entry.eligible).every((entry) => typeof entry.rank === "number"));
+  assert.ok(recommendation.plan_metrics.library_count >= 1);
+  assert.deepEqual(recommendation.unmet_requirements, []);
+});
+
+test("recommend_stack exposes unmet requirements instead of hiding a blocked route", () => {
+  const recommendation = recommendStack({
+    hostProfile: {
+      framework: "React",
+      dependencies: {},
+      design_system: "shadcn/ui",
+      component_primitives: [],
+      motion_stack: [],
+      chart_stack: [],
+      tokens: [],
+      accessibility_constraints: [],
+    },
+    taskProfile: {
+      surface: "application",
+      required_capabilities: ["interactive-vector"],
+      interaction_complexity: "high",
+      data_visualization: "none",
+      motion_requirement: "interactive-vector",
+      rive_asset_rights: "unconfirmed",
+      constraints: [],
+    },
+  }, data);
+
+  assert.equal(recommendation.selected.length, 0);
+  assert.deepEqual(recommendation.unmet_requirements.map((item) => item.capability), ["interactive-vector"]);
+  assert.match(recommendation.summary, /unmet task requirement/i);
+});
+
+test("recommend_stack evaluates caret semver ranges without substring matching", () => {
+  const ranged = structuredClone(data);
+  ranged.routing.candidate_profiles.daisyui.version_constraints[0].range = "^4.0.0";
+  const compatible = recommendStack({
+    hostProfile: {
+      framework: "React",
+      tailwind_version: "4.2.1",
+      dependencies: {},
+      component_primitives: [],
+      motion_stack: [],
+      chart_stack: [],
+      tokens: [],
+      accessibility_constraints: [],
+    },
+    taskProfile: {
+      surface: "application",
+      required_capabilities: ["forms-controls"],
+      interaction_complexity: "medium",
+      data_visualization: "none",
+      motion_requirement: "none",
+      rive_asset_rights: "not-applicable",
+      constraints: [],
+    },
+  }, ranged);
+  assert.deepEqual(compatible.selected.map((item) => item.id), ["daisyui"]);
+  assert.equal(compatible.candidate_rankings.find((entry) => entry.candidate === "daisyui")?.eligible, true);
 });
 
 test("get_library_guidance exposes React Bits redistribution boundary", () => {

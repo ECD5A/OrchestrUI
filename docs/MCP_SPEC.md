@@ -4,6 +4,7 @@ Implemented with `@modelcontextprotocol/server` 2.0.0 and the MCP 2026-07-28 sta
 
 | Tool | Purpose | External access |
 |---|---|---|
+| `inspect_project` | extract a HostProfile with provenance and diagnostics | bounded local JSON reads within the server workspace |
 | `list_libraries` | list/filter exactly seven ecosystems | none |
 | `recommend_stack` | compute the smallest compatible ownership plan from structured profiles | none |
 | `get_library_guidance` | return roles, compatibility, legal and official-source guidance | none |
@@ -13,7 +14,11 @@ Implemented with `@modelcontextprotocol/server` 2.0.0 and the MCP 2026-07-28 sta
 
 Inputs use bounded Zod schemas. Results contain both model-readable JSON text and `structuredContent`. Unknown library IDs and unsafe component identifiers return tool errors without exposing stack traces.
 
-`recommend_stack` accepts `host_profile` and `task_profile`. It returns normalized profiles, input mode, selected and rejected candidates, role ownership, decisions, evidence-bearing `candidate_rankings`, risks and validation steps. Ranking factors cover policy order, installed evidence, dependency/bundle cost, overlap and bounded version compatibility; hard gates cannot be overridden by score. Bounded text fields remain available for backward compatibility; partial-profile calls report `hybrid-profile-inference` and text-only calls report `legacy-text-inference`.
+`inspect_project` accepts `relative_path` (default `.`), resolved within the server's startup working directory. It reads only `package.json`, optional `package-lock.json` and `components.json`, each at most 2 MiB. It never imports executable configuration, scans sources, reads credentials, installs packages or executes scripts. Paths and symlinks outside the workspace are rejected. Set the server working directory to the intended frontend project. Monorepos can select a relative application directory. pnpm/yarn/bun projects use manifest declarations; their lockfile formats are not parsed. Lockfile evidence is labelled separately from proof of installed state. Non-semver URLs and custom dependency specifications are omitted. Resolve diagnostics when `ready_for_routing` is false before passing the returned profile to `recommend_stack`.
+
+In 0.4, `optimization` reports exhaustive assignment count and the lexicographic objective: unassigned capabilities, unverified assignments, ecosystem additions, distinct libraries, then negative policy score (including dependency/bundle cost). A local numeric `rank` need not identify the globally selected candidate; use `outcome: selected`. `capability_coverage.verification` is `verified`, `pending` or `failed` for catalog-level routing checks, not rendered UI quality. Unknown versions and unverified external owners appear in `pending_requirements`. A known incompatible existing owner produces an `unmet_requirement`, never a successful preservation result.
+
+`recommend_stack` accepts `host_profile` and `task_profile`. It returns normalized profiles, actionable `profile_diagnostics`, input mode, selected and rejected candidates, role ownership, decisions, evidence-bearing `candidate_rankings`, capability coverage, explicit `unmet_requirements`, task-wide `plan_metrics`, risks and validation steps. Hard gates are evaluated before ranking; only eligible candidates receive a numeric rank, while blocked candidates expose `rank: null` and `blocked_by`. Ranking factors cover policy order, installed evidence, dependency/bundle cost, overlap, task-wide coverage and semver compatibility. Bounded text fields remain available for backward compatibility; partial-profile calls report `hybrid-profile-inference` and text-only calls report `legacy-text-inference`.
 
 `audit_plan` uses `pass`, `fail` and `pending`. Callers may attach bounded verification evidence. Pending categories do not increase `verified_score` or `verified_maximum`; blockers are derived only from failed checks.
 

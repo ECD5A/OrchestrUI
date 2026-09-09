@@ -2,7 +2,7 @@
   "schema_version": 1,
   "fixture_id": "next-shadcn-dashboard",
   "policy_schema_version": 3,
-  "package_version": "0.3.0",
+  "package_version": "0.4.0",
   "recommendation": {
     "input_mode": "structured-profiles",
     "summary": "Add 1 ecosystem; preserve every compatible host owner.",
@@ -49,6 +49,7 @@
         ]
       }
     },
+    "profile_diagnostics": [],
     "selected": [
       {
         "id": "bklit-ui",
@@ -65,8 +66,8 @@
         "already_present": false,
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
-          "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
-          "Candidate score 980; rank 1/1."
+          "Task-wide optimization assigned bklit-ui to data-visualization -> data-visualization.",
+          "Candidate score 980; eligible rank 1/1."
         ]
       }
     ],
@@ -131,8 +132,8 @@
         "rule_id": "candidate-ranking",
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
-          "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
-          "Candidate score 980; rank 1/1."
+          "Task-wide optimization assigned bklit-ui to data-visualization -> data-visualization.",
+          "Candidate score 980; eligible rank 1/1."
         ]
       }
     ],
@@ -175,10 +176,57 @@
             "id": "role-overlap",
             "score": 0,
             "evidence": "No selected overlap group is duplicated."
+          },
+          {
+            "id": "task-coverage",
+            "score": 0,
+            "evidence": "bklit-ui is a candidate for one required capability."
           }
         ]
       }
     ],
+    "capability_coverage": [
+      {
+        "capability": "data-visualization",
+        "role": "data-visualization",
+        "status": "selected",
+        "verification": "verified",
+        "owner": "bklit-ui",
+        "evidence": [
+          "TaskProfile.required_capabilities includes data-visualization.",
+          "Task-wide optimization assigned bklit-ui to data-visualization -> data-visualization.",
+          "Candidate score 980; eligible rank 1/1."
+        ]
+      }
+    ],
+    "unmet_requirements": [],
+    "pending_requirements": [],
+    "optimization": {
+      "method": "exhaustive-capability-assignment",
+      "objective_order": [
+        "unassigned-capabilities",
+        "unverified-assignments",
+        "additions",
+        "library-count",
+        "negative-policy-score"
+      ],
+      "objective": [
+        0,
+        0,
+        1,
+        1,
+        -980
+      ],
+      "evaluated_plans": 2
+    },
+    "plan_metrics": {
+      "library_count": 1,
+      "additions": 1,
+      "dependency_cost": 1,
+      "bundle_cost": 2,
+      "overlap_group_count": 2,
+      "reused_library_count": 0
+    },
     "risks": [],
     "validation_plan": [
       "Verify selected component IDs and installation guidance against cited official sources.",

@@ -87,6 +87,8 @@ $ui-orchestrator реализуй согласованный план.
 $ui-quality-audit проверь готовый интерфейс.
 ```
 
+Будем рады небольшим исправлениям, улучшениям документации и тестам — короткий путь от форка до PR описан в [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 <a id="output"></a>
 ## Что возвращает OrchestrUI
 
@@ -110,7 +112,7 @@ $ui-quality-audit проверь готовый интерфейс.
 - `ui-library-router` — изучает host project и распределяет роли.
 - `ui-orchestrator` — интегрирует одобренные части в единый визуальный язык.
 - `ui-quality-audit` — проверяет coherence, accessibility, responsiveness, motion, performance и licensing.
-- Read-only MCP — `list_libraries`, `recommend_stack`, `get_library_guidance`, `search_components`, `get_install_instructions` и `audit_plan`.
+- Read-only MCP — `inspect_project`, `list_libraries`, `recommend_stack`, `get_library_guidance`, `search_components`, `get_install_instructions` и `audit_plan`.
 
 OrchestrUI опубликован в [npm](https://www.npmjs.com/package/orchestrui), [официальном MCP Registry](https://registry.modelcontextprotocol.io/v0/servers/io.github.ECD5A%2Forchestrui/versions/latest) и версионированных [GitHub Releases](https://github.com/ECD5A/OrchestrUI/releases). Локальная plugin-конфигурация находится в [`.mcp.json`](.mcp.json); setup, architecture, security, licensing и contribution details — в [`docs/`](docs/), [`SECURITY.md`](SECURITY.md), [`THIRD_PARTY.md`](THIRD_PARTY.md) и [`CONTRIBUTING.md`](CONTRIBUTING.md).
 

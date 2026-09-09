@@ -79,6 +79,8 @@ npm run benchmark
 
 </details>
 
+Contributions are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md) for the short path from fork to PR.
+
 Use them from a frontend project:
 
 ```text
@@ -110,7 +112,7 @@ The committed suite passes **50/50** structured scenarios, **8/8** independently
 - `ui-library-router` — inspects the host and assigns role ownership.
 - `ui-orchestrator` — integrates approved pieces into one visual contract.
 - `ui-quality-audit` — checks coherence, accessibility, responsiveness, motion, performance, and licensing.
-- Read-only MCP — `list_libraries`, `recommend_stack`, `get_library_guidance`, `search_components`, `get_install_instructions`, and `audit_plan`.
+- Read-only MCP — `inspect_project`, `list_libraries`, `recommend_stack`, `get_library_guidance`, `search_components`, `get_install_instructions`, and `audit_plan`.
 
 Published through [npm](https://www.npmjs.com/package/orchestrui), the [official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers/io.github.ECD5A%2Forchestrui/versions/latest), and versioned [GitHub Releases](https://github.com/ECD5A/OrchestrUI/releases). Local plugin configuration is in [`.mcp.json`](.mcp.json); setup, architecture, security, licensing, and contribution details live in [`docs/`](docs/), [`SECURITY.md`](SECURITY.md), [`THIRD_PARTY.md`](THIRD_PARTY.md), and [`CONTRIBUTING.md`](CONTRIBUTING.md).
 

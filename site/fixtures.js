@@ -21,7 +21,7 @@ globalThis.ORCHESTRUI_FIXTURES = Object.freeze([
     "rejected": [
       {
         "id": "kokonut-ui",
-        "rule_id": "candidate-ranking"
+        "rule_id": "base-system-conflict"
       },
       {
         "id": "react-bits",
@@ -74,7 +74,15 @@ globalThis.ORCHESTRUI_FIXTURES = Object.freeze([
         "evidence": [
           "TaskProfile.required_capabilities includes forms-controls.",
           "HostProfile.design_system declares daisyUI.",
-          "Candidate score 1150; rank 1/1."
+          "Candidate score 1200; eligible rank 1/1."
+        ]
+      },
+      {
+        "outcome": "rejected",
+        "subject": "kokonut-ui",
+        "rule_id": "base-system-conflict",
+        "evidence": [
+          "Kokonut is a shadcn-compatible layer and is not added on top of a daisyUI base without an isolation plan."
         ]
       },
       {
@@ -84,10 +92,10 @@ globalThis.ORCHESTRUI_FIXTURES = Object.freeze([
         "evidence": [
           "TaskProfile.required_capabilities includes forms-controls.",
           "HostProfile.design_system declares daisyUI.",
-          "Candidate score 1150; rank 1/1.",
+          "Candidate score 1200; eligible rank 1/1.",
           "TaskProfile.required_capabilities includes product-polish.",
           "HostProfile already identifies daisyui in its UI stacks or primitives.",
-          "Candidate score 1040; rank 1/2."
+          "Candidate score 1090; eligible rank 1/1."
         ]
       }
     ],
@@ -109,7 +117,7 @@ globalThis.ORCHESTRUI_FIXTURES = Object.freeze([
     "label": "Marketing landing",
     "run_id": "MARKETING-LANDING",
     "input_mode": "structured-profiles",
-    "summary": "Add 2 ecosystems; preserve every compatible host owner.",
+    "summary": "Add 1 ecosystem; preserve every compatible host owner.",
     "host": {
       "framework": "Next.js 15",
       "base": "shadcn/ui",
@@ -121,14 +129,13 @@ globalThis.ORCHESTRUI_FIXTURES = Object.freeze([
         "id": "magic-ui",
         "role": "marketing-enhancement",
         "capability": "marketing-motion"
-      },
-      {
-        "id": "react-bits",
-        "role": "signature-effect",
-        "capability": "signature-creative-effect"
       }
     ],
     "rejected": [
+      {
+        "id": "react-bits",
+        "rule_id": "candidate-ranking"
+      },
       {
         "id": "kokonut-ui",
         "rule_id": "minimum-set"
@@ -165,9 +172,9 @@ globalThis.ORCHESTRUI_FIXTURES = Object.freeze([
       },
       {
         "role": "signature-effect",
-        "owner": "react-bits",
+        "owner": "magic-ui",
         "source": "selected-library",
-        "evidence": "react-bits selected for signature-creative-effect."
+        "evidence": "magic-ui selected for signature-creative-effect."
       }
     ],
     "decisions": [
@@ -185,18 +192,21 @@ globalThis.ORCHESTRUI_FIXTURES = Object.freeze([
         "rule_id": "candidate-ranking",
         "evidence": [
           "TaskProfile.required_capabilities includes marketing-motion.",
-          "Policy route marketing-motion -> marketing-enhancement ranked magic-ui first among admissible candidates.",
-          "Candidate score 980; rank 1/2."
+          "Task-wide optimization assigned magic-ui to marketing-motion -> marketing-enhancement.",
+          "Candidate score 1010; eligible rank 1/2."
         ]
       },
       {
         "outcome": "selected",
-        "subject": "react-bits",
+        "subject": "magic-ui",
         "rule_id": "candidate-ranking",
         "evidence": [
+          "TaskProfile.required_capabilities includes marketing-motion.",
+          "Task-wide optimization assigned magic-ui to marketing-motion -> marketing-enhancement.",
+          "Candidate score 1010; eligible rank 1/2.",
           "TaskProfile.required_capabilities includes signature-creative-effect.",
-          "Policy route signature-creative-effect -> signature-effect ranked react-bits first among admissible candidates.",
-          "Candidate score 950; rank 1/2."
+          "Task-wide optimization assigned magic-ui to signature-creative-effect -> signature-effect.",
+          "Candidate score 875; eligible rank 2/2."
         ]
       }
     ],
@@ -288,8 +298,8 @@ globalThis.ORCHESTRUI_FIXTURES = Object.freeze([
         "rule_id": "candidate-ranking",
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
-          "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
-          "Candidate score 980; rank 1/1."
+          "Task-wide optimization assigned bklit-ui to data-visualization -> data-visualization.",
+          "Candidate score 980; eligible rank 1/1."
         ]
       }
     ],

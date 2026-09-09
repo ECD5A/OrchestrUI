@@ -1,6 +1,20 @@
 # Changelog
 
-## [Unreleased]
+## [0.4.0] - 2026-09-09
+
+### Added
+- Read-only `inspect_project` extracts bounded workspace metadata with explicit version provenance and diagnostics.
+- Exhaustive task-wide assignment minimizes uncovered capabilities, unknown compatibility, additions and library count before policy scores.
+- Independent minimum-set and permutation checks cover all 128 capability subsets; generated host combinations exercise hard gates.
+- Cross-platform package smoke installs the actual tarball in an isolated consumer and calls all seven MCP tools over stdio.
+
+### Changed
+- Hard gates now run before candidate ranking; blocked candidates expose `rank: null` and an explicit rule.
+- Recommendations report capability coverage, unmet requirements and task-wide dependency/bundle metrics.
+- npm semver replaces the custom parser; prereleases, partial versions and ambiguous declared ranges are handled explicitly.
+- Known incompatible existing owners produce unmet requirements; unverified external owners and unknown versions remain pending.
+- Documentation-only CI avoids dependency installation; skills and executable files retain full checks, with failure-safe push/PR scope detection.
+- Contribution guidance, release documentation and the PR template explain scope-appropriate checks.
 
 ## [0.3.0] - 2026-08-22
 

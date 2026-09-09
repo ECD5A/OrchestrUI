@@ -9,12 +9,14 @@
 
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { realpathSync } from "node:fs";
 
 import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 import * as z from "zod/v4";
 
 import { loadOrchestrUiData } from "./catalog.js";
+import { inspectProject } from "./inspect.js";
 import {
   auditPlan,
   getInstallInstructions,
@@ -65,9 +67,16 @@ async function guardedAsync<T extends object>(handler: () => Promise<T>) {
   }
 }
 
-export function createOrchestrUiServer(options: { data?: OrchestrUiData; fetchImpl?: FetchLike } = {}) {
+export function createOrchestrUiServer(options: { data?: OrchestrUiData; fetchImpl?: FetchLike; projectRoot?: string } = {}) {
   const data = options.data ?? loadOrchestrUiData();
   const server = new McpServer({ name: "orchestrui", version: data.version });
+
+  server.registerTool("inspect_project", {
+    title: "Inspect local project metadata",
+    description: "Read bounded package.json, package-lock.json and components.json within the server working directory. Return a HostProfile with evidence; never execute project code.",
+    inputSchema: z.object({ relative_path: z.string().trim().min(1).max(240).default(".") }),
+    annotations: READ_ONLY_ANNOTATIONS,
+  }, ({ relative_path }) => guarded(() => inspectProject(relative_path, options.projectRoot)));
 
   server.registerTool(
     "list_libraries",
@@ -230,7 +239,12 @@ export function createOrchestrUiServer(options: { data?: OrchestrUiData; fetchIm
 
 function isMainModule(): boolean {
   const entry = process.argv[1];
-  return Boolean(entry) && fileURLToPath(import.meta.url) === resolve(entry as string);
+  if (!entry) return false;
+  try {
+    return realpathSync(fileURLToPath(import.meta.url)) === realpathSync(resolve(entry));
+  } catch {
+    return false;
+  }
 }
 
 if (isMainModule()) {

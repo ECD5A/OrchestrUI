@@ -7,7 +7,7 @@ OrchestrUI separates stable policy from current upstream knowledge:
 - `catalog/libraries.json` holds exactly seven ecosystems, roles, compatibility, legal boundaries and provenance.
 - `catalog/components.json` holds small metadata-only fallbacks and the four public official registry indexes.
 - `catalog/routing-rules.json` is the declarative policy matrix for capabilities, exclusive roles, priorities, requirements and conflicts.
-- `mcp/src/` implements six read-only MCP tools on the stable TypeScript SDK v2.
+- `mcp/src/` implements seven read-only MCP tools, bounded local metadata inspection and exhaustive task-wide routing on the TypeScript SDK v2.
 - `benchmark/` holds 50 structured routing scenarios, 8 independently specified adversarial goldens and reproducible runners.
 - `examples/fixtures/` holds three host/task snapshots executed through routing and audit in CI.
 - `.codex-plugin/plugin.json`, `.mcp.json` and `server.json` prepare Codex/plugin/npm/MCP Registry distribution.
@@ -17,6 +17,6 @@ The MCP layer loads trusted bundled catalogs synchronously. `search_components` 
 
 No MCP tool executes commands or mutates files. `get_install_instructions` returns inert text so the coding agent's normal permission model remains the only installation authority.
 
-`recommend_stack` normalizes `HostProfile` and `TaskProfile`, registers existing role owners, ranks candidates using explicit cost/reuse/overlap/version factors, applies hard compatibility and conflict gates, and returns selected/rejected candidates with rule evidence. Task text is a compatibility-only inference path. `audit_plan` keeps unverified rendered checks pending and excludes them from its verified score.
+`recommend_stack` normalizes `HostProfile` and `TaskProfile`, emits actionable profile diagnostics, registers existing role owners, evaluates hard compatibility/conflict gates, ranks only admissible candidates using explicit cost/reuse/overlap/task-coverage/version factors, and returns selected/rejected candidates with rule evidence. It also reports capability coverage, unmet requirements and aggregate dependency/bundle cost. Task text is a compatibility-only inference path. `audit_plan` keeps unverified rendered checks pending and excludes them from its verified score.
 
 OrchestrUI does not vendor the seven libraries because that creates licensing risk, stale code, unnecessary context and dependency conflicts. The value remains selection, retrieval guidance, harmonization and audit judgment.
