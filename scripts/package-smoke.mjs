@@ -24,10 +24,12 @@ try {
   npm(["install", path.join(temporary, packed.filename), "--ignore-scripts", "--omit=dev", "--no-audit", "--no-fund"], consumer);
   const installed = path.join(consumer, "node_modules", "orchestrui");
   assert.equal(JSON.parse(fs.readFileSync(path.join(installed, "package.json"), "utf8")).version, packed.version);
+  const linked = path.join(temporary, "linked-orchestrui");
+  fs.symlinkSync(installed, linked, process.platform === "win32" ? "junction" : "dir");
   const demo = path.join(consumer, "demo");
   fs.mkdirSync(demo);
   fs.writeFileSync(path.join(demo, "package.json"), JSON.stringify({ dependencies: { react: "^19", tailwindcss: "^4" } }));
-  const transport = new StdioClientTransport({ command: process.execPath, args: [path.join(installed, "dist/mcp/src/server.js")], cwd: consumer, stderr: "pipe" });
+  const transport = new StdioClientTransport({ command: process.execPath, args: [path.join(linked, "dist/mcp/src/server.js")], cwd: consumer, stderr: "pipe" });
   transport.stderr?.on("data", (chunk) => process.stderr.write(`[orchestrui-mcp] ${chunk}`));
   await client.connect(transport);
   const listing = await client.listTools();
@@ -47,7 +49,7 @@ try {
   await call("search_components", { library_id: "magic-ui", live: false });
   await call("get_install_instructions", { library_id: "animejs" });
   await call("audit_plan", { selected_libraries: ["magic-ui"] });
-  console.log(`Package smoke passed: ${packed.name}@${packed.version}, ${files.length} files, isolated install, 7 MCP tools over stdio.`);
+  console.log(`Package smoke passed: ${packed.name}@${packed.version}, ${files.length} files, isolated install, symlinked entrypoint, 7 MCP tools over stdio.`);
 } finally {
   await client.close();
   if (path.dirname(temporary) !== fs.realpathSync(os.tmpdir()) && path.dirname(temporary) !== os.tmpdir()) throw new Error("Unexpected temporary directory");

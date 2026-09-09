@@ -9,6 +9,7 @@
 
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { realpathSync } from "node:fs";
 
 import { McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
@@ -238,7 +239,12 @@ export function createOrchestrUiServer(options: { data?: OrchestrUiData; fetchIm
 
 function isMainModule(): boolean {
   const entry = process.argv[1];
-  return Boolean(entry) && fileURLToPath(import.meta.url) === resolve(entry as string);
+  if (!entry) return false;
+  try {
+    return realpathSync(fileURLToPath(import.meta.url)) === realpathSync(resolve(entry));
+  } catch {
+    return false;
+  }
 }
 
 if (isMainModule()) {
