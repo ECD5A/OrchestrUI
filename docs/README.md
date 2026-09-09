@@ -1,5 +1,7 @@
 # Documentation
 
+New here? Start with [Setup](SETUP.md). For help or a first contribution, see [Support](../SUPPORT.md) and [Contributing](../CONTRIBUTING.md).
+
 - [Setup](SETUP.md) — installation and local development.
 - [Claude Code](CLAUDE_CODE.md) — host-specific configuration.
 - [Routing](ROUTING.md) — selection rules, evidence and verification.

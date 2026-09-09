@@ -1,24 +1,17 @@
-## Summary
+## Change
 
-Describe the problem and change.
-
-## Why this belongs in OrchestrUI
-
-Explain the routing/integration/quality value.
+What problem does this solve, and what changed?
 
 ## Verification
 
-### Required
+What did you check? For ordinary Markdown edits, `npm run check:docs` is enough; code and behavioral skills use `npm run check`.
 
-- [ ] `npm run check` passed (or the smaller docs check is explained below).
-- [ ] No secrets or credentials were added.
-
-### If applicable
-
-- [ ] Documentation/link changes pass `npm run check:docs` and, when external links changed, `npm run check:links`.
-- [ ] MCP/package changes pass `npm run pack:smoke` (isolated tarball installation and stdio calls).
-- [ ] Live-adapter changes pass the opt-in network smoke test with mocked failure paths covered.
-- [ ] Current official upstream sources were checked where integration data changed.
-- [ ] No paid/Pro content was copied; React Bits source was not mirrored or redistributed.
-- [ ] Licensing/trademark implications were considered.
-- [ ] Package, plugin and `server.json` versions remain synchronized.
+<!-- Delete this comment before submitting if you prefer.
+Additional checks only when relevant:
+- Changed external links: npm run check:links
+- MCP/package behavior: npm run pack:smoke
+- Registry adapters: mocked failure cases and optional live smoke
+- Catalog/integrations: official sources and licensing boundaries
+Keep credentials and third-party component collections out of patches.
+See CONTRIBUTING.md. A normal PR does not need a version bump.
+-->
