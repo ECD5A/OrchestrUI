@@ -272,7 +272,7 @@ for (const file of [
   "docs/RELEASE_NOTES_0.2.0.md", ".github/release.yml",
   "assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg", "assets/social-preview.png",
   "site/index.html", "site/styles.css", "site/app.js", "site/fixtures.js", "site/robots.txt", "site/sitemap.xml",
-  ".github/workflows/pages.yml", "scripts/ci-scope.mjs", "scripts/render-brand-assets.mjs", "scripts/build-site-data.mjs",
+  ".github/workflows/pages.yml", ".github/workflows/publish-npm.yml", "scripts/ci-scope.mjs", "scripts/render-brand-assets.mjs", "scripts/build-site-data.mjs",
   "scripts/check-external-links.mjs",
   "scripts/check-docs.mjs",
   "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts",
