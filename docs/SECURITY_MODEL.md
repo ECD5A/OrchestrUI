@@ -1,11 +1,12 @@
 # Security model
 
-Trust boundaries include bundled local catalogs, MCP clients, package managers and four public official component registries. The MCP server requires no secrets and accepts no arbitrary URL, path or command input.
+Trust boundaries include bundled local catalogs, MCP clients, project JSON metadata, package managers and four public official component registries. The MCP server requires no secrets and accepts no arbitrary URL or command input. `inspect_project` accepts only a project path confined to the server workspace.
 
 Controls:
 
 - every tool is read-only/non-destructive and no MCP source imports shell/process-execution APIs;
 - install commands are inert return values;
+- project inspection reads only fixed JSON metadata filenames, each capped at 2 MiB, rejects paths/symlinks outside the workspace, omits credential-bearing dependency URLs and never evaluates scripts or executable config;
 - registry URLs come only from the trusted bundled exact allowlist and must use HTTPS without credentials; localhost, private, link-local, reserved and multicast literal hosts are rejected;
 - redirects, non-JSON responses, failed status codes and oversized bodies are rejected;
 - live requests time out after four seconds and responses are capped at 512 KiB/2,000 parsed items/20 returned matches;

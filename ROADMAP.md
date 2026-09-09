@@ -1,6 +1,6 @@
 # Roadmap
 
-The current published line is **0.3.0**. Items marked complete below are shipped in the repository and its public package; unchecked items are intentionally future work.
+This roadmap describes the 0.4.0 source line. Package and MCP Registry badges in the README show the currently published version. Checked items are implemented; unchecked items remain future work.
 
 ## 0.1 — Initial public source
 - [x] Seven-library catalog and routing rules
@@ -43,7 +43,15 @@ The current published line is **0.3.0**. Items marked complete below are shipped
 - [x] pending audit checks excluded from verified scores
 - [x] formal separation between MCP evidence states and the rendered `0/1/2` audit rubric
 
-## 0.4 — Hardening and adoption (next)
+## 0.4 — Routing and release hardening
+- [x] Exhaustive task-wide minimum-set selection with explicit objective evidence
+- [x] npm semver compatibility and explicit pending/unmet capability states
+- [x] Bounded read-only project metadata inspection with provenance
+- [x] Independent 128-subset minimum-set oracle and generated hard-gate cases
+- [x] Isolated tarball installation and seven-tool stdio smoke across CI platforms
+- [x] Lightweight Markdown CI with full checks for behavioral skills and code
+
+## Next — Adoption evidence
 - [ ] one rendered end-to-end frontend case study with captured before/after evidence
 - [x] multi-candidate ranking by compatibility, installed ownership, dependency cost, overlap and semver constraints
 - [x] independently authored adversarial golden cases alongside the internal policy benchmark

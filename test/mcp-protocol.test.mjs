@@ -5,7 +5,7 @@ import { Client, InMemoryTransport } from "@modelcontextprotocol/client";
 
 import { createOrchestrUiServer } from "../dist/mcp/src/server.js";
 
-test("MCP exposes six read-only tools and serves structured results", async (t) => {
+test("MCP exposes seven read-only tools and serves structured results", async (t) => {
   const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
   const server = createOrchestrUiServer();
   const client = new Client({ name: "orchestrui-test", version: "0.1.0" });
@@ -23,6 +23,7 @@ test("MCP exposes six read-only tools and serves structured results", async (t) 
     "audit_plan",
     "get_install_instructions",
     "get_library_guidance",
+    "inspect_project",
     "list_libraries",
     "recommend_stack",
     "search_components",

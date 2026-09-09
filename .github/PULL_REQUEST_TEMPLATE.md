@@ -16,7 +16,7 @@ Explain the routing/integration/quality value.
 ### If applicable
 
 - [ ] Documentation/link changes pass `npm run check:docs` and, when external links changed, `npm run check:links`.
-- [ ] MCP/package changes pass `npm run pack:check`.
+- [ ] MCP/package changes pass `npm run pack:smoke` (isolated tarball installation and stdio calls).
 - [ ] Live-adapter changes pass the opt-in network smoke test with mocked failure paths covered.
 - [ ] Current official upstream sources were checked where integration data changed.
 - [ ] No paid/Pro content was copied; React Bits source was not mirrored or redistributed.

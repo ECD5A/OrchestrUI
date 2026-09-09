@@ -236,7 +236,7 @@
     { "id": "S05", "host": "next-shadcn", "task": "forms-polish", "expected_selected": ["kokonut-ui"], "expected_rejected": ["daisyui"] },
     { "id": "S06", "host": "next-shadcn", "task": "marketing", "expected_selected": ["magic-ui"] },
     { "id": "S07", "host": "next-shadcn", "task": "signature", "expected_selected": ["react-bits"] },
-    { "id": "S08", "host": "next-shadcn", "task": "marketing-signature", "expected_selected": ["magic-ui", "react-bits"] },
+    { "id": "S08", "host": "next-shadcn", "task": "marketing-signature", "expected_selected": ["magic-ui"] },
     { "id": "S09", "host": "next-shadcn", "task": "bespoke", "expected_selected": ["animejs"] },
     { "id": "S10", "host": "next-shadcn", "task": "rive-confirmed", "expected_selected": ["rive"] },
     { "id": "S11", "host": "next-shadcn", "task": "rive-blocked", "expected_selected": [], "expected_rejected": ["rive"] },
@@ -261,7 +261,7 @@
     { "id": "S28", "host": "daisy-admin", "task": "forms-polish", "expected_selected": ["daisyui"], "expected_existing": ["daisyui"], "expected_rejected": ["kokonut-ui"] },
     { "id": "S29", "host": "daisy-admin", "task": "charts", "expected_selected": ["bklit-ui"] },
     { "id": "S30", "host": "daisy-admin", "task": "full-product", "expected_selected": ["daisyui", "bklit-ui"], "expected_existing": ["daisyui"], "expected_rejected": ["kokonut-ui"] },
-    { "id": "S31", "host": "daisy-admin", "task": "marketing-signature", "expected_selected": ["magic-ui", "react-bits"] },
+    { "id": "S31", "host": "daisy-admin", "task": "marketing-signature", "expected_selected": ["magic-ui"] },
 
     { "id": "S32", "host": "shadcn-recharts", "task": "charts", "expected_selected": [], "expected_rejected": ["bklit-ui"] },
     { "id": "S33", "host": "shadcn-recharts", "task": "charts-marketing", "expected_selected": ["magic-ui"], "expected_rejected": ["bklit-ui"] },
@@ -269,7 +269,7 @@
 
     { "id": "S35", "host": "shadcn-framer", "task": "bespoke", "expected_selected": [], "expected_rejected": ["animejs"] },
     { "id": "S36", "host": "shadcn-framer", "task": "marketing-bespoke", "expected_selected": ["magic-ui"], "expected_rejected": ["animejs"] },
-    { "id": "S37", "host": "shadcn-framer", "task": "marketing-signature", "expected_selected": ["magic-ui", "react-bits"] },
+    { "id": "S37", "host": "shadcn-framer", "task": "marketing-signature", "expected_selected": ["magic-ui"] },
 
     { "id": "S38", "host": "shadcn-bklit", "task": "charts", "expected_selected": ["bklit-ui"], "expected_existing": ["bklit-ui"] },
     { "id": "S39", "host": "shadcn-bklit", "task": "full-product", "expected_selected": ["bklit-ui", "kokonut-ui"], "expected_existing": ["bklit-ui"], "expected_rejected": ["daisyui"] },
@@ -285,7 +285,7 @@
 
     { "id": "S47", "host": "shadcn-anime", "task": "bespoke", "expected_selected": ["animejs"], "expected_existing": ["animejs"] },
     { "id": "S48", "host": "shadcn-anime", "task": "marketing-bespoke", "expected_selected": ["magic-ui", "animejs"], "expected_existing": ["animejs"] },
-    { "id": "S49", "host": "shadcn-anime", "task": "marketing-signature", "expected_selected": ["magic-ui", "react-bits"] },
+    { "id": "S49", "host": "shadcn-anime", "task": "marketing-signature", "expected_selected": ["magic-ui"] },
     { "id": "S50", "host": "shadcn-anime", "task": "full-product", "expected_selected": ["bklit-ui", "kokonut-ui"], "expected_rejected": ["daisyui"] }
   ]
 }

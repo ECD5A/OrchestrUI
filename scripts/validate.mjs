@@ -9,6 +9,7 @@
 import fs from "node:fs";
 import { isIP } from "node:net";
 import path from "node:path";
+import { validRange } from "semver";
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
 const catalog = readJson("catalog/libraries.json");
@@ -153,7 +154,7 @@ for (const [id, profile] of Object.entries(routing.candidate_profiles)) {
     fail(`Invalid candidate ranking profile for ${id}`);
   }
   for (const constraint of profile.version_constraints ?? []) {
-    if (!semverRangePattern.test(constraint.range)) {
+    if (!semverRangePattern.test(constraint.range) || !validRange(constraint.range)) {
       fail(`Invalid bounded semver constraint for ${id}`);
     }
   }
@@ -271,7 +272,7 @@ for (const file of [
   "docs/RELEASE_NOTES_0.2.0.md", ".github/release.yml",
   "assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg", "assets/social-preview.png",
   "site/index.html", "site/styles.css", "site/app.js", "site/fixtures.js", "site/robots.txt", "site/sitemap.xml",
-  ".github/workflows/pages.yml", ".github/workflows/docs.yml", "scripts/render-brand-assets.mjs", "scripts/build-site-data.mjs",
+  ".github/workflows/pages.yml", "scripts/ci-scope.mjs", "scripts/render-brand-assets.mjs", "scripts/build-site-data.mjs",
   "scripts/check-external-links.mjs",
   "scripts/check-docs.mjs",
   "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts",

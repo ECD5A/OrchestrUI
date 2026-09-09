@@ -37,13 +37,13 @@
     "constraints": ["one signature effect", "no timeline dependency"]
   },
   "expected": {
-    "selected": ["magic-ui", "react-bits"],
+    "selected": ["magic-ui"],
     "existing": [],
     "rejected": ["animejs", "rive", "daisyui", "bklit-ui", "kokonut-ui"],
     "owners": {
       "base-system": "host:shadcn-ui",
       "marketing-enhancement": "magic-ui",
-      "signature-effect": "react-bits"
+      "signature-effect": "magic-ui"
     }
   }
 }

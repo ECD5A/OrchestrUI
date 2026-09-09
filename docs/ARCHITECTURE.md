@@ -7,7 +7,7 @@ OrchestrUI separates stable policy from current upstream knowledge:
 - `catalog/libraries.json` holds exactly seven ecosystems, roles, compatibility, legal boundaries and provenance.
 - `catalog/components.json` holds small metadata-only fallbacks and the four public official registry indexes.
 - `catalog/routing-rules.json` is the declarative policy matrix for capabilities, exclusive roles, priorities, requirements and conflicts.
-- `mcp/src/` implements six read-only MCP tools on the stable TypeScript SDK v2.
+- `mcp/src/` implements seven read-only MCP tools, bounded local metadata inspection and exhaustive task-wide routing on the TypeScript SDK v2.
 - `benchmark/` holds 50 structured routing scenarios, 8 independently specified adversarial goldens and reproducible runners.
 - `examples/fixtures/` holds three host/task snapshots executed through routing and audit in CI.
 - `.codex-plugin/plugin.json`, `.mcp.json` and `server.json` prepare Codex/plugin/npm/MCP Registry distribution.

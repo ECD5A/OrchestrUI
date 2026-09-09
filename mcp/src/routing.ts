@@ -7,6 +7,7 @@
  */
 
 import { getLibrary } from "./catalog.js";
+import { semverCompatibility } from "./compatibility.js";
 import type {
   AssetRights,
   HostProfile,
@@ -77,6 +78,7 @@ type CapabilityCoverage = {
   capability: UiCapability;
   role: string;
   status: "selected" | "preserved" | "unmet";
+  verification: "verified" | "pending" | "failed";
   owner?: string;
   evidence: string[];
 };
@@ -250,77 +252,6 @@ function supportsFramework(frameworks: string[], hostFramework: string): boolean
   return declared.includes(host);
 }
 
-type Semver = [number, number, number];
-
-function parseVersion(value: string): Semver | undefined {
-  const match = value.trim().match(/^v?(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/);
-  if (!match) return undefined;
-  return [Number(match[1]), Number(match[2]), Number(match[3])];
-}
-
-function compareVersions(left: Semver, right: Semver): number {
-  for (let index = 0; index < 3; index += 1) {
-    const difference = (left[index] ?? 0) - (right[index] ?? 0);
-    if (difference) return difference;
-  }
-  return 0;
-}
-
-function nextMajor(version: Semver): Semver {
-  return [version[0] + 1, 0, 0];
-}
-
-function nextMinor(version: Semver): Semver {
-  return [version[0], version[1] + 1, 0];
-}
-
-function comparatorMatches(actual: Semver, operator: string, expected: Semver): boolean {
-  const comparison = compareVersions(actual, expected);
-  if (operator === ">=") return comparison >= 0;
-  if (operator === "<=") return comparison <= 0;
-  if (operator === ">") return comparison > 0;
-  if (operator === "<") return comparison < 0;
-  return comparison === 0;
-}
-
-function semverClauseMatches(actual: Semver, clause: string): boolean | undefined {
-  const tokens = clause.replaceAll(",", " ").trim().split(/\s+/).filter(Boolean);
-  if (!tokens.length) return undefined;
-  for (const token of tokens) {
-    const caret = token.match(/^\^(\d+)\.(\d+)\.(\d+)$/);
-    if (caret) {
-      const lower: Semver = [Number(caret[1]), Number(caret[2]), Number(caret[3])];
-      const upper: Semver = lower[0] > 0
-        ? nextMajor(lower)
-        : lower[1] > 0
-          ? [0, lower[1] + 1, 0]
-          : [0, 0, lower[2] + 1];
-      if (!comparatorMatches(actual, ">=", lower) || !comparatorMatches(actual, "<", upper)) return false;
-      continue;
-    }
-    const tilde = token.match(/^~(\d+)\.(\d+)\.(\d+)$/);
-    if (tilde) {
-      const lower: Semver = [Number(tilde[1]), Number(tilde[2]), Number(tilde[3])];
-      if (!comparatorMatches(actual, ">=", lower) || !comparatorMatches(actual, "<", nextMinor(lower))) return false;
-      continue;
-    }
-    const comparator = token.match(/^(>=|<=|>|<|=)?(\d+)\.(\d+)\.(\d+)$/);
-    if (!comparator) return undefined;
-    if (!comparatorMatches(actual, comparator[1] ?? "=", [Number(comparator[2]), Number(comparator[3]), Number(comparator[4])])) return false;
-  }
-  return true;
-}
-
-function semverCompatibility(value: string | undefined, range: string): "compatible" | "incompatible" | "unknown" {
-  if (!value) return "unknown";
-  const actual = parseVersion(value);
-  if (!actual) return "unknown";
-  const clauses = range.split("||").map((clause) => semverClauseMatches(actual, clause));
-  if (clauses.some((result) => result === true)) return "compatible";
-  if (clauses.some((result) => result === undefined)) return "unknown";
-  return "incompatible";
-}
-
 function candidatePresenceEvidence(host: HostProfile, candidate: string, packageNames: string[]): string[] {
   const evidence: string[] = [];
   const hostSignals = [
@@ -351,12 +282,6 @@ function versionFailure(
       return {
         reason: constraint.reason,
         evidence: `HostProfile.${constraint.host_field} is ${supplied}; required range is ${constraint.range}.`,
-      };
-    }
-    if (supplied && compatibility === "unknown") {
-      return {
-        reason: `HostProfile.${constraint.host_field} could not be verified against ${constraint.range}.`,
-        evidence: `HostProfile.${constraint.host_field} is ${supplied}; the declared range ${constraint.range} is not safely evaluable.`,
       };
     }
   }
@@ -434,7 +359,7 @@ function assessCandidate(
   host: HostProfile,
   task: TaskProfile,
   data: OrchestrUiData,
-  selected: Map<string, SelectedLibrary>,
+  selected: ReadonlySet<string>,
   ownership: Map<string, { role: string; owner: string; source: "host-profile" | "selected-library"; evidence: string }>,
 ): CandidateGate {
   const library = getLibrary(data, candidate);
@@ -497,6 +422,49 @@ function assessCandidate(
   return { eligible: true, evidence: [] };
 }
 
+function candidateUnverified(candidate: string, host: HostProfile, data: OrchestrUiData): boolean {
+  return host.framework === "unspecified" || (data.routing.candidate_profiles[candidate]?.version_constraints ?? [])
+    .some((constraint) => semverCompatibility(host[constraint.host_field], constraint.range) === "unknown");
+}
+
+function chooseTaskPlan(
+  capabilities: UiCapability[], host: HostProfile, task: TaskProfile, data: OrchestrUiData,
+  hostOwners: Map<string, { role: string; owner: string; source: "host-profile" | "selected-library"; evidence: string }>,
+) {
+  let best: { choices: Map<UiCapability, string>; objective: number[] } | undefined;
+  let evaluated = 0;
+  const scores = new Map(capabilities.map((capability) => [capability,
+    rankCandidates(capability, data.routing.capability_routes[capability].role,
+      data.routing.capability_routes[capability].candidates, host, task, data, new Map())]));
+  const visit = (index: number, choices: Map<UiCapability, string>, ids: Set<string>, owners: typeof hostOwners, score: number) => {
+    if (index === capabilities.length) {
+      evaluated += 1;
+      const additions = [...ids].filter((id) => !candidatePresenceEvidence(host, id, data.routing.candidate_profiles[id]!.package_names).length).length;
+      const objective = [capabilities.length - choices.size,
+        [...choices.values()].filter((id) => candidateUnverified(id, host, data)).length,
+        additions, ids.size, -score];
+      if (!best || objective.some((value, i) => value < best!.objective[i]! && objective.slice(0, i).every((v, j) => v === best!.objective[j]))) {
+        best = { choices: new Map(choices), objective };
+      }
+      return;
+    }
+    const capability = capabilities[index]!;
+    const route = data.routing.capability_routes[capability];
+    for (const ranking of scores.get(capability)!) {
+      const id = ranking.candidate;
+      if (!assessCandidate(id, route, data.routing.roles[route.role]!, host, task, data, ids, owners).eligible) continue;
+      const nextOwners = new Map(owners);
+      nextOwners.set(route.role, { role: route.role, owner: id, source: "selected-library", evidence: "Task-wide assignment." });
+      visit(index + 1, new Map([...choices, [capability, id]]), new Set([...ids, id]), nextOwners, score + ranking.score);
+    }
+    // An uncovered branch is necessary: an early choice must not prevent a
+    // later capability from yielding the best globally admissible plan.
+    visit(index + 1, choices, ids, owners, score);
+  };
+  visit(0, new Map(), new Set(), hostOwners, 0);
+  return { choices: best!.choices, objective: best!.objective, evaluated };
+}
+
 export function recommendStack(input: RecommendStackInput, data: OrchestrUiData) {
   const inputMode = input.hostProfile && input.taskProfile
     ? "structured-profiles"
@@ -533,8 +501,9 @@ export function recommendStack(input: RecommendStackInput, data: OrchestrUiData)
   }
 
   const orderedCapabilities = [...task.required_capabilities].sort((left, right) => (
-    data.routing.capability_routes[left].priority - data.routing.capability_routes[right].priority
+    data.routing.capability_routes[left].priority - data.routing.capability_routes[right].priority || left.localeCompare(right)
   ));
+  const plan = chooseTaskPlan(orderedCapabilities, host, task, data, ownership);
 
   for (const capability of orderedCapabilities) {
     const route = data.routing.capability_routes[capability];
@@ -547,7 +516,7 @@ export function recommendStack(input: RecommendStackInput, data: OrchestrUiData)
     // Apply every hard compatibility and ownership gate before ranking. This keeps
     // the reported rank meaningful: only admissible candidates receive a rank.
     for (const ranking of routeRankings) {
-      const gate = assessCandidate(ranking.candidate, route, rolePolicy, host, task, data, selected, ownership);
+      const gate = assessCandidate(ranking.candidate, route, rolePolicy, host, task, data, new Set(selected.keys()), ownership);
       if (gate.eligible) continue;
       ranking.eligible = false;
       ranking.outcome = "ineligible";
@@ -569,22 +538,25 @@ export function recommendStack(input: RecommendStackInput, data: OrchestrUiData)
     }
     const eligibleRankings = routeRankings.filter((ranking) => ranking.eligible);
     eligibleRankings.forEach((ranking, index) => { ranking.rank = index + 1; });
-    if (!eligibleRankings.length) {
+    if (!plan.choices.has(capability)) {
       const owner = ownership.get(route.role);
-      capabilityCoverage.push(owner
-        ? { capability, role: route.role, status: "preserved", owner: owner.owner, evidence: [owner.evidence] }
+      const externalOwner = owner?.owner.startsWith("host:");
+      capabilityCoverage.push(owner && externalOwner
+        ? { capability, role: route.role, status: "preserved", verification: "pending", owner: owner.owner, evidence: [owner.evidence, "Existing ownership is preserved; task capability has not been verified."] }
         : {
           capability,
           role: route.role,
           status: "unmet",
+          verification: "failed",
           evidence: routeRankings.map((ranking) => `${ranking.candidate}: ${ranking.blocked_by ?? "ineligible"}`),
         });
-      if (!owner) risks.push(`No eligible candidate satisfies the required capability ${capability}.`);
+      if (!externalOwner) risks.push(`No admissible task-wide assignment satisfies ${capability}.`);
     }
 
     for (const ranking of routeRankings) {
       if (!ranking.eligible) continue;
       const candidate = ranking.candidate;
+      if (candidate !== plan.choices.get(capability)) { ranking.outcome = "lower-ranked"; continue; }
       const library = getLibrary(data, candidate);
       const currentOwner = ownership.get(route.role);
       const presenceEvidence = candidatePresenceEvidence(
@@ -598,7 +570,7 @@ export function recommendStack(input: RecommendStackInput, data: OrchestrUiData)
         `TaskProfile.required_capabilities includes ${capability}.`,
         alreadyPresent
           ? (currentOwner?.evidence ?? presenceEvidence[0] as string)
-          : `Policy route ${capability} -> ${route.role} ranked ${candidate} first among admissible candidates.`,
+          : `Task-wide optimization assigned ${candidate} to ${capability} -> ${route.role}.`,
         `Candidate score ${ranking.score}; eligible rank ${ranking.rank}/${eligibleRankings.length}.`,
       ];
       selected.set(candidate, existingSelection ? {
@@ -633,6 +605,7 @@ export function recommendStack(input: RecommendStackInput, data: OrchestrUiData)
         capability,
         role: route.role,
         status: alreadyPresent ? "preserved" : "selected",
+        verification: candidateUnverified(candidate, host, data) ? "pending" : "verified",
         owner: candidate,
         evidence: selectionEvidence,
       });
@@ -664,7 +637,7 @@ export function recommendStack(input: RecommendStackInput, data: OrchestrUiData)
     if (ranking.outcome !== "lower-ranked" || selected.has(ranking.candidate) || rejected.has(ranking.candidate)) continue;
     rejected.set(ranking.candidate, {
       id: ranking.candidate,
-      reason: `A higher-ranked admissible candidate owns ${ranking.role}.`,
+      reason: `Another admissible candidate was assigned to ${ranking.role} by the task-wide objective.`,
       rule_id: "candidate-ranking",
     });
   }
@@ -684,9 +657,12 @@ export function recommendStack(input: RecommendStackInput, data: OrchestrUiData)
     .map((coverage) => ({
       capability: coverage.capability,
       role: coverage.role,
-      reason: `No eligible candidate passed the hard gates for ${coverage.capability}.`,
+      reason: `No admissible task-wide assignment covers ${coverage.capability}.`,
       evidence: coverage.evidence,
     }));
+  const pendingRequirements = capabilityCoverage.filter((coverage) => coverage.verification === "pending");
+  // Rejections are library-wide; route-specific alternatives remain in rankings.
+  for (const id of selected.keys()) rejected.delete(id);
   const planMetrics = [...selected.keys()].reduce((metrics, id) => {
     const profile = data.routing.candidate_profiles[id];
     if (!profile) return metrics;
@@ -703,6 +679,8 @@ export function recommendStack(input: RecommendStackInput, data: OrchestrUiData)
     input_mode: inputMode,
     summary: unmetRequirements.length
       ? `Resolve ${unmetRequirements.length} unmet task requirement${unmetRequirements.length === 1 ? "" : "s"} before implementation.`
+      : pendingRequirements.length
+      ? `Provisional plan: verify ${pendingRequirements.length} task requirement(s); ${additions} ecosystem addition(s).`
       : additions
       ? `Add ${additions} ecosystem${additions === 1 ? "" : "s"}; preserve every compatible host owner.`
       : "Preserve the existing host system without adding an OrchestrUI ecosystem.",
@@ -715,6 +693,13 @@ export function recommendStack(input: RecommendStackInput, data: OrchestrUiData)
     candidate_rankings: candidateRankings,
     capability_coverage: capabilityCoverage,
     unmet_requirements: unmetRequirements,
+    pending_requirements: pendingRequirements,
+    optimization: {
+      method: "exhaustive-capability-assignment",
+      objective_order: ["unassigned-capabilities", "unverified-assignments", "additions", "library-count", "negative-policy-score"],
+      objective: plan.objective,
+      evaluated_plans: plan.evaluated,
+    },
     plan_metrics: {
       library_count: selected.size,
       additions,

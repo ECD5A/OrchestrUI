@@ -4,10 +4,10 @@ GitHub is canonical. Local source, npm, the MCP Registry and the OpenAI plugin d
 
 ## Release preflight
 
-1. Re-verify [`SOURCES.md`](SOURCES.md) and update both catalog verification dates.
+1. Review [`SOURCES.md`](SOURCES.md). Re-verify upstream metadata when changing integrations; update catalog dates only after actually checking every referenced ecosystem.
 2. Set one exact semantic version in `package.json`, `.codex-plugin/plugin.json`, `server.json` and MCP server metadata.
 3. Regenerate fixture-backed Pages data with `npm run site:data:write`. Run `npm run render:brand` or `npm run render:demo` only when the corresponding visual source intentionally changed; confirm the working tree contains only expected changes.
-4. Run `npm ci`, `npm run check`, `npm run check:links`, `ORCHESTRUI_LIVE_TESTS=1 npm test`, `npm audit`, `npm audit --omit=dev` and `npm run pack:check`.
+4. Run `npm ci`, `npm run check`, `npm run check:links`, `ORCHESTRUI_LIVE_TESTS=1 npm test`, `npm audit`, `npm audit --omit=dev` and `npm run pack:smoke`. The smoke test installs the actual tarball in a fresh temporary consumer and calls all seven tools over stdio; `pack:check` is only a dry-run file listing.
 5. Inspect the shared `assets/social-preview.png` README/social artwork at its native dimensions.
 6. Inspect the tarball file list for secrets, Pro content, vendored collections and missing legal files.
 7. Confirm all relative Markdown links, exact support addresses and the absence of `.github/FUNDING.yml`; `npm run validate` enforces these repository gates.

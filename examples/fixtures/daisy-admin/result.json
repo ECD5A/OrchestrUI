@@ -2,7 +2,7 @@
   "schema_version": 1,
   "fixture_id": "daisy-admin",
   "policy_schema_version": 3,
-  "package_version": "0.3.0",
+  "package_version": "0.4.0",
   "recommendation": {
     "input_mode": "structured-profiles",
     "summary": "Preserve the existing host system without adding an OrchestrUI ecosystem.",
@@ -322,6 +322,7 @@
         "capability": "forms-controls",
         "role": "base-system",
         "status": "preserved",
+        "verification": "verified",
         "owner": "daisyui",
         "evidence": [
           "TaskProfile.required_capabilities includes forms-controls.",
@@ -333,6 +334,7 @@
         "capability": "product-polish",
         "role": "product-polish",
         "status": "preserved",
+        "verification": "verified",
         "owner": "daisyui",
         "evidence": [
           "TaskProfile.required_capabilities includes product-polish.",
@@ -342,6 +344,25 @@
       }
     ],
     "unmet_requirements": [],
+    "pending_requirements": [],
+    "optimization": {
+      "method": "exhaustive-capability-assignment",
+      "objective_order": [
+        "unassigned-capabilities",
+        "unverified-assignments",
+        "additions",
+        "library-count",
+        "negative-policy-score"
+      ],
+      "objective": [
+        0,
+        0,
+        0,
+        1,
+        -2300
+      ],
+      "evaluated_plans": 4
+    },
     "plan_metrics": {
       "library_count": 1,
       "additions": 0,

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "fixture_id": "next-shadcn-dashboard",
   "policy_schema_version": 3,
-  "package_version": "0.3.0",
+  "package_version": "0.4.0",
   "recommendation": {
     "input_mode": "structured-profiles",
     "summary": "Add 1 ecosystem; preserve every compatible host owner.",
@@ -66,7 +66,7 @@
         "already_present": false,
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
-          "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
+          "Task-wide optimization assigned bklit-ui to data-visualization -> data-visualization.",
           "Candidate score 980; eligible rank 1/1."
         ]
       }
@@ -132,7 +132,7 @@
         "rule_id": "candidate-ranking",
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
-          "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
+          "Task-wide optimization assigned bklit-ui to data-visualization -> data-visualization.",
           "Candidate score 980; eligible rank 1/1."
         ]
       }
@@ -190,15 +190,35 @@
         "capability": "data-visualization",
         "role": "data-visualization",
         "status": "selected",
+        "verification": "verified",
         "owner": "bklit-ui",
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
-          "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
+          "Task-wide optimization assigned bklit-ui to data-visualization -> data-visualization.",
           "Candidate score 980; eligible rank 1/1."
         ]
       }
     ],
     "unmet_requirements": [],
+    "pending_requirements": [],
+    "optimization": {
+      "method": "exhaustive-capability-assignment",
+      "objective_order": [
+        "unassigned-capabilities",
+        "unverified-assignments",
+        "additions",
+        "library-count",
+        "negative-policy-score"
+      ],
+      "objective": [
+        0,
+        0,
+        1,
+        1,
+        -980
+      ],
+      "evaluated_plans": 2
+    },
     "plan_metrics": {
       "library_count": 1,
       "additions": 1,

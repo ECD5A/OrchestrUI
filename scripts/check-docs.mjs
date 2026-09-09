@@ -51,6 +51,14 @@ function validateSkillPair(skill) {
   const packaged = fs.readFileSync(path.join("skills", skill, "SKILL.md"), "utf8").replaceAll("\r\n", "\n");
   const agent = fs.readFileSync(path.join(".agents/skills", skill, "SKILL.md"), "utf8").replaceAll("\r\n", "\n");
   if (packaged !== agent) fail(`Packaged skill is out of sync: ${skill}`);
+  const sourceFiles = filesUnder(path.join(".agents/skills", skill)).sort();
+  const packageFiles = filesUnder(path.join("skills", skill)).sort();
+  if (JSON.stringify(sourceFiles) !== JSON.stringify(packageFiles)) fail(`Skill file lists differ: ${skill}`);
+  for (const file of sourceFiles) {
+    const left = fs.readFileSync(path.join(".agents/skills", skill, file), "utf8").replaceAll("\r\n", "\n");
+    const right = fs.readFileSync(path.join("skills", skill, file), "utf8").replaceAll("\r\n", "\n");
+    if (left !== right) fail(`Skill reference is out of sync: ${skill}/${file}`);
+  }
 }
 
 for (const skill of ["ui-library-router", "ui-orchestrator", "ui-quality-audit"]) validateSkillPair(skill);

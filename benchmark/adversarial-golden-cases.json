@@ -214,7 +214,7 @@
       }
     },
     {
-      "id": "A08-distinct-marketing-roles-remain-explicit",
+      "id": "A08-shared-library-keeps-distinct-role-ownership",
       "input": {
         "hostProfile": {
           "framework": "Next.js",
@@ -238,14 +238,14 @@
         }
       },
       "expected": {
-        "selected": ["magic-ui", "react-bits"],
+        "selected": ["magic-ui"],
         "ranking_winners": {
           "marketing-motion": "magic-ui",
-          "signature-creative-effect": "react-bits"
+          "signature-creative-effect": "magic-ui"
         },
         "owners": {
           "marketing-enhancement": "magic-ui",
-          "signature-effect": "react-bits"
+          "signature-effect": "magic-ui"
         }
       }
     }

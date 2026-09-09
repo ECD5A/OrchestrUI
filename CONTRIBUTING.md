@@ -19,6 +19,8 @@ Small bug fixes, documentation improvements and tests are welcome without prior 
 - Do not copy paid/Pro content, vendor React Bits, or add secrets/tokens.
 - Run `npm run check`; for docs-only changes run `npm run check:docs` (and `npm run check:links` when links changed).
 - For adapter changes, run the opt-in live smoke test and include mocked failure-path tests.
-- For package/plugin changes, run `npm run pack:check` and keep all version fields synchronized.
+- For package/plugin changes, run `npm run pack:smoke` and keep all version fields synchronized.
+
+README and ordinary Markdown changes run only the dependency-free documentation check in CI. Agent instructions and skill references affect behavior and use the full checks. Code changes also exercise an isolated npm installation and MCP stdio calls on Linux, macOS and Windows.
 
 A PR should explain the problem, approach, any new dependency, official sources checked, tests run and licensing implications. Security reports follow `SECURITY.md`, never public Issues.
