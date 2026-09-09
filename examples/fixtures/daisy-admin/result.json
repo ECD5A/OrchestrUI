@@ -47,6 +47,7 @@
         ]
       }
     },
+    "profile_diagnostics": [],
     "selected": [
       {
         "id": "daisyui",
@@ -66,18 +67,18 @@
         "evidence": [
           "TaskProfile.required_capabilities includes forms-controls.",
           "HostProfile.design_system declares daisyUI.",
-          "Candidate score 1150; rank 1/1.",
+          "Candidate score 1200; eligible rank 1/1.",
           "TaskProfile.required_capabilities includes product-polish.",
           "HostProfile already identifies daisyui in its UI stacks or primitives.",
-          "Candidate score 1040; rank 1/2."
+          "Candidate score 1090; eligible rank 1/1."
         ]
       }
     ],
     "rejected": [
       {
         "id": "kokonut-ui",
-        "reason": "A higher-ranked admissible candidate owns product-polish.",
-        "rule_id": "candidate-ranking"
+        "reason": "Kokonut is a shadcn-compatible layer and is not added on top of a daisyUI base without an isolation plan.",
+        "rule_id": "base-system-conflict"
       },
       {
         "id": "react-bits",
@@ -135,7 +136,15 @@
         "evidence": [
           "TaskProfile.required_capabilities includes forms-controls.",
           "HostProfile.design_system declares daisyUI.",
-          "Candidate score 1150; rank 1/1."
+          "Candidate score 1200; eligible rank 1/1."
+        ]
+      },
+      {
+        "outcome": "rejected",
+        "subject": "kokonut-ui",
+        "rule_id": "base-system-conflict",
+        "evidence": [
+          "Kokonut is a shadcn-compatible layer and is not added on top of a daisyUI base without an isolation plan."
         ]
       },
       {
@@ -145,10 +154,10 @@
         "evidence": [
           "TaskProfile.required_capabilities includes forms-controls.",
           "HostProfile.design_system declares daisyUI.",
-          "Candidate score 1150; rank 1/1.",
+          "Candidate score 1200; eligible rank 1/1.",
           "TaskProfile.required_capabilities includes product-polish.",
           "HostProfile already identifies daisyui in its UI stacks or primitives.",
-          "Candidate score 1040; rank 1/2."
+          "Candidate score 1090; eligible rank 1/1."
         ]
       }
     ],
@@ -157,7 +166,7 @@
         "capability": "forms-controls",
         "role": "base-system",
         "candidate": "daisyui",
-        "score": 1150,
+        "score": 1200,
         "rank": 1,
         "eligible": true,
         "outcome": "selected",
@@ -193,9 +202,14 @@
             "evidence": "No selected overlap group is duplicated."
           },
           {
+            "id": "task-coverage",
+            "score": 30,
+            "evidence": "daisyui is a candidate for 2 required capabilities, reducing the task-wide library set."
+          },
+          {
             "id": "semver-compatibility",
-            "score": 0,
-            "evidence": "HostProfile.tailwind_version 4 is checked against >=4.0.0."
+            "score": 20,
+            "evidence": "HostProfile.tailwind_version 4 is compatible for >=4.0.0."
           }
         ]
       },
@@ -203,7 +217,7 @@
         "capability": "product-polish",
         "role": "product-polish",
         "candidate": "daisyui",
-        "score": 1040,
+        "score": 1090,
         "rank": 1,
         "eligible": true,
         "outcome": "selected",
@@ -239,9 +253,14 @@
             "evidence": "2 overlap group(s) are already represented."
           },
           {
+            "id": "task-coverage",
+            "score": 30,
+            "evidence": "daisyui is a candidate for 2 required capabilities, reducing the task-wide library set."
+          },
+          {
             "id": "semver-compatibility",
-            "score": 0,
-            "evidence": "HostProfile.tailwind_version 4 is checked against >=4.0.0."
+            "score": 20,
+            "evidence": "HostProfile.tailwind_version 4 is compatible for >=4.0.0."
           }
         ]
       },
@@ -249,10 +268,10 @@
         "capability": "product-polish",
         "role": "product-polish",
         "candidate": "kokonut-ui",
-        "score": 960,
-        "rank": 2,
-        "eligible": true,
-        "outcome": "lower-ranked",
+        "score": 980,
+        "rank": null,
+        "eligible": false,
+        "outcome": "ineligible",
         "factors": [
           {
             "id": "policy-order",
@@ -285,13 +304,52 @@
             "evidence": "1 overlap group(s) are already represented."
           },
           {
-            "id": "semver-compatibility",
+            "id": "task-coverage",
             "score": 0,
-            "evidence": "HostProfile.tailwind_version 4 is checked against >=4.0.0."
+            "evidence": "kokonut-ui is a candidate for one required capability."
+          },
+          {
+            "id": "semver-compatibility",
+            "score": 20,
+            "evidence": "HostProfile.tailwind_version 4 is compatible for >=4.0.0."
           }
+        ],
+        "blocked_by": "base-system-conflict"
+      }
+    ],
+    "capability_coverage": [
+      {
+        "capability": "forms-controls",
+        "role": "base-system",
+        "status": "preserved",
+        "owner": "daisyui",
+        "evidence": [
+          "TaskProfile.required_capabilities includes forms-controls.",
+          "HostProfile.design_system declares daisyUI.",
+          "Candidate score 1200; eligible rank 1/1."
+        ]
+      },
+      {
+        "capability": "product-polish",
+        "role": "product-polish",
+        "status": "preserved",
+        "owner": "daisyui",
+        "evidence": [
+          "TaskProfile.required_capabilities includes product-polish.",
+          "HostProfile already identifies daisyui in its UI stacks or primitives.",
+          "Candidate score 1090; eligible rank 1/1."
         ]
       }
     ],
+    "unmet_requirements": [],
+    "plan_metrics": {
+      "library_count": 1,
+      "additions": 0,
+      "dependency_cost": 2,
+      "bundle_cost": 2,
+      "overlap_group_count": 2,
+      "reused_library_count": 1
+    },
     "risks": [],
     "validation_plan": [
       "Verify selected component IDs and installation guidance against cited official sources.",

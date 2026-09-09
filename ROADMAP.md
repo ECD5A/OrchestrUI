@@ -1,5 +1,7 @@
 # Roadmap
 
+The current published line is **0.3.0**. Items marked complete below are shipped in the repository and its public package; unchecked items are intentionally future work.
+
 ## 0.1 — Initial public source
 - [x] Seven-library catalog and routing rules
 - [x] Three Agent Skills
@@ -24,7 +26,7 @@
 - [x] `get_install_instructions`
 - [x] `audit_plan`
 
-## 0.4 — Distribution
+## 0.3 — Distribution (shipped)
 - [x] npm package publication with verified install smoke test
 - [x] Codex/ChatGPT plugin manifest and bundled MCP configuration
 - [x] MCP Registry publication as `io.github.ECD5A/orchestrui`
@@ -32,7 +34,7 @@
 - [ ] hosted MCP registration and OpenAI plugin review if a universal listing is desired
 - [ ] additional agent-host guides based on real adoption
 
-## 0.5 — Structured policy proof
+## 0.3 — Structured policy proof (shipped)
 - [x] structured HostProfile and TaskProfile routing
 - [x] declarative role ownership and conflict policy
 - [x] evidence-bearing selected and rejected decisions
@@ -41,13 +43,13 @@
 - [x] pending audit checks excluded from verified scores
 - [x] formal separation between MCP evidence states and the rendered `0/1/2` audit rubric
 
-## 0.6 — Adoption proof
+## 0.4 — Hardening and adoption (next)
 - [ ] one rendered end-to-end frontend case study with captured before/after evidence
 - [x] multi-candidate ranking by compatibility, installed ownership, dependency cost, overlap and semver constraints
 - [x] independently authored adversarial golden cases alongside the internal policy benchmark
 - [ ] additional agent-host guides based on real adoption
 
-## 1.0
+## 1.0 — Stability
 - [ ] stable catalog schema and MCP API
 - [x] compatibility policy baseline
 - [x] reproducible local release checks

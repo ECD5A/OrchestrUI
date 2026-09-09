@@ -50,6 +50,7 @@
         ]
       }
     },
+    "profile_diagnostics": [],
     "selected": [
       {
         "id": "magic-ui",
@@ -67,7 +68,7 @@
         "evidence": [
           "TaskProfile.required_capabilities includes marketing-motion.",
           "Policy route marketing-motion -> marketing-enhancement ranked magic-ui first among admissible candidates.",
-          "Candidate score 980; rank 1/2."
+          "Candidate score 1010; eligible rank 1/2."
         ]
       },
       {
@@ -86,7 +87,7 @@
         "evidence": [
           "TaskProfile.required_capabilities includes signature-creative-effect.",
           "Policy route signature-creative-effect -> signature-effect ranked react-bits first among admissible candidates.",
-          "Candidate score 950; rank 1/2."
+          "Candidate score 980; eligible rank 1/2."
         ]
       }
     ],
@@ -153,7 +154,7 @@
         "evidence": [
           "TaskProfile.required_capabilities includes marketing-motion.",
           "Policy route marketing-motion -> marketing-enhancement ranked magic-ui first among admissible candidates.",
-          "Candidate score 980; rank 1/2."
+          "Candidate score 1010; eligible rank 1/2."
         ]
       },
       {
@@ -163,7 +164,7 @@
         "evidence": [
           "TaskProfile.required_capabilities includes signature-creative-effect.",
           "Policy route signature-creative-effect -> signature-effect ranked react-bits first among admissible candidates.",
-          "Candidate score 950; rank 1/2."
+          "Candidate score 980; eligible rank 1/2."
         ]
       }
     ],
@@ -172,7 +173,7 @@
         "capability": "marketing-motion",
         "role": "marketing-enhancement",
         "candidate": "magic-ui",
-        "score": 980,
+        "score": 1010,
         "rank": 1,
         "eligible": true,
         "outcome": "selected",
@@ -206,6 +207,11 @@
             "id": "role-overlap",
             "score": 0,
             "evidence": "No selected overlap group is duplicated."
+          },
+          {
+            "id": "task-coverage",
+            "score": 30,
+            "evidence": "magic-ui is a candidate for 2 required capabilities, reducing the task-wide library set."
           }
         ]
       },
@@ -213,7 +219,7 @@
         "capability": "marketing-motion",
         "role": "marketing-enhancement",
         "candidate": "react-bits",
-        "score": 875,
+        "score": 905,
         "rank": 2,
         "eligible": true,
         "outcome": "lower-ranked",
@@ -247,6 +253,11 @@
             "id": "role-overlap",
             "score": 0,
             "evidence": "No selected overlap group is duplicated."
+          },
+          {
+            "id": "task-coverage",
+            "score": 30,
+            "evidence": "react-bits is a candidate for 2 required capabilities, reducing the task-wide library set."
           }
         ]
       },
@@ -254,7 +265,7 @@
         "capability": "signature-creative-effect",
         "role": "signature-effect",
         "candidate": "react-bits",
-        "score": 950,
+        "score": 980,
         "rank": 1,
         "eligible": true,
         "outcome": "selected",
@@ -288,6 +299,11 @@
             "id": "role-overlap",
             "score": -25,
             "evidence": "1 overlap group(s) are already represented."
+          },
+          {
+            "id": "task-coverage",
+            "score": 30,
+            "evidence": "react-bits is a candidate for 2 required capabilities, reducing the task-wide library set."
           }
         ]
       },
@@ -295,7 +311,7 @@
         "capability": "signature-creative-effect",
         "role": "signature-effect",
         "candidate": "magic-ui",
-        "score": 845,
+        "score": 875,
         "rank": 2,
         "eligible": true,
         "outcome": "lower-ranked",
@@ -329,10 +345,48 @@
             "id": "role-overlap",
             "score": -75,
             "evidence": "3 overlap group(s) are already represented."
+          },
+          {
+            "id": "task-coverage",
+            "score": 30,
+            "evidence": "magic-ui is a candidate for 2 required capabilities, reducing the task-wide library set."
           }
         ]
       }
     ],
+    "capability_coverage": [
+      {
+        "capability": "marketing-motion",
+        "role": "marketing-enhancement",
+        "status": "selected",
+        "owner": "magic-ui",
+        "evidence": [
+          "TaskProfile.required_capabilities includes marketing-motion.",
+          "Policy route marketing-motion -> marketing-enhancement ranked magic-ui first among admissible candidates.",
+          "Candidate score 1010; eligible rank 1/2."
+        ]
+      },
+      {
+        "capability": "signature-creative-effect",
+        "role": "signature-effect",
+        "status": "selected",
+        "owner": "react-bits",
+        "evidence": [
+          "TaskProfile.required_capabilities includes signature-creative-effect.",
+          "Policy route signature-creative-effect -> signature-effect ranked react-bits first among admissible candidates.",
+          "Candidate score 980; eligible rank 1/2."
+        ]
+      }
+    ],
+    "unmet_requirements": [],
+    "plan_metrics": {
+      "library_count": 2,
+      "additions": 2,
+      "dependency_cost": 2,
+      "bundle_cost": 5,
+      "overlap_group_count": 4,
+      "reused_library_count": 0
+    },
     "risks": [
       "React Bits source must be retrieved from official upstream and never redistributed by OrchestrUI."
     ],

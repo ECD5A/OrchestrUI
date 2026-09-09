@@ -17,6 +17,6 @@ The MCP layer loads trusted bundled catalogs synchronously. `search_components` 
 
 No MCP tool executes commands or mutates files. `get_install_instructions` returns inert text so the coding agent's normal permission model remains the only installation authority.
 
-`recommend_stack` normalizes `HostProfile` and `TaskProfile`, registers existing role owners, ranks candidates using explicit cost/reuse/overlap/version factors, applies hard compatibility and conflict gates, and returns selected/rejected candidates with rule evidence. Task text is a compatibility-only inference path. `audit_plan` keeps unverified rendered checks pending and excludes them from its verified score.
+`recommend_stack` normalizes `HostProfile` and `TaskProfile`, emits actionable profile diagnostics, registers existing role owners, evaluates hard compatibility/conflict gates, ranks only admissible candidates using explicit cost/reuse/overlap/task-coverage/version factors, and returns selected/rejected candidates with rule evidence. It also reports capability coverage, unmet requirements and aggregate dependency/bundle cost. Task text is a compatibility-only inference path. `audit_plan` keeps unverified rendered checks pending and excludes them from its verified score.
 
 OrchestrUI does not vendor the seven libraries because that creates licensing risk, stale code, unnecessary context and dependency conflicts. The value remains selection, retrieval guidance, harmonization and audit judgment.

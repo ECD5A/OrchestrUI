@@ -210,7 +210,7 @@
         "selected": ["daisyui"],
         "existing": ["daisyui"],
         "ranking_winners": { "product-polish": "daisyui" },
-        "rejected_rules": { "kokonut-ui": "candidate-ranking" }
+        "rejected_rules": { "kokonut-ui": "base-system-conflict" }
       }
     },
     {

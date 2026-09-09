@@ -49,6 +49,7 @@
         ]
       }
     },
+    "profile_diagnostics": [],
     "selected": [
       {
         "id": "bklit-ui",
@@ -66,7 +67,7 @@
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
           "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
-          "Candidate score 980; rank 1/1."
+          "Candidate score 980; eligible rank 1/1."
         ]
       }
     ],
@@ -132,7 +133,7 @@
         "evidence": [
           "TaskProfile.required_capabilities includes data-visualization.",
           "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
-          "Candidate score 980; rank 1/1."
+          "Candidate score 980; eligible rank 1/1."
         ]
       }
     ],
@@ -175,10 +176,37 @@
             "id": "role-overlap",
             "score": 0,
             "evidence": "No selected overlap group is duplicated."
+          },
+          {
+            "id": "task-coverage",
+            "score": 0,
+            "evidence": "bklit-ui is a candidate for one required capability."
           }
         ]
       }
     ],
+    "capability_coverage": [
+      {
+        "capability": "data-visualization",
+        "role": "data-visualization",
+        "status": "selected",
+        "owner": "bklit-ui",
+        "evidence": [
+          "TaskProfile.required_capabilities includes data-visualization.",
+          "Policy route data-visualization -> data-visualization ranked bklit-ui first among admissible candidates.",
+          "Candidate score 980; eligible rank 1/1."
+        ]
+      }
+    ],
+    "unmet_requirements": [],
+    "plan_metrics": {
+      "library_count": 1,
+      "additions": 1,
+      "dependency_cost": 1,
+      "bundle_cost": 2,
+      "overlap_group_count": 2,
+      "reused_library_count": 0
+    },
     "risks": [],
     "validation_plan": [
       "Verify selected component IDs and installation guidance against cited official sources.",

@@ -105,7 +105,7 @@
               "required": ["host_field", "range", "reason"],
               "properties": {
                 "host_field": { "enum": ["framework_version", "react_version", "tailwind_version"] },
-                "range": { "type": "string", "pattern": "^(?:>=|<=|>|<|=)\\d+(?:\\.\\d+){0,2}$" },
+                "range": { "type": "string", "pattern": "^(?:\\^|~|>=|<=|>|<|=)?\\d+(?:\\.\\d+){0,2}(?:\\s+(?:\\^|~|>=|<=|>|<|=)?\\d+(?:\\.\\d+){0,2})*(?:\\s*\\|\\|\\s*(?:\\^|~|>=|<=|>|<|=)?\\d+(?:\\.\\d+){0,2}(?:\\s+(?:\\^|~|>=|<=|>|<|=)?\\d+(?:\\.\\d+){0,2})*)*$" },
                 "reason": { "type": "string", "minLength": 1 }
               }
             }

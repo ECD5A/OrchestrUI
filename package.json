@@ -65,6 +65,7 @@
     "site:data": "node scripts/build-site-data.mjs",
     "site:data:write": "node scripts/build-site-data.mjs --write",
     "check": "npm run validate && npm run site:data && npm run typecheck && npm test",
+    "check:docs": "node scripts/check-docs.mjs",
     "check:links": "node scripts/check-external-links.mjs",
     "render:brand": "node scripts/render-brand-assets.mjs",
     "render:demo": "node scripts/render-readme-demo.mjs",

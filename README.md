@@ -79,6 +79,8 @@ npm run benchmark
 
 </details>
 
+Contributions are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md) for the short path from fork to PR.
+
 Use them from a frontend project:
 
 ```text

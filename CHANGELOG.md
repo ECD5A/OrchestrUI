@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Changed
+- Hard gates now run before candidate ranking; blocked candidates expose `rank: null` and an explicit rule.
+- Recommendations report capability coverage, unmet requirements and task-wide dependency/bundle metrics.
+- Semver checks support comparator sets, caret/tilde ranges and OR clauses without substring matching.
+- Documentation-only changes have a focused CI workflow; contribution guidance and the PR template now separate required checks from applicable checks.
+
 ## [0.3.0] - 2026-08-22
 
 ### Added
