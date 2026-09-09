@@ -1,5 +1,3 @@
-# OrchestrUI 0.3.0 — Explainable candidate ranking
-
 OrchestrUI now explains not only which UI ecosystem wins, but how every admissible candidate was ranked and why a hard compatibility gate rejected an option.
 
 ## Highlights

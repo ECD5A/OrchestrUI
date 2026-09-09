@@ -1,5 +1,3 @@
-# OrchestrUI 0.2.1 — Registry alignment
-
 This patch release corrects the case-sensitive MCP Registry namespace used for GitHub publisher authorization.
 
 ## Fixed

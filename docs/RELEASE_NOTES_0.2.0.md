@@ -1,5 +1,3 @@
-# OrchestrUI 0.2.0 — Structured policy proof
-
 OrchestrUI is a deterministic UI policy, discovery and quality layer for coding agents composing modern frontend ecosystems.
 
 ## Highlights

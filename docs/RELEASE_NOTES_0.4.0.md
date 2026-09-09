@@ -1,5 +1,3 @@
-# OrchestrUI 0.4.0 — Task-wide routing and project inspection
-
 OrchestrUI now evaluates the whole UI task before selecting libraries, inspects local project metadata, and distinguishes verified compatibility from unresolved requirements.
 
 ## Highlights
