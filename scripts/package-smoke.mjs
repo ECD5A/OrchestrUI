@@ -27,7 +27,7 @@ try {
   const demo = path.join(consumer, "demo");
   fs.mkdirSync(demo);
   fs.writeFileSync(path.join(demo, "package.json"), JSON.stringify({ dependencies: { react: "^19", tailwindcss: "^4" } }));
-  await client.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(installed, "dist/mcp/src/server.js")], cwd: consumer, stderr: "pipe" }));
+  await client.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(installed, "dist/mcp/src/server.js")], cwd: consumer, stderr: "inherit" }));
   const listing = await client.listTools();
   assert.equal(listing.tools.length, 7);
   const call = async (name, args) => {
