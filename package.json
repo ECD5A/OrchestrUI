@@ -9,7 +9,7 @@
   "homepage": "https://ecd5a.github.io/OrchestrUI/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ECD5A/OrchestrUI.git"
+    "url": "https://github.com/ECD5A/OrchestrUI"
   },
   "bugs": {
     "url": "https://github.com/ECD5A/OrchestrUI/issues"
