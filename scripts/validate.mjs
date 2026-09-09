@@ -268,7 +268,7 @@ for (const file of [
   "benchmark/routing-benchmark.json", "benchmark/run.mjs", "benchmark/adversarial-golden-cases.json",
   "benchmark/adversarial.mjs", "catalog/routing-rules.schema.json",
   "examples/fixtures/run.mjs",
-  "docs/CLAUDE_CODE.md", "docs/GITHUB_SETUP_CHECKLIST.md", "docs/RELEASE_NOTES_0.1.0.md",
+  "docs/CLAUDE_CODE.md", "docs/RELEASE_NOTES_0.1.0.md",
   "docs/RELEASE_NOTES_0.2.0.md", ".github/release.yml",
   "assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg", "assets/social-preview.png",
   "site/index.html", "site/styles.css", "site/app.js", "site/fixtures.js", "site/robots.txt", "site/sitemap.xml",
@@ -315,7 +315,6 @@ function validateGif(file, width, height, maximumBytes) {
   }
   if (image.length > maximumBytes) fail(`${file} exceeds the ${maximumBytes}-byte README budget`);
 }
-validateGif("assets/readme-demo.gif", 960, 540, 400000);
 validateGif(".github/assets/orchestrui-readme-pro.gif", 1100, 619, 2800000);
 
 for (const file of ["assets/icon.svg", "assets/logo.svg", "assets/social-preview.svg"]) {
@@ -396,7 +395,7 @@ for (const sourceFile of [
   "mcp/src/server.ts", "mcp/src/tools.ts", "mcp/src/adapters.ts", "mcp/src/catalog.ts", "mcp/src/routing.ts",
   "benchmark/run.mjs", "examples/fixtures/run.mjs",
   "scripts/validate.mjs", "scripts/check-external-links.mjs", "scripts/render-brand-assets.mjs",
-  "scripts/render-readme-demo.mjs", "scripts/build-site-data.mjs",
+  "scripts/build-site-data.mjs",
   "scripts/check-docs.mjs",
   "scripts/install-codex.sh", "scripts/install-codex.ps1",
 ]) {

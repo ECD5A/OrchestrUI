@@ -68,7 +68,6 @@
     "check:docs": "node scripts/check-docs.mjs",
     "check:links": "node scripts/check-external-links.mjs",
     "render:brand": "node scripts/render-brand-assets.mjs",
-    "render:demo": "node scripts/render-readme-demo.mjs",
     "start:mcp": "node dist/mcp/src/server.js",
     "pack:check": "npm pack --dry-run",
     "pack:smoke": "npm run build --silent && node scripts/package-smoke.mjs",
@@ -84,7 +83,6 @@
     "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^26.4.0",
     "@types/semver": "^7.8.0",
-    "gifenc": "^1.0.3",
     "typescript": "^7.0.2"
   }
 }
