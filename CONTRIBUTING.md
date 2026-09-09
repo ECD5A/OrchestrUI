@@ -1,26 +1,40 @@
 # Contributing to OrchestrUI
 
-Useful contributions include upstream compatibility fixes, routing improvements, accessibility/performance work, catalog validation, agent skills, docs, examples, read-only MCP work and tests.
+Small fixes, docs, examples and tests are welcome, including your first open-source contribution. You do not need prior approval for a small PR.
 
-## Quick start
+For a new ecosystem or an architectural change, [open an issue](https://github.com/ECD5A/OrchestrUI/issues/new/choose) first so we can agree on scope before you spend time implementing it. If you are unsure where to start, ask in [Discussions](https://github.com/ECD5A/OrchestrUI/discussions).
+
+## Your first PR
+
+1. Fork the repository on GitHub and clone your fork.
+2. Create a branch and make one focused change.
+3. Run the checks below for the files you changed.
+4. Open a PR explaining the problem, the change and what you checked. Draft PRs are welcome for early feedback.
+
+For code contributions, use Node.js 20 or newer:
 
 ```bash
-git clone https://github.com/ECD5A/OrchestrUI.git
+git clone https://github.com/YOUR_USERNAME/OrchestrUI.git
 cd OrchestrUI
+git switch -c fix/short-description
 npm ci
 npm run check
 ```
 
-Small bug fixes, documentation improvements and tests are welcome without prior discussion. For a new integration or architectural change, open an issue first so the ownership and licensing boundaries are clear.
+For ordinary Markdown edits, Node.js is enough to run `npm run check:docs`; dependency installation and code tests are unnecessary.
 
-## Before a PR
+## What to check
 
-- Read `AGENTS.md` and `docs/LICENSING.md` and keep the change focused.
-- Do not copy paid/Pro content, vendor React Bits, or add secrets/tokens.
-- Run `npm run check`; for docs-only changes run `npm run check:docs` (and `npm run check:links` when links changed).
-- For adapter changes, run the opt-in live smoke test and include mocked failure-path tests.
-- For package/plugin changes, run `npm run pack:smoke` and keep all version fields synchronized.
+- **Code or behavioral skills:** run `npm run check`.
+- **Ordinary Markdown:** run `npm run check:docs`. If external links changed, also run `npm run check:links`.
+- **MCP or package behavior:** also run `npm run pack:smoke`.
+- **Registry adapters:** include mocked failure cases and run the optional live smoke test described in the [MCP guide](mcp/README.md). If upstream access fails, mention it in the PR.
+- **Catalog or integrations:** cite the official sources you checked and review [licensing boundaries](docs/LICENSING.md).
 
-README and ordinary Markdown changes run only the dependency-free documentation check in CI. Agent instructions and skill references affect behavior and use the full checks. Code changes also exercise an isolated npm installation and MCP stdio calls on Linux, macOS and Windows.
+Keep secrets and third-party component collections out of patches. [AGENTS.md](AGENTS.md) explains the routing invariants for behavioral changes. Version bumps are handled during release preparation; ordinary contributions do not need one.
 
-A PR should explain the problem, approach, any new dependency, official sources checked, tests run and licensing implications. Security reports follow `SECURITY.md`, never public Issues.
+## Useful places to contribute
+
+Routing and compatibility live in `mcp/src/` and `catalog/`; reproducible cases live in `test/`, `benchmark/` and `examples/fixtures/`. Setup improvements, clearer docs and reports of confusing behavior are equally useful. Start with the [documentation index](docs/README.md).
+
+Report suspected vulnerabilities privately through [SECURITY.md](SECURITY.md).

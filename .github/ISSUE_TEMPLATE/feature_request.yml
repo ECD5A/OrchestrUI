@@ -14,14 +14,4 @@ body:
     id: proposal
     attributes:
       label: Proposed approach
-    validations:
-      required: true
-  - type: checkboxes
-    id: scope
-    attributes:
-      label: Scope checks
-      options:
-        - label: This does not require copying paid/Pro content.
-          required: true
-        - label: This does not require redistributing the React Bits component collection.
-          required: true
+      description: Optional. An example of the result you want is enough; you do not need an implementation plan.

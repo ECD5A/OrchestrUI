@@ -37,10 +37,6 @@ The stable SDK package version and npm dist-tag were also checked directly: `@mo
 
 The official Registry quickstart was checked again through the upstream `modelcontextprotocol/registry` repository on 2026-08-20. Its current sequence is: publish the npm artifact, install `mcp-publisher`, run `mcp-publisher validate`, authenticate, then publish the metadata record.
 
-## Name-availability snapshot
-
-Structured exact-name checks on 2026-08-20 found no GitHub repository named `OrchestrUI`, no npm package `orchestrui`, no PyPI project `OrchestrUI`, no crates.io crate and no exact NuGet package. These checks reduce obvious software-coordinate collisions; they are not exhaustive and do not constitute legal trademark clearance.
-
 ## Build tooling
 
 - `@resvg/resvg-js`: https://github.com/yisibl/resvg-js | MPL-2.0
@@ -54,4 +50,4 @@ The renderer is a development-only dependency used to produce the checked-in PNG
 - Dependabot: https://docs.github.com/en/code-security/dependabot
 - CodeQL: https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql
 
-CI action tags were resolved from the official repositories on 2026-08-20 and pinned to full commits: `actions/checkout` v4 at `11d5960a326750d5838078e36cf38b85af677262` and `actions/setup-node` v4 at `49933ea5288caeca8642d1e84afbd3f7d6820020`.
+Workflow files record the pinned action commits; Dependabot proposes updates.

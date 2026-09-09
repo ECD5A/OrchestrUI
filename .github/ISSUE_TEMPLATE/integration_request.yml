@@ -26,5 +26,4 @@ body:
     id: license
     attributes:
       label: License / redistribution notes
-    validations:
-      required: true
+      description: Optional. Share a license link or known restrictions; maintainers will verify compatibility and redistribution rights before implementation.
