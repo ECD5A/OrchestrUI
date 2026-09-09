@@ -1,5 +1,3 @@
-# OrchestrUI 0.1.0
-
 OrchestrUI is an agent-facing UI orchestration layer that helps coding agents choose and integrate the smallest coherent set of tools across seven frontend ecosystems.
 
 ## Highlights
