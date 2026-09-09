@@ -19,6 +19,8 @@ While the canonical repository is private, run `$env:ORCHESTRUI_PUBLICATION_DEFE
 
 The MCP Registry currently hosts metadata, not artifacts, so publish the public npm package first. `package.json#mcpName` and `server.json#name` must both be `io.github.ECD5A/orchestrui`; the GitHub owner segment is case-sensitive during Registry authorization.
 
+The repository includes `.github/workflows/publish-npm.yml` for npm Trusted Publishing. On npmjs.com open the `orchestrui` package settings, add a GitHub Actions trusted publisher, and enter organization/user `ECD5A`, repository `OrchestrUI`, workflow filename `publish-npm.yml`, with direct publishing allowed. No npm token or SSH key is stored in GitHub. The workflow uses GitHub OIDC and Node 24, runs the full release checks, and publishes the selected tag. Use its manual `workflow_dispatch` input `v0.4.0` once to publish an already existing release; future published GitHub Releases trigger it automatically. npm requires CLI 11.5.1+ and Node 22.14+ for trusted publishing.
+
 After npm publication, install the official `mcp-publisher`, then run `mcp-publisher validate`, `mcp-publisher login github` and `mcp-publisher publish`. Registry versions are immutable, and the Registry is still in preview; do not publish placeholder metadata.
 
 ## OpenAI plugin directory
