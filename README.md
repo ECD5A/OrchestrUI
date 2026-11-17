@@ -13,6 +13,7 @@
   [![Agent Skills](https://img.shields.io/badge/agent%20skills-3-4f46e5.svg)](.agents/skills)
   [![UI ecosystems](https://img.shields.io/badge/UI%20ecosystems-7-0f766e.svg)](#ecosystems)
   [![MCP](https://img.shields.io/badge/MCP-Registry-7c3aed.svg)](https://registry.modelcontextprotocol.io/v0/servers/io.github.ECD5A%2Forchestrui/versions/latest)
+[![OrchestrUI on StartupScores](https://startupscores.com/badge/orchestrui.svg?style=shield&v=combo&theme=dark)](https://startupscores.com/open-source/orchestrui)
 
   <p>
     <a href="#quick-start">Quick start</a>
